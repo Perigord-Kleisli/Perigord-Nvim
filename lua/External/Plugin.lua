@@ -36,6 +36,7 @@ packer.init {
    },
 }
 
+require('External.Presence')
 require('External.Nvimtree')
 require('External.Telescope')
 require('External.Nvim-cmp')
@@ -51,11 +52,20 @@ return require('packer').startup(function(use)
 
       -- Delimeters
       use 'tpope/vim-surround'
-      use 'jiangmiao/auto-pairs'
 
       -- Comment
       use 'scrooloose/nerdcommenter'
 
+	-- Better % Functionalilty
+	use 'andymass/vim-matchup'
+
+	use { 'windwp/nvim-autopairs',
+	   config = function ()
+	   require('nvim-autopairs').setup({
+	   	disable_filetype = { "TelescopePrompt" , "vim" },
+	      })
+	   end
+	}
 
    -- [ File ]
 
@@ -104,6 +114,9 @@ return require('packer').startup(function(use)
 
 	-- Dictionary
 	use 'uga-rosa/cmp-dictionary'
+
+	-- Discord
+	use 'andweeb/presence.nvim'
 
 	-- Emojis
 	use 'hrsh7th/cmp-emoji'
