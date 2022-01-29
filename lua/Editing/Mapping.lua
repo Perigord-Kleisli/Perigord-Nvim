@@ -68,7 +68,7 @@ end
    -- ["<C-Space>"] manually open completion menu
    -- ["<C-e>"] Cancel completion
 
---[ Lang Specific ]--
+--[ Lang ]--
 
    map("n", "<leader>gd", "<cmd>lua require('telescope.builtin').lsp_references()")
    map('n', '<leader>cx', "<cmd>lua require('telescope.builtin').diagnostics()") -- show line diagnostics

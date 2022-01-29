@@ -6,7 +6,7 @@
 
 --[ Indentation ]
 vim.o.tabstop	= 6	 -- Number of spaces a tab is
-vim.o.expandtab	= false	 -- Keep tabs as tab chars
+vim.o.expandtab	= true -- Make tabs spaces
 vim.o.softtabstop	= 3	 -- Allows for tab size lower
 --^ than 'tabstop' via mixing
 --^ spaces and tabs
