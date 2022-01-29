@@ -36,7 +36,7 @@ packer.init {
    },
 }
 
-require('External.Presence')
+--require('External.Presence')
 require('External.Nvimtree')
 require('External.Telescope')
 require('External.Nvim-cmp')
@@ -59,13 +59,11 @@ return require('packer').startup(function(use)
 	-- Better % Functionalilty
 	use 'andymass/vim-matchup'
 
-	use { 'windwp/nvim-autopairs',
-	   config = function ()
-	   require('nvim-autopairs').setup({
-	   	disable_filetype = { "TelescopePrompt" , "vim" },
-	      })
-	   end
-	}
+	-- Save last position in file
+	use 'farmergreg/vim-lastplace'
+
+	-- Automatic delimiter closing
+	use 'windwp/nvim-autopairs'
 
    -- [ File ]
 

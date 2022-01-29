@@ -18,6 +18,16 @@ local check_backspace = function()
 end
 
 
+local autopair_status_ok, cmp_autopairs = pcall(require, 'nvim-autopairs.completion.cmp')
+if not autopair_status_ok then
+   vim.notify("Error importing: Autopairs")
+   return
+end
+
+cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "racket"
+require('nvim-autopairs').setup{}
+
 local kind_icons = {
   Text = "",
   Method = "m",
