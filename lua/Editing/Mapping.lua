@@ -7,7 +7,7 @@ local function map(mode, shortcut, command)
    vim.api.nvim_set_keymap(mode, shortcut, command .. '<CR>', { noremap = true, silent = true })
 end
 
-   map("", "<space>", "<Nop>")
+   vim.api.nvim_set_keymap("", "<space>", "<Nop>", {noremap = true, silent = true})
    vim.g.mapleader = ' '
    vim.g.maplocalleader = ' '
 
@@ -77,8 +77,9 @@ end
    -- map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()") -- TODO
    -- map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()")
    -- map("n", "<leader>cg", "<cmd>lua vim.lsp.buf.references()")
-   -- map('n', '<leader>cx', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })') -- Show diagnostics
-   -- map("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>") -- Rename LSP object
+   -- map("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()") -- Rename LSP object
+   -- map("n", "<leader>ce", "<cmd>lua vim.diagnostic.open_float()") -- Get line diagnostic
+   -- map("n", "<leader>ch", "<cmd>lua vim.lsp.buf.code_action()") -- Apply code action
    -- map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })') -- Prev diagnostic
    -- map('n', ']d', '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })') -- Next diagnostic
    -- map('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()') -- Show declarations
