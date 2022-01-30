@@ -114,7 +114,13 @@ return require('packer').startup(function(use)
 	use 'uga-rosa/cmp-dictionary'
 
 	-- Discord
-	use 'andweeb/presence.nvim'
+	use {'andweeb/presence.nvim',
+         config = function()
+            require('presence').setup({
+            neovim_image_text = "Neo Visual Editor Improved"
+         })
+      end
+      }
 
 	-- Emojis
 	use 'hrsh7th/cmp-emoji'
