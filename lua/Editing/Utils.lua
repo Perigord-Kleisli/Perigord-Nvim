@@ -31,7 +31,7 @@ vim.o.splitright = true -- split rightwards
 --[ Misc ]
 
 vim.o.undofile = true -- Enable undo file on exit
-vim.o.undodir = "/tmp/nvim-undos/undo" -- location of undo file
+vim.o.undodir = "/tmp/nvim-undos" -- location of undo file
 
 vim.o.mouse = "a" -- Enable mouse usage in nvim
 vim.o.iskeyword = vim.o.iskeyword .. ",-" -- add characters that would divide a word
