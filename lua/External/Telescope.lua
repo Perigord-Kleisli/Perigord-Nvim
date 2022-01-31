@@ -7,6 +7,7 @@ end
 local actions = require "telescope.actions"
 
 require('telescope').load_extension('media_files')
+require('telescope').load_extension('projects')
 
 telescope.setup {
   defaults = {
