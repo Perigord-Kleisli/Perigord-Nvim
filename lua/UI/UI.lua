@@ -12,7 +12,6 @@
    vim.o.numberwidth	      = 2      -- Width of the number bar
 
 --[ Theme ]--
-   vim.cmd[[colorscheme dracula]]
    --vim.cmd[[ "highlight CursorLine gui=underline" ]]
    -- vim.cmd("highlight CursorLineNr term=bold cterm=none ctermbg=none ctermfg=yellow gui=bold")
    vim.g.transparent_enabled  = true -- remove background in theme

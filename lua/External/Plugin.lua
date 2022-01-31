@@ -38,13 +38,14 @@ packer.init({
 require "External.Godbolt"
 require "External.Lspconfig"
 require "External.Lualine"
-require "External.Nvim-tree"
 require "External.Null-ls"
 require "External.Nvim-cmp"
+require "External.Nvim-tree"
+require "External.Packer_compiled"
+require "External.Plugsetup"
 require "External.Telescope"
 require "External.Toggleterm"
 require "External.TreeSitter"
-require "External.Packer_compiled"
 
 return require("packer").startup({
    config = {
@@ -66,23 +67,10 @@ return require("packer").startup({
       use "farmergreg/vim-lastplace"
 
       -- Automatic delimiter closing
-      use({
-         "windwp/nvim-autopairs",
-         config = function()
-            require("nvim-autopairs").setup({
-               check_ts = true,
-               fast_wrap = {},
-            })
-         end,
-      })
+      use "windwp/nvim-autopairs"
 
       -- Spellchecker
-      use({
-         "lewis6991/spellsitter.nvim",
-         config = function()
-            require("spellsitter").setup()
-         end,
-      })
+      use "lewis6991/spellsitter.nvim"
 
       -- [ File ]
 
@@ -92,54 +80,21 @@ return require("packer").startup({
       use "kyazdani42/nvim-web-devicons"
 
       --tabs
-      use({
-         "akinsho/bufferline.nvim",
-         requires = { "moll/vim-bbye", "hrsh7th/nvim-cmp" },
-         config = function()
-            require("bufferline").setup({
-               options = {
-                  close_command = "Bdelete! %d",
-                  right_mouse_command = "Bdelete! %d",
-                  diagnostics = "nvim_lsp",
-                  offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
-                  separator_style = "slant",
-               },
-            })
-         end,
-      })
+      use "akinsho/bufferline.nvim"
 
       -- Fuzzy finder
       use({
          "nvim-telescope/telescope.nvim",
          requires = { { "nvim-lua/plenary.nvim" } },
       })
+
       use({
          "nvim-telescope/telescope-media-files.nvim",
          requires = { "nvim-telescope/telescope.nvim" },
       })
 
       -- Project Manager
-      use({
-         "ahmedkhalf/project.nvim",
-         config = function()
-            require("project_nvim").setup({
-               patterns = {
-                  ".git",
-                  "_darcs",
-                  ".hg",
-                  ".bzr",
-                  ".svn",
-                  "Makefile",
-                  "package.json",
-                  ".cabal",
-                  "stack.yaml",
-                  "CMakeLists.txt",
-                  ".cargo",
-               },
-               exclude_dirs = { "~/.cargo/*", "~/.cabal/*" },
-            })
-         end,
-      })
+      use "ahmedkhalf/project.nvim"
       -- [ Look ]
 
       -- Airline
@@ -171,24 +126,18 @@ return require("packer").startup({
          requires = {
             { "nvim-treesitter" },
          },
-         config = function()
-            require("nvim-comment-frame").setup()
-         end,
       })
 
+      -- decrease startup times
       use "lewis6991/impatient.nvim"
 
+      -- Cursor hold fix
+      use "antoinemadec/FixCursorHold.nvim"
       -- Dictionary
       use "uga-rosa/cmp-dictionary"
 
-      --Discord
-      --use {'andweeb/presence.nvim',
-      --config = function()
-      --require('presence').setup({
-      --neovim_image_text = "Neo Visual Editor Improved"
-      --})
-      --end
-      --}
+      -- Discord
+      use "andweeb/presence.nvim"
 
       -- Emojis
       use "hrsh7th/cmp-emoji"
@@ -221,9 +170,6 @@ return require("packer").startup({
          requires = {
             "nvim-lua/plenary.nvim",
          },
-         config = function()
-            require("gitsigns").setup()
-         end,
       })
       -- Packer
       use "wbthomason/packer.nvim"
