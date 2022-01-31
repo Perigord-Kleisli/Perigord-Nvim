@@ -8,32 +8,32 @@
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
    PACKER_BOOTSTRAP = vim.fn.system({
-   "git",
-"clone",
-"--depth",
-"1",
-"https://github.com/wbthomason/packer.nvim",
-install_path,
-})
-      print("Installing packer close and reopen Neovim...")
-vim.cmd([[packadd packer.nvim]])
+      "git",
+      "clone",
+      "--depth",
+      "1",
+      "https://github.com/wbthomason/packer.nvim",
+      install_path,
+   })
+   print("Installing packer close and reopen Neovim...")
+   vim.cmd([[packadd packer.nvim]])
 end
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
    vim.notify("Error importing packer")
-return
+   return
 end
 
 -- Having packer open as a floating window
 packer.init({
    display = {
       open_fn = function()
-      return require("packer.util").float({ border = "rounded" })
-   end,
+         return require("packer.util").float({ border = "rounded" })
+      end,
    },
-   })
+})
 
 require("External.Godbolt")
 require("External.Lspconfig")
@@ -63,9 +63,9 @@ return require("packer").startup(function(use)
       "windwp/nvim-autopairs",
       config = function()
          require("nvim-autopairs").setup({
-         check_ts = true,
-      fast_wrap = {},
-      })
+            check_ts = true,
+            fast_wrap = {},
+         })
       end,
    })
 
@@ -90,7 +90,7 @@ return require("packer").startup(function(use)
                auto_close = true,
                ignore_ft_startup = { "startify", "dashboard", "alpha" },
                diagnostics = { enable = true },
-               view = { auto_resize = true }
+               view = { auto_resize = true },
             },
          })
       end,
@@ -104,14 +104,14 @@ return require("packer").startup(function(use)
       requires = { "moll/vim-bbye", "hrsh7th/nvim-cmp" },
       config = function()
          require("bufferline").setup({
-         options = {
-         close_command = "Bdelete! %d",
-      right_mouse_command = "Bdelete! %d",
-      diagnostics = "nvim_lsp",
-      offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
-      separator_style = "slant",
-      },
-      })
+            options = {
+               close_command = "Bdelete! %d",
+               right_mouse_command = "Bdelete! %d",
+               diagnostics = "nvim_lsp",
+               offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
+               separator_style = "slant",
+            },
+         })
       end,
    })
 
@@ -185,7 +185,7 @@ return require("packer").startup(function(use)
    use("folke/which-key.nvim")
 
    -- Toglleable term
-   use"akinsho/toggleterm.nvim"
+   use("akinsho/toggleterm.nvim")
 
    -- Browser integration
    use({
@@ -252,6 +252,6 @@ return require("packer").startup(function(use)
    use("hrsh7th/cmp-nvim-lua")
 
    if PACKER_BOOTSTRAP then
-   require("packer").sync()
+      require("packer").sync()
    end
 end)
