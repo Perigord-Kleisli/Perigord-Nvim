@@ -36,7 +36,7 @@ packer.init {
    },
 }
 
---require('External.Presence')
+require('External.Autopairs')
 require('External.Nvimtree')
 require('External.Telescope')
 require('External.Nvim-cmp')
@@ -50,7 +50,7 @@ return require('packer').startup(function(use)
 
    -- [ Editing ]
 
-      -- Delimeters
+      -- Delimeter operations
       use 'tpope/vim-surround'
 
       -- Comment
@@ -65,10 +65,26 @@ return require('packer').startup(function(use)
 	-- Automatic delimiter closing
 	use 'windwp/nvim-autopairs'
 
+      -- Spellchecker
+      use {
+         'lewis6991/spellsitter.nvim',
+         config = function()
+            require('spellsitter').setup()
+         end
+      }
+
    -- [ File ]
 
       -- Browser
-      use 'kyazdani42/nvim-tree.lua'
+      use {'kyazdani42/nvim-tree.lua',
+            config = function ()
+               require('nvim-tree').setup({
+            auto_close = true,
+            update_cwd = true,
+            ignore_ft_startup = { "startify", "dashboard", "alpha"},
+            diagnostics = { enable = true }
+         })
+            end}
       use 'kyazdani42/nvim-web-devicons'
 
       -- Fuzzy finder
@@ -113,8 +129,8 @@ return require('packer').startup(function(use)
 	-- Dictionary
 	use 'uga-rosa/cmp-dictionary'
 
-	-- Discord
-	use {'andweeb/presence.nvim',
+      --Discord
+      use {'andweeb/presence.nvim',
          config = function()
             require('presence').setup({
             neovim_image_text = "Neo Visual Editor Improved"
@@ -131,6 +147,11 @@ return require('packer').startup(function(use)
       -- Show available keys
       use 'folke/which-key.nvim'
 
+      -- Browser integration
+      use {
+          'glacambre/firenvim',
+          run = function() vim.fn['firenvim#install'](0) end
+      }
       -- Godbolt
       use 'P00f/Godbolt.Nvim'
 

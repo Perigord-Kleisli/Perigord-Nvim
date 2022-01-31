@@ -13,6 +13,9 @@ treesitter.setup {
 	enable = true,
    disable = {},
    },
+   autopairs = {
+      enable = true
+   },
   matchup = {
     enable = true
   },

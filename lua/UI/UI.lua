@@ -13,9 +13,9 @@
 
 --[ Theme ]--
    vim.cmd[[colorscheme dracula]]
-   vim.cmd("highlight CursorLine gui=underline")
+   vim.cmd[[ "highlight CursorLine gui=underline" ]]
    -- vim.cmd("highlight CursorLineNr term=bold cterm=none ctermbg=none ctermfg=yellow gui=bold")
-   vim.g.transparent_enabled  = true   -- remove background in theme
+   vim.g.transparent_enabled  = true -- remove background in theme
    vim.o.title		      = true   -- set windowname as title name
    vim.o.termguicolors	      = true   -- Enable terminal colors
 
