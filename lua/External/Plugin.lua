@@ -41,6 +41,7 @@ require("External.Lualine")
 require("External.Null-ls")
 require("External.Nvim-cmp")
 require("External.Telescope")
+require("External.Toggleterm")
 require("External.TreeSitter")
 
 return require("packer").startup(function(use)
@@ -80,21 +81,7 @@ return require("packer").startup(function(use)
    -- [ File ]
 
    -- Browser
-   use({
-      "kyazdani42/nvim-tree.lua",
-      config = function()
-         require("nvim-tree").setup({
-            options = {
-               disable_netrw = true,
-               hijack_netrw = true,
-               auto_close = true,
-               ignore_ft_startup = { "startify", "dashboard", "alpha" },
-               diagnostics = { enable = true },
-               view = { auto_resize = true },
-            },
-         })
-      end,
-   })
+   use("kyazdani42/nvim-tree.lua")
 
    use("kyazdani42/nvim-web-devicons")
 
@@ -184,7 +171,7 @@ return require("packer").startup(function(use)
    -- Show available keys
    use("folke/which-key.nvim")
 
-   -- Toglleable term
+   -- Toglleable terminal
    use("akinsho/toggleterm.nvim")
 
    -- Browser integration

@@ -23,8 +23,10 @@ end
 
    
    map('t', '<Esc>', '<C-\\><C-n>')	     -- Extra terminal exit bind
-   map('t', '<space>ot', '<C-\\><C-n> :q')  -- Extra terminal exit bind
+   map('t', '<space>ot', '<C-\\><C-n>:ToggleTerm')  -- Extra terminal exit bind
 
+   map('n', '<leader>ot', ":ToggleTerm direction=horizontal")
+   map('n', '<leader>oT', ":ToggleTerm direction=float")
 --[ Debug and running ]--
    map('n', '<f2>', ':!./%') -- Running script files
 
