@@ -160,9 +160,6 @@ return require("packer").startup({
       use "nvim-lua/popup.nvim"
       use "nvim-lua/plenary.nvim"
 
-      -- Autocmd
-      use "jakelinnzy/autocmd-lua"
-
       -- [ Misc ]
 
       -- Calculator
