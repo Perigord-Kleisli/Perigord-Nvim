@@ -35,13 +35,11 @@ packer.init({
 	},
 })
 
---require('External.Autopairs')
 require("External.Godbolt")
 require("External.Lspconfig")
 require("External.Lualine")
 require("External.Null-ls")
 require("External.Nvim-cmp")
-require("External.Nvimtree")
 require("External.Telescope")
 require("External.TreeSitter")
 

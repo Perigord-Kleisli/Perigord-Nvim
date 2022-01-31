@@ -21,10 +21,7 @@ end
 
 --[ Terminal ]--
 
-   map('n', '<space>ot', ':split<CR> :term<CR> :set nonumber norelativenumber<CR> i') -- Split screen and open terminal
-
-   map('n', '<space>oT', ':Lspsaga open_floaterm')  -- Floating Terminal
-   map('t', '<space>oT', ':Lspsaga close_floaterm')  -- Close floatterm
+   
    map('t', '<Esc>', '<C-\\><C-n>')	     -- Extra terminal exit bind
    map('t', '<space>ot', '<C-\\><C-n> :q')  -- Extra terminal exit bind
 
