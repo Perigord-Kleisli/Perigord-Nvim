@@ -140,8 +140,14 @@ if not dictionary_status_ok then
    vim.notify("Error importing: Cmp_dictionary")
    return
 end
+
 dict.setup({
    dic = {
 	["*"] = { "/usr/share/dict/words" }
    },
 })
+
+
+local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = "" } })
+

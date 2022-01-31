@@ -44,6 +44,7 @@ end
 
    map("n", 'H', ":bprevious")	 -- Switch buffer
    map("n", 'L', ":bnext")	 --^
+   map("n", '<leader>bk', ":Bdelete! %") -- Delete buffer
 
 --[ Text Editing ]--
 

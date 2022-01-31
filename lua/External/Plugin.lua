@@ -36,7 +36,7 @@ packer.init {
    },
 }
 
-require('External.Autopairs')
+--require('External.Autopairs')
 require('External.Nvimtree')
 require('External.Telescope')
 require('External.Nvim-cmp')
@@ -63,7 +63,14 @@ return require('packer').startup(function(use)
 	use 'farmergreg/vim-lastplace'
 
 	-- Automatic delimiter closing
-	use 'windwp/nvim-autopairs'
+	use {'windwp/nvim-autopairs',
+            config = function ()
+               require('nvim-autopairs').setup({
+               check_ts = true,
+               fast_wrap = {}
+               })
+      end
+      }
 
       -- Spellchecker
       use {
@@ -78,14 +85,29 @@ return require('packer').startup(function(use)
       -- Browser
       use {'kyazdani42/nvim-tree.lua',
             config = function ()
-               require('nvim-tree').setup({
+               require('nvim-tree').setup({ options = {
             auto_close = true,
             update_cwd = true,
             ignore_ft_startup = { "startify", "dashboard", "alpha"},
             diagnostics = { enable = true }
-         })
+         }}
+         )
             end}
       use 'kyazdani42/nvim-web-devicons'
+
+      --tabs
+      use {'akinsho/bufferline.nvim', requires = { 'moll/vim-bbye', 'hrsh7th/nvim-cmp'},
+         config = function ()
+            require('bufferline').setup({
+            options = {
+               close_command = "Bdelete! %d",
+               right_mouse_command = "Bdelete! %d",
+               diagnostics = "nvim_lsp",
+               offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
+               separator_style = "slant"
+            }
+         })
+         end}
 
       -- Fuzzy finder
 	use {
@@ -130,13 +152,13 @@ return require('packer').startup(function(use)
 	use 'uga-rosa/cmp-dictionary'
 
       --Discord
-      use {'andweeb/presence.nvim',
-         config = function()
-            require('presence').setup({
-            neovim_image_text = "Neo Visual Editor Improved"
-         })
-      end
-      }
+      --use {'andweeb/presence.nvim',
+         --config = function()
+            --require('presence').setup({
+            --neovim_image_text = "Neo Visual Editor Improved"
+         --})
+      --end
+      --}
 
 	-- Emojis
 	use 'hrsh7th/cmp-emoji'
@@ -195,6 +217,9 @@ return require('packer').startup(function(use)
 	   'nvim-treesitter/nvim-treesitter'
 	}}
 
+      -- Formatter
+      use "jose-elias-alvarez/null-ls.nvim"
+
 	-- Building
       use { 'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', "Make", "Focus", "Start"} }
 
@@ -214,3 +239,5 @@ return require('packer').startup(function(use)
 	   require("packer").sync()
 	end
 end)
+
+
