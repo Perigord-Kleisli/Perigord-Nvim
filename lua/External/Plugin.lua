@@ -5,7 +5,7 @@
 
 -- For automatically installing Packer when not located
 
-local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local install_path = vim.fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
    PACKER_BOOTSTRAP = vim.fn.system({
       "git",
@@ -15,14 +15,14 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
       "https://github.com/wbthomason/packer.nvim",
       install_path,
    })
-   print("Installing packer close and reopen Neovim...")
-   vim.cmd([[packadd packer.nvim]])
+   print "Installing packer close and reopen Neovim..."
+   vim.cmd [[packadd packer.nvim]]
 end
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
-   vim.notify("Error importing packer")
+   vim.notify "Error importing packer"
    return
 end
 
@@ -35,30 +35,30 @@ packer.init({
    },
 })
 
-require("External.Godbolt")
-require("External.Lspconfig")
-require("External.Lualine")
-require("External.Nvim-tree")
-require("External.Null-ls")
-require("External.Nvim-cmp")
-require("External.Telescope")
-require("External.Toggleterm")
-require("External.TreeSitter")
+require "External.Godbolt"
+require "External.Lspconfig"
+require "External.Lualine"
+require "External.Nvim-tree"
+require "External.Null-ls"
+require "External.Nvim-cmp"
+require "External.Telescope"
+require "External.Toggleterm"
+require "External.TreeSitter"
 
 return require("packer").startup(function(use)
    -- [ Editing ]
 
    -- Delimeter operations
-   use("tpope/vim-surround")
+   use "tpope/vim-surround"
 
    -- Comment
-   use("scrooloose/nerdcommenter")
+   use "scrooloose/nerdcommenter"
 
    -- Better % Functionalilty
-   use("andymass/vim-matchup")
+   use "andymass/vim-matchup"
 
    -- Save last position in file
-   use("farmergreg/vim-lastplace")
+   use "farmergreg/vim-lastplace"
 
    -- Automatic delimiter closing
    use({
@@ -82,9 +82,9 @@ return require("packer").startup(function(use)
    -- [ File ]
 
    -- Browser
-   use("kyazdani42/nvim-tree.lua")
+   use "kyazdani42/nvim-tree.lua"
 
-   use("kyazdani42/nvim-web-devicons")
+   use "kyazdani42/nvim-web-devicons"
 
    --tabs
    use({
@@ -116,30 +116,30 @@ return require("packer").startup(function(use)
    -- [ Look ]
 
    -- Airline
-   use("nvim-lualine/lualine.nvim")
+   use "nvim-lualine/lualine.nvim"
 
    -- Theme
    use({ "dracula/vim", as = "dracula" })
 
    -- Transparency
-   use("xiyaowong/nvim-transparent")
+   use "xiyaowong/nvim-transparent"
 
    -- Indent lines
-   use("lukas-reineke/indent-blankline.nvim")
+   use "lukas-reineke/indent-blankline.nvim"
 
    -- [ Config dependencies ]
 
    -- Required by some plugins
-   use("nvim-lua/popup.nvim")
-   use("nvim-lua/plenary.nvim")
+   use "nvim-lua/popup.nvim"
+   use "nvim-lua/plenary.nvim"
 
    -- Autocmd
-   use("jakelinnzy/autocmd-lua")
+   use "jakelinnzy/autocmd-lua"
 
    -- [ Misc ]
 
    -- Calculator
-   use("hrsh7th/cmp-calc")
+   use "hrsh7th/cmp-calc"
 
    -- Comment frame
    use({
@@ -152,10 +152,10 @@ return require("packer").startup(function(use)
       end,
    })
 
-   use 'lewis6991/impatient.nvim'
+   use "lewis6991/impatient.nvim"
 
    -- Dictionary
-   use("uga-rosa/cmp-dictionary")
+   use "uga-rosa/cmp-dictionary"
 
    --Discord
    --use {'andweeb/presence.nvim',
@@ -167,16 +167,19 @@ return require("packer").startup(function(use)
    --}
 
    -- Emojis
-   use("hrsh7th/cmp-emoji")
+   use "hrsh7th/cmp-emoji"
 
    -- Start menu
-   use("mhinz/vim-startify")
+   use "mhinz/vim-startify"
 
    -- Show available keys
-   use("folke/which-key.nvim")
+   use "folke/which-key.nvim"
 
    -- Toglleable terminal
-   use("akinsho/toggleterm.nvim")
+   use "akinsho/toggleterm.nvim"
+
+   -- Git integration
+   use "tpope/vim-fugitive"
 
    -- Browser integration
    use({
@@ -186,7 +189,7 @@ return require("packer").startup(function(use)
       end,
    })
    -- Godbolt
-   use("P00f/Godbolt.Nvim")
+   use "P00f/Godbolt.Nvim"
 
    -- Git Decorations
    use({
@@ -199,27 +202,27 @@ return require("packer").startup(function(use)
       end,
    })
    -- Packer
-   use("wbthomason/packer.nvim")
+   use "wbthomason/packer.nvim"
 
    -- Programming Dahsboard
-   use("wakatime/vim-wakatime")
+   use "wakatime/vim-wakatime"
 
    --[ LANG ]
 
    -- Completion
-   use("hrsh7th/nvim-cmp")
-   use("hrsh7th/cmp-buffer")
-   use("hrsh7th/cmp-path")
-   use("hrsh7th/cmp-cmdline")
-   use("saadparwaiz1/cmp_luasnip")
-   use("hrsh7th/cmp-nvim-lsp")
-   use("L3MON4D3/LuaSnip")
-   use("rafamadriz/friendly-snippets")
+   use "hrsh7th/nvim-cmp"
+   use "hrsh7th/cmp-buffer"
+   use "hrsh7th/cmp-path"
+   use "hrsh7th/cmp-cmdline"
+   use "saadparwaiz1/cmp_luasnip"
+   use "hrsh7th/cmp-nvim-lsp"
+   use "L3MON4D3/LuaSnip"
+   use "rafamadriz/friendly-snippets"
 
    -- LSP
-   use("neovim/nvim-lspconfig")
-   use("williamboman/nvim-lsp-installer")
-   use("jose-elias-alvarez/null-ls.nvim")
+   use "neovim/nvim-lspconfig"
+   use "williamboman/nvim-lsp-installer"
+   use "jose-elias-alvarez/null-ls.nvim"
 
    -- Smarter Highlighting
    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
@@ -231,16 +234,16 @@ return require("packer").startup(function(use)
    use({ "tpope/vim-dispatch", opt = true, cmd = { "Dispatch", "Make", "Focus", "Start" } })
 
    -- APL
-   use("justin2004/vim-apl")
+   use "justin2004/vim-apl"
 
    -- Latex
-   use("kdheepak/cmp-latex-symbols")
+   use "kdheepak/cmp-latex-symbols"
 
    -- Markdown
    use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install" })
 
    -- Nvim_Lua
-   use("hrsh7th/cmp-nvim-lua")
+   use "hrsh7th/cmp-nvim-lua"
 
    if PACKER_BOOTSTRAP then
       require("packer").sync()
