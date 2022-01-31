@@ -38,6 +38,7 @@ packer.init({
 require("External.Godbolt")
 require("External.Lspconfig")
 require("External.Lualine")
+require("External.Nvim-tree")
 require("External.Null-ls")
 require("External.Nvim-cmp")
 require("External.Telescope")
@@ -150,6 +151,9 @@ return require("packer").startup(function(use)
          require("nvim-comment-frame").setup()
       end,
    })
+
+   use 'lewis6991/impatient.nvim'
+
    -- Dictionary
    use("uga-rosa/cmp-dictionary")
 
