@@ -13,7 +13,7 @@
 
 --[ Theme ]--
    vim.cmd[[colorscheme dracula]]
-   vim.cmd[[ "highlight CursorLine gui=underline" ]]
+   --vim.cmd[[ "highlight CursorLine gui=underline" ]]
    -- vim.cmd("highlight CursorLineNr term=bold cterm=none ctermbg=none ctermfg=yellow gui=bold")
    vim.g.transparent_enabled  = true -- remove background in theme
    vim.o.title		      = true   -- set windowname as title name
@@ -24,5 +24,5 @@
    vim.g.indentLine_char_list = {' ', '┆', '┊', '|', '¦', '¦','¦'}  -- Indent lines used on tabs
    vim.opt.scrolloff	      = 4      -- Lines before scrolling the screen
    vim.opt.sidescrolloff      = 12     -- Same as above but sideways
-   vim.o.cursorline	      = true   -- enable cursorline
+   --vim.o.cursorline	      = true   -- enable cursorline
    vim.opt.wrap		      = false  -- Dont wrap long text
