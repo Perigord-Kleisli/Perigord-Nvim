@@ -1,1 +1,1 @@
-# Trouble Truffle NVIM-config
+# Perigord NVIM-config
