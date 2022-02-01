@@ -17,7 +17,15 @@
    vim.g.transparent_enabled  = true -- remove background in theme
    vim.o.title		      = true   -- set windowname as title name
    vim.o.termguicolors	      = true   -- Enable terminal colors
-
+   
+   vim.cmd[[
+   try
+     colorscheme dracula
+   catch /^Vim\%((\a\+)\)\=:E185/
+     colorscheme default
+     set background=dark
+   endtry
+   ]]
 
 --[ Body ]--
    vim.g.indentLine_char_list = {' ', '┆', '┊', '|', '¦', '¦','¦'}  -- Indent lines used on tabs
