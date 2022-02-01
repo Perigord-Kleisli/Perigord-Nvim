@@ -35,6 +35,7 @@ packer.init({
    },
 })
 
+-- require "External.Alpha"
 require "External.Godbolt"
 require "External.Lspconfig"
 require "External.Lualine"
@@ -143,7 +144,7 @@ return require("packer").startup({
       use "hrsh7th/cmp-emoji"
 
       -- Start menu
-      use "mhinz/vim-startify"
+      use "goolord/alpha-nvim"
 
       -- Show available keys
       use "folke/which-key.nvim"
