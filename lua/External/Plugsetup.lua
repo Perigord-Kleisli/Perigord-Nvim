@@ -50,8 +50,6 @@ plug_setup("project_nvim").setup({
 
 plug_setup("alpha").setup(require "External.Alpha")
 
-plug_setup("indent_blankline").setup()
-
 plug_setup("nvim-comment-frame").setup()
 
 plug_setup("presence"):setup({ neovim_image_text = "Neo Visual Editor Imporoved" })

@@ -60,10 +60,9 @@ end
 local buttons = {
    type = "group",
    val = {
-      button("e", "  New file", "<cmd>ene"),
+      button("SPC s l", "  Open last session", "`0"),
       button("SPC f m", "  Projects", ":Telescope projects"),
       button("SPC f h", "  Recently opened files", ":Telescope oldfiles"),
-      button("SPC s l", "  Open last session", "`1"),
       button("SPC f f", "  Find file", ":Telescope find_files"),
       button("SPC f g", "  Find word", ":Telescope live_grep"),
    },
