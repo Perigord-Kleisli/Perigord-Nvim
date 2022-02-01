@@ -118,7 +118,7 @@ cmp.setup {
     	{ name = "path" },
 	{
 	   name = "dictionary",
-	   keyword_length = 2,
+	   keyword_length = 4,
 	},
 	{ name = 'emoji' }
   },
@@ -130,7 +130,7 @@ cmp.setup {
     border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
   },
   experimental = {
-    ghost_text = true,
+    --ghost_text = true,
     native_menu = true,
   },
 }

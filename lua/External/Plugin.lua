@@ -141,6 +141,9 @@ return require("packer").startup({
       -- Discord
       use "andweeb/presence.nvim"
 
+      -- Highlight word under cursor
+      use "yamatsum/nvim-cursorline"
+
       -- Emojis
       use "hrsh7th/cmp-emoji"
 
@@ -179,6 +182,8 @@ return require("packer").startup({
       -- Programming Dahsboard
       use "wakatime/vim-wakatime"
 
+      -- Which key
+      use "folke/which-key.nvim"
       --[ LANG ]
 
       -- Completion

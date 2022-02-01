@@ -13,6 +13,11 @@ vim.cmd [[
 	    autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200})
 	augroup end
 ]]
-
 -- enable direct exit on q on some buffers
 -- temporarily highlight text on copy
+
+vim.cmd [[
+      augroup _alpha
+         autocmd FileType alpha echo "asd" 
+      augroup end
+]]
