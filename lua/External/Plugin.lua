@@ -148,6 +148,8 @@ return require("packer").startup({
       -- Emojis
       use "hrsh7th/cmp-emoji"
 
+      -- Highlight cursor on large jumps
+      use "DanilaMihailov/beacon.nvim"
       -- Start menu
       use "goolord/alpha-nvim"
 

@@ -36,15 +36,18 @@ which_key.register(
    {
       ["<C-f>"] = map("File Explorer", "NvimTreeToggle"),
 
-      H = map("Prev", "BufferLineCyclePrev"),
-      L = map("Next", "BufferLineCycleNext"),
-      ["gT"] = map("Prev", "BufferLineCyclePrev"),
-      ["gt"] = map("Next", "BufferLineCycleNext"),
-      ["<A-h>"] = map("Move forward", "BufferLineMovePrev"),
-      ["<A-l>"] = map("Move back", "BufferLineMoveNext"),
+      ["<A-h>"] = map("Prev", "BufferLineCyclePrev"),
+      ["<A-l>"] = map("Next", "BufferLineCycleNext"),
       ["<A-S-h>"] = map("Move forward", "BufferLineMovePrev"),
       ["<A-S-l>"] = map("Move back", "BufferLineMoveNext"),
 
+      g = {
+         name = "Go to",
+         d = map("Definition", "lua vim.lsp.buf.definition()"),
+         i = map("Implementation", "lua vim.lsp.buf.implementation()"),
+         T = map("Prev buffer", "BufferLineCyclePrev"),
+         t = map("Next buffer", "BufferLineCycleNext"),
+      },
       ["<leader>"] = {
 
          ["pp"] = map("Projects", "lua require('telescope').extensions.projects.projects()"),
@@ -77,6 +80,7 @@ which_key.register(
             b = map("Blame", "lua require 'gitsigns'.blame_line()"),
             B = map("Branches", telescope "git_branches"),
             C = map("Commits", telescope "git_commits"),
+            D = map("Get diff", "Gitsigns diffthis"),
             j = map("Next Hunk", "lua require'gitsigns'.next_hunk()"),
             k = map("Previous Hunk", "lua require'gitsigns'.prev_hunk()"),
             l = map("Lazygit", telescope "lazygit"),
@@ -85,20 +89,23 @@ which_key.register(
             ["RR"] = map("Reset Buffer", "lua require 'gitsigns'.reset_buffer()"),
             s = map("Status", telescope "git_status"),
             S = map("Stage hunk", "lua require 'gitsigns'.stage_hunk()"),
+            U = map("Unstage hunk", "lua require 'gitsigns'.undo_stage_hunk()"),
          },
 
          l = {
             name = "Lsp",
             a = map("Code action", "lua vim.lsp.buf.code_action()"),
-            d = map("Diagnostics", telescope "lsp_workspace_diagnostics"),
+            d = map("Diagnostics", telescope("diagnostics", "ivy")),
             f = map("Format", "lua vim.lsp.buf.formatting_sync()"),
             i = map("File Lsp Info", "LspInfo"),
             l = map("Line diagnostics", "lua vim.diagnostic.open_float()"),
+            s = map("Document symbols", telescope "lsp_document_symbols"),
             r = map("Rename variable", "lua vim.lsp.buf.rename()"),
          },
 
          h = {
             name = "Help",
+            h = { ":help ", "Help" },
             c = map("Colorscheme", telescope "colorscheme"),
             m = map("Mappings", telescope "keymaps"),
             t = map("Tags", telescope "help_tags"),
