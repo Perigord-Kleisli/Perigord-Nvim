@@ -30,6 +30,11 @@ vim.o.splitright = true -- split rightwards
 
 --[ Misc ]
 
+vim.wo.foldmethod = "expr"
+vim.o.foldlevel = 99
+vim.o.foldexpr =  "nvim_treesitter#foldexpr()"
+vim.o.foldtext      = [[substitute(getline(v:foldstart),'\\\\t',repeat('\\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
+
 vim.o.undofile = true -- Enable undo file on exit
 vim.o.undodir = "/tmp/nvim-undos" -- location of undo file
 vim.o.timeoutlen = 300  -- Time for a mappes sequence to finish

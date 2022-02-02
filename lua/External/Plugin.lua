@@ -139,6 +139,9 @@ return require("packer").startup({
       -- Dictionary
       use "uga-rosa/cmp-dictionary"
 
+      -- Debugging
+      use "mfussenegger/nvim-dap"
+
       -- Discord
       use "andweeb/presence.nvim"
 
@@ -207,9 +210,6 @@ return require("packer").startup({
       use({ "p00f/nvim-ts-rainbow", requires = {
          "nvim-treesitter/nvim-treesitter",
       } })
-
-      -- Building
-      use({ "tpope/vim-dispatch", opt = true, cmd = { "Dispatch", "Make", "Focus", "Start" } })
 
       -- APL
       use "justin2004/vim-apl"
