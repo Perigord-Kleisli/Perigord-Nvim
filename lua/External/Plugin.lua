@@ -48,6 +48,7 @@ require "External.Plugsetup"
 require "External.Telescope"
 require "External.Toggleterm"
 require "External.TreeSitter"
+require "External.Which_key"
 
 return require("packer").startup({
    config = {
@@ -182,8 +183,6 @@ return require("packer").startup({
       -- Programming Dahsboard
       use "wakatime/vim-wakatime"
 
-      -- Which key
-      use "folke/which-key.nvim"
       --[ LANG ]
 
       -- Completion

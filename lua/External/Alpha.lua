@@ -78,12 +78,12 @@ end
 local buttons = {
    type = "group",
    val = {
-      button("SPC s l", "  Open last session", "`0"),
-      button("SPC f m", "  Projects", ":Telescope projects"),
-      button("SPC f h", "  Recently opened files", ":Telescope oldfiles"),
-      button("SPC f p", "  Configuration", ":e"..vim.fn.stdpath('config').."/init.lua"),
+      button("SPC o l", "  Open last session", "`0"),
+      button("SPC f p", "  Projects", ":Telescope projects"),
+      button("SPC f r", "  Recently opened files", ":Telescope oldfiles"),
+      button("SPC o p", "  Configuration", ":e"..vim.fn.stdpath('config').."/init.lua"),
       button("SPC f f", "  Find file", ":Telescope find_files"),
-      button("SPC f g", "  Find word", ":Telescope live_grep"),
+      button("SPC f t", "  Find word", ":Telescope live_grep"),
    },
    opts = {
       spacing = 1,
@@ -110,10 +110,3 @@ local config = {
 }
 
 return config
---return {
---button = button,
---section = section,
---config = config,
----- deprecated
---opts = config,
---}

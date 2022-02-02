@@ -18,12 +18,6 @@ plug_setup("nvim-autopairs").setup({
    check_ts = true,
    fast_wrap = {
       map = "<M-e>",
-      chars = { "{", "[", "(", '"', "'" },
-      pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
-      offset = 0, -- Offset from pattern match
-      end_key = "$",
-      keys = "qwertyuiopzxcvbnmasdfghjkl",
-      check_comma = true,
       highlight = "PmenuSel",
       highlight_grey = "LineNr",
    },
@@ -33,8 +27,8 @@ plug_setup("spellsitter").setup()
 
 plug_setup("bufferline").setup({
    options = {
-      close_command = "Bdelete! %d",
-      right_mouse_command = "Bdelete! %d",
+      close_command = "bdelete! %d",
+      right_mouse_command = "bdelete! %d",
       diagnostics = "nvim_lsp",
       offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
       separator_style = "slant",
@@ -64,4 +58,9 @@ plug_setup("nvim-comment-frame").setup()
 
 plug_setup("presence"):setup({ neovim_image_text = "Neo Visual Editor Imporoved" })
 
-plug_setup("gitsigns").setup()
+plug_setup("gitsigns").setup({
+   current_line_blame = true,
+   current_line_blame_opts = {
+      delay = 200
+   }
+})

@@ -30,6 +30,5 @@ vim.cmd [[
 vim.opt.scrolloff = 4 -- Lines before scrolling the screen
 vim.opt.sidescrolloff = 12 -- Same as above but sideways
 vim.cmd[[hi CursorLine term=underline cterm=underline guibg=none gui=underline]]
-vim.cmd[[hi CursorLineNr term=bold cterm=bold guibg=blue gui=bold ]]
 vim.o.cursorline	      = true   -- enable cursorline
 vim.opt.wrap = false -- Dont wrap long text

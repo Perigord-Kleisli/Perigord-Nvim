@@ -11,21 +11,11 @@ vim.api.nvim_set_keymap("", "<space>", "<Nop>", { noremap = true, silent = true 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
---[ File browsing ]--
-
-map("n", "<space>op", ":NvimTreeToggle") -- Open file browser
-map("n", "<space><space>", "<cmd>lua require('telescope.builtin').find_files()") -- File finder
-map("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()") -- File finder
-map("n", "<leader>ft", "<cmd>lua require('telescope.builtin').live_grep()") -- Grep find
-map("n", "<leader>fk", "<cmd>lua require('telescope.builtin').help_tags()") -- Help tags
-
 --[ Terminal ]--
 
 map("t", "<Esc>", "<C-\\><C-n>") -- Extra terminal exit bind
 map("t", "<space>ot", "<C-\\><C-n>:ToggleTerm") -- Extra terminal exit bind
 
-map("n", "<leader>ot", ":ToggleTerm direction=horizontal")
-map("n", "<leader>oT", ":ToggleTerm direction=float")
 --[ Debug and running ]--
 map("n", "<f2>", ":!./%") -- Running script files
 
@@ -40,10 +30,6 @@ map("n", "<C-j>", "<C-w>j") --^
 map("n", "<C-k>", "<C-w>k") --^
 map("n", "<C-l>", "<C-w>l") --^
 
-map("n", "H", ":bprevious") -- Switch buffer
-map("n", "L", ":bnext") --^
-map("n", "<leader>bk", ":Bdelete! %") -- Delete buffer
-
 --[ Text Editing ]--
 
 map("n", "<C-x>;", [[:call nerdcommenter#Comment('i','toggle')]]) -- Toggle comment
@@ -52,13 +38,16 @@ map("n", "<C-l>", ":nohl") -- Unhighlight text
 
 map("i", "jk", "<ESC>k") -- Go to normal by pressing j and k quickly
 
-map("n", "<leader>fy", "<cmd>lua require('telescope.builtin').registers()") -- Get registers
 map("v", "<", "<gvk") -- Stay in indent mode when indenting in visual mode
 map("v", ">", ">gvk") --^
 
+map('n', "<A-j>"," :m +1")
+map('n', "<A-k>"," :m -2")
+
 vim.cmd [[vnoremap <down> :m '>+1<CR>gv=gv]] -- Moving text in visual mode
 vim.cmd [[vnoremap <up> :m '<-2<CR>gv=gv  ]] --^
-
+vim.cmd [[vnoremap <A-k> :m '<-2<CR>gv=gv  ]] --^
+vim.cmd [[vnoremap <A-j> :m '>+1<CR>gv=gv]] --^
 -- Completion [[Defined in another file]]
 -- ["<c-k>"] previous item in completion
 -- ["<C-j>"] next item in completion
