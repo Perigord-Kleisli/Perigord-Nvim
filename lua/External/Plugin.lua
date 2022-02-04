@@ -52,7 +52,7 @@ require "External.Which_key"
 
 return require("packer").startup({
    config = {
-      compile_path = vim.fn.stdpath "config" .. "lua/External/Packer_compiled.lua",
+      compile_path = vim.fn.stdpath "config" .. "/lua/External/Packer_compiled.lua",
    },
    function(use)
       -- [ Editing ]
