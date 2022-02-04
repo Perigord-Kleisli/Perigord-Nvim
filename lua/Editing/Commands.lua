@@ -10,6 +10,7 @@ vim.cmd [[command! Formata  execute "lua vim.lsp.buf.formatting_sync()"]]
 
 vim.cmd [[
 	augroup _general_settings
+         autocmd BufDelete alpha :set cursorline
 	    autocmd FileType qf,help,man,packer,lspinfo nnoremap <silent> <buffer> q :close<CR> 
 	    autocmd FileType toggleterm tnoremap <silent> <buffer> q <C-\\><C-n>:ToggleTerm<CR> 
 	    autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200})
@@ -18,8 +19,12 @@ vim.cmd [[
 -- enable direct exit on q on some buffers
 -- temporarily highlight text on copy
 --
---
-vim.cmd[[
+vim.cmd [[
+   augroup _org_mode
+      autocmd FileType org :set wrap linebreak
+   augroup end
+]]
+vim.cmd [[
 function! AnimatedTerm() abort
    ToggleTerm direction=horizontal size=1
   call animate#window_percent_height(0.25)

@@ -175,6 +175,10 @@ return require("packer").startup({
             vim.fn["firenvim#install"](0)
          end,
       })
+      
+      -- Grammer Checker
+      use "vigoux/LanguageTool.nvim"
+      use 'rhysd/vim-grammarous'
       -- Godbolt
       use "P00f/Godbolt.Nvim"
 
@@ -228,6 +232,10 @@ return require("packer").startup({
 
       -- Nvim_Lua
       use "hrsh7th/cmp-nvim-lua"
+
+      -- Org
+      use "nvim-orgmode/orgmode"
+      use "akinsho/org-bullets.nvim"
 
       if PACKER_BOOTSTRAP then
          require("packer").sync()

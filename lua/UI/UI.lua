@@ -39,9 +39,8 @@ vim.cmd [[
 vim.opt.scrolloff = 4 -- Lines before scrolling the screen
 vim.opt.sidescrolloff = 12 -- Same as above but sideways
 vim.cmd [[hi CursorLine term=underline cterm=underline guibg=none gui=underline]]
-vim.o.cursorline = false -- enable cursorline
+vim.o.cursorline = true -- enable cursorline
 vim.opt.wrap = false -- Dont wrap long text
-
-vim.cmd [[set guifont=JetBrainsMono\ Nerd\ Font:h11]]
+vim.cmd[[set guifont=JetbrainsMono\ NF:h12]]
 vim.g.neovide_cursor_vfx_mode = "railgun"
 vim.g.neovide_transparency = 0.2
