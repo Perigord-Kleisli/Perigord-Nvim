@@ -35,14 +35,14 @@ packer.init({
    },
 })
 
--- require "External.Alpha"
+ require "External.Alpha"
 require "External.Godbolt"
 require "External.Lspconfig"
 require "External.Lualine"
 require "External.Null-ls"
 require "External.Nvim-cmp"
 require "External.Nvim-tree"
-require "External.Packer_compiled"
+--require "External.Packer_compiled"
 require "External.Indent_Blankline"
 require "External.Plugsetup"
 require "External.Telescope"
