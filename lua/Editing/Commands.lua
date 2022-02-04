@@ -17,3 +17,11 @@ vim.cmd [[
 ]]
 -- enable direct exit on q on some buffers
 -- temporarily highlight text on copy
+--
+--
+vim.cmd[[
+function! AnimatedTerm() abort
+   ToggleTerm direction=horizontal size=1
+  call animate#window_percent_height(0.25)
+endfunction
+]]

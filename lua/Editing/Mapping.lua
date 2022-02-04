@@ -20,10 +20,10 @@ map("t", "<space>ot", "<C-\\><C-n>:ToggleTerm") -- Extra terminal exit bind
 map("n", "<f2>", ":!./%") -- Running script files
 
 --[ Windows ]
-map("n", "<C-Up>", ":resize -2") -- Resize current window
-map("n", "<C-Down>", ":resize +2") --^
-map("n", "<C-Left>", ":vertical resize +2") --^
-map("n", "<C-Right>", ":vertical resize -2") --^
+map("n", "<C-Up>", ":call animate#window_delta_height(10)") -- Resize current window
+map("n", "<C-Down>", ":call animate#window_delta_height(-10)") --^
+map("n", "<C-Left>", ":call animate#window_delta_width(10)") --^
+map("n", "<C-Right>", ":call animate#window_delta_width(-10)") --^
 
 map("n", "<C-h>", "<C-w>h") -- Move between windows with less keys
 map("n", "<C-j>", "<C-w>j") --^

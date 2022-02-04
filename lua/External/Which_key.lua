@@ -121,8 +121,8 @@ which_key.register(
             G = map("Lazygit", toggleterm "lazygit"),
             L = map("Lynx", toggleterm "lynx duckduckgo.com"),
             p = map("Explorer", "NvimTreeToggle"),
-            r = map("Recent", "telescope oldfiles"),
-            t = map("terminal", "ToggleTerm direction=horizontal"),
+            r = map("Recent", telescope "oldfiles"),
+            t = map("terminal", toggleterm(nil, "direction = 'horizontal'")),
             T = map("Floating terminal", toggleterm(nil, "direction='float', float_opts={border='rounded'}")),
          },
 

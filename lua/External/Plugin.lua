@@ -104,7 +104,8 @@ return require("packer").startup({
       use "nvim-lualine/lualine.nvim"
 
       -- Theme
-      use({ "dracula/vim", as = "dracula" })
+      use "Mofiqul/dracula.nvim"
+      --use({ "dracula/vim", as = "dracula" })
 
       -- Transparency
       use "xiyaowong/nvim-transparent"
@@ -120,6 +121,8 @@ return require("packer").startup({
 
       -- [ Misc ]
 
+      -- Animated Windows
+      use "camspiers/animate.vim"
       -- Calculator
       use "hrsh7th/cmp-calc"
 
@@ -216,6 +219,9 @@ return require("packer").startup({
 
       -- Latex
       use "kdheepak/cmp-latex-symbols"
+
+      -- Lisp
+      use {"vlime/vlime", rtp = "vim/"}
 
       -- Markdown
       use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install" })
