@@ -134,11 +134,15 @@ return require("packer").startup({
          },
       })
 
+      -- Color preview
+      use "lilydjwg/colorizer"
+
       -- decrease startup times
       use "lewis6991/impatient.nvim"
 
       -- Cursor hold fix
       use "antoinemadec/FixCursorHold.nvim"
+
       -- Dictionary
       use "uga-rosa/cmp-dictionary"
 
@@ -220,6 +224,9 @@ return require("packer").startup({
 
       -- APL
       use "justin2004/vim-apl"
+
+      -- Haskell
+      use 'parsonsmatt/intero-neovim'
 
       -- Latex
       use "kdheepak/cmp-latex-symbols"

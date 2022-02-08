@@ -49,7 +49,7 @@ plug_setup("project_nvim").setup({
       "CMakeLists.txt",
       ".cargo",
    },
-   exclude_dirs = { "~/.cargo/*", "~/.cabal/*" },
+   exclude_dirs = { "~/.cargo/*", "~/.cabal/*", "~"},
 })
 
 plug_setup("alpha").setup(require "External.Alpha")
