@@ -42,7 +42,7 @@ require "External.Lualine"
 require "External.Null-ls"
 require "External.Nvim-cmp"
 require "External.Nvim-tree"
---require "External.Packer_compiled"
+require "External.Packer_compiled"
 require "External.Indent_Blankline"
 require "External.Plugsetup"
 require "External.Telescope"
@@ -160,6 +160,10 @@ return require("packer").startup({
 
       -- Highlight cursor on large jumps
       use "DanilaMihailov/beacon.nvim"
+
+      -- Fast jumping
+      use "ggandor/lightspeed.nvim"
+
       -- Start menu
       use "goolord/alpha-nvim"
 
