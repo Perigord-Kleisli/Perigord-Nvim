@@ -226,7 +226,8 @@ return require("packer").startup({
       use "justin2004/vim-apl"
 
       -- Haskell
-      use 'parsonsmatt/intero-neovim'
+      --use 'parsonsmatt/intero-neovim'
+      -- Unable to compile on my system
 
       -- Latex
       use "kdheepak/cmp-latex-symbols"
