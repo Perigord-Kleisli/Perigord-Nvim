@@ -1,6 +1,6 @@
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
-   vim.notify("Error importing: Nvim-tree")
+   vim.notify "Error importing: Nvim-tree"
    return
 end
 
@@ -11,22 +11,18 @@ end
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
 vim.g.nvim_tree_respect_buf_cwd = 1
-
 nvim_tree.setup({
    ignore_ft_on_setup = {
-      "startify",
       "dashboard",
       "alpha",
    },
+   auto_close = true,
+   update_cwd = true,
+   disable_netrw = true,
+   hijack_netrw = true,
    update_focused_file = {
       enable = true,
       update_cwd = true,
-   },
-   auto_close = true,
-   update_cwd = true,
-   update_to_buf_dir = {
-      enable = true,
-      auto_open = true,
    },
    diagnostics = { enable = true },
    view = {
@@ -39,12 +35,5 @@ nvim_tree.setup({
             { key = "v", cb = tree_cb "vsplit" },
          },
       },
-   },
-   show_icons = {
-      git = 1,
-      folders = 1,
-      files = 1,
-      folder_arrows = 1,
-      tree_width = 30,
    },
 })
