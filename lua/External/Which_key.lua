@@ -34,6 +34,7 @@ end
 which_key.register(
    -- Mapping
    {
+
       ["<C-f>"] = map("File Explorer", "NvimTreeToggle"),
 
       ["<A-h>"] = map("Prev", "BufferLineCyclePrev"),
@@ -124,6 +125,7 @@ which_key.register(
             r = map("Recent", telescope "oldfiles"),
             t = map("terminal", toggleterm(nil, "direction = 'horizontal'")),
             T = map("Floating terminal", toggleterm(nil, "direction='float', float_opts={border='rounded'}")),
+            v = map("Vertical terminal", toggleterm(nil,"direction='vertical', size = vim.fn.winwidth(0)"))
          },
 
          p = {
@@ -134,6 +136,8 @@ which_key.register(
             S = map("Status", "PackerStatus"),
             u = map("Update", "PackerUpdate"),
          },
+
+         r = map("Run", ":Run")
       },
    },
 

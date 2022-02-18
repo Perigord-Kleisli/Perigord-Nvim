@@ -3,11 +3,11 @@
         -   Controls the commands and autocommands
 --]]
 
-vim.cmd [[ command! Repl execute "lua require('Lang.Repl').repl(vim.bo.filetype)"]]
+vim.cmd [[command! Repl execute "lua require('Lang.Repl').repl(vim.bo.filetype)"]]
 vim.cmd [[command! CommentBox execute "lua require('nvim-comment-frame').add_comment()"]]
 vim.cmd [[command! COMMENTBOX execute "lua require('nvim-comment-frame').add_multiline_comment()"]]
-vim.cmd [[command! Formata  execute "lua vim.lsp.buf.formatting_sync()"]]
-
+vim.cmd [[command! Format  execute "lua vim.lsp.buf.formatting_sync()"]]
+vim.cmd [[command! Run execute "!./%"]]
 vim.cmd [[
 	augroup _general_settings
          autocmd BufDelete alpha :set cursorline
@@ -18,6 +18,18 @@ vim.cmd [[
 ]]
 -- enable direct exit on q on some buffers
 -- temporarily highlight text on copy
+
+vim.cmd[[
+   augroup _run
+      autocmd FileType hs :command! Run execute :!cabal run
+   augroup end
+]]
+
+vim.cmd[[
+   augroup _apl
+      autocmd FileType apl :set timeoutlen=1000
+   augroup end
+]]
 --
 vim.cmd [[
    augroup _org_mode

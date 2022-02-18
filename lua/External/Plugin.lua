@@ -35,7 +35,7 @@ packer.init({
    },
 })
 
- require "External.Alpha"
+require "External.Alpha"
 require "External.Godbolt"
 require "External.Lspconfig"
 require "External.Lualine"

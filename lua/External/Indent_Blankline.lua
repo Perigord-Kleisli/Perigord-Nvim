@@ -11,11 +11,11 @@ vim.opt.listchars:append "space:⋅"
 vim.opt.listchars:append "eol:↴"
 
 vim.g.indentLine_char_list = { " ", "┆", "┊", "|", "¦", "¦", "¦" }
-vim.g.indent_blankline_buftype_exclude = { "terminal", "nofile" }
 vim.g.indent_blankline_filetype_exclude = { "help", "dashboard", "packer", "NvimTree" }
 vim.g.indentLine_enabled = 1
 
 indent_blankline.setup({
+   buftype_exclude = {"terminal", "nofile"},
    show_end_of_line = true,
    space_char_blankline = " ",
    show_current_context = true,
