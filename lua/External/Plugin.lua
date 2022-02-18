@@ -186,7 +186,7 @@ return require("packer").startup({
             vim.fn["firenvim#install"](0)
          end,
       })
-      
+
       -- Grammer Checker
       use "vigoux/LanguageTool.nvim"
       use 'rhysd/vim-grammarous'
@@ -228,6 +228,8 @@ return require("packer").startup({
       use({ "p00f/nvim-ts-rainbow", requires = {
          "nvim-treesitter/nvim-treesitter",
       } })
+
+      use "nvim-treesitter/nvim-treesitter-textobjects"
 
       -- APL
       use "justin2004/vim-apl"
