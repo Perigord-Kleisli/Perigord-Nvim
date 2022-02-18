@@ -170,6 +170,9 @@ return require("packer").startup({
       -- Show available keys
       use "folke/which-key.nvim"
 
+      -- Kitty Graphics Protocol support
+      use 'edluffy/hologram.nvim'
+
       -- Toglleable terminal
       use "akinsho/toggleterm.nvim"
 
