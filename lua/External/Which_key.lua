@@ -122,6 +122,7 @@ which_key.register(
             g = map("Ghci", toggleterm "ghci"),
             G = map("Lazygit", toggleterm "lazygit"),
             L = map("Lynx", toggleterm "lynx duckduckgo.com"),
+            m = map("Media File", "Telescope media_files"),
             p = map("Explorer", "NvimTreeToggle"),
             r = map("Recent", telescope "oldfiles"),
             t = map("terminal", toggleterm(nil, "direction = 'horizontal'")),
