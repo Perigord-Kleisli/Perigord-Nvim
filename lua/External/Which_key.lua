@@ -74,6 +74,7 @@ which_key.register(
             f = map("File", telescope "find_files"),
             m = map("Media File", "Telescope media_files"),
             p = map("Projects", "lua require('telescope').extensions.projects.projects()"),
+            r = map("Recent files", telescope "oldfiles"),
             t = map("Text", telescope("live_grep", "ivy")),
          },
 

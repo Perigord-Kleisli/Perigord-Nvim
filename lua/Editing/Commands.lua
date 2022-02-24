@@ -21,7 +21,8 @@ vim.cmd [[
 
 vim.cmd[[
    augroup _run
-      autocmd FileType hs :command! Run execute :!cabal run
+      autocmd FileType cabal :command! Run execute ":!cabal run"
+      autocmd FileType haskell :command! Run execute ":!echo 'main' | cabal repl"
    augroup end
 ]]
 

@@ -48,6 +48,7 @@ plug_setup("project_nvim").setup({
       "stack.yaml",
       "CMakeLists.txt",
       ".cargo",
+      "aplcore"
    },
    exclude_dirs = { "~/.cargo/*", "~/.cabal/*", "~"},
 })
