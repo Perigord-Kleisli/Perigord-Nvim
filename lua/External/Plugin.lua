@@ -250,10 +250,6 @@ return require("packer").startup({
       -- Nvim_Lua
       use "hrsh7th/cmp-nvim-lua"
 
-      -- Org
-      use "nvim-orgmode/orgmode"
-      use "akinsho/org-bullets.nvim"
-
       if PACKER_BOOTSTRAP then
          require("packer").sync()
       end
