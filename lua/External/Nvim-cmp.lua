@@ -118,7 +118,7 @@ cmp.setup({
       { name = "path" },
       {
          name = "dictionary",
-         keyword_length = 4,
+         keyword_length = 3,
       },
       { name = "emoji" },
    },

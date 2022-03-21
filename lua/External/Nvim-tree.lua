@@ -24,7 +24,7 @@ nvim_tree.setup({
       enable = true,
       update_cwd = true,
    },
-   diagnostics = { enable = false},
+   diagnostics = { enable = true},
    view = {
       auto_resize = true,
       mappings = {

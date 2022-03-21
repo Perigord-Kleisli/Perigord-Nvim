@@ -11,7 +11,7 @@ require('telescope').load_extension('projects')
 
 telescope.setup {
   defaults = {
-
+    file_ignore_patterns = { "__pycache__", "node_modules", ".jpg", ".jpeg", ".png", ".ico", "dist", "dist-newstyle" },
     prompt_prefix = " ",
     selection_caret = "  ",
     path_display = { "smart" },

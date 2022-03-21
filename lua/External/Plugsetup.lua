@@ -57,11 +57,6 @@ plug_setup("alpha").setup(require "External.Alpha")
 
 plug_setup("nvim-comment-frame").setup()
 
-plug_setup("orgmode").setup()
-plug_setup("org-bullets").setup({
-   symbols = { "◉", "○", "✸", "✿" },
-})
-
 plug_setup("presence"):setup({ neovim_image_text = "Neo Visual Editor Imporoved" })
 
 plug_setup("gitsigns").setup({
@@ -70,3 +65,4 @@ plug_setup("gitsigns").setup({
       delay = 200,
    },
 })
+

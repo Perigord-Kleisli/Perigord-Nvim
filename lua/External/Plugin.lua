@@ -75,6 +75,12 @@ return require("packer").startup({
       -- Spellchecker
       use "lewis6991/spellsitter.nvim"
 
+      -- Navigator
+      --use({
+         --"ray-x/navigator.lua",
+         --requires = { "ray-x/guihua.lua", run = "cd lua/fzy && make" },
+      --})
+
       -- [ File ]
 
       -- Browser
@@ -164,6 +170,9 @@ return require("packer").startup({
       -- Fast jumping
       use "ggandor/lightspeed.nvim"
 
+       --Legend
+      --use "mrjones2014/legendary.nvim"
+
       -- Start menu
       use "goolord/alpha-nvim"
 
@@ -171,7 +180,7 @@ return require("packer").startup({
       use "folke/which-key.nvim"
 
       -- Kitty Graphics Protocol support
-      use 'edluffy/hologram.nvim'
+      use "edluffy/hologram.nvim"
 
       -- Toglleable terminal
       use "akinsho/toggleterm.nvim"
@@ -189,7 +198,7 @@ return require("packer").startup({
 
       -- Grammer Checker
       use "vigoux/LanguageTool.nvim"
-      use 'rhysd/vim-grammarous'
+      use "rhysd/vim-grammarous"
       -- Godbolt
       use "P00f/Godbolt.Nvim"
 
@@ -242,7 +251,7 @@ return require("packer").startup({
       use "kdheepak/cmp-latex-symbols"
 
       -- Lisp
-      use {"vlime/vlime", rtp = "vim/"}
+      use({ "vlime/vlime", rtp = "vim/" })
 
       -- Markdown
       use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install" })

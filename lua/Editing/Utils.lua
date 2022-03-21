@@ -4,13 +4,13 @@
 --]]
 
 --[ Indentation ]
-vim.o.tabstop = 6 -- Number of spaces a tab is
+vim.o.tabstop = 4 -- Number of spaces a tab is
 vim.o.expandtab = true -- Make tabs spaces
-vim.o.softtabstop = 3 -- Allows for tab size lower
+vim.o.softtabstop = 2 -- Allows for tab size lower
 --^ than 'tabstop' via mixing
 --^ spaces and tabs
 vim.o.smartindent = true -- A bit complex for a tl;dr
-vim.o.shiftwidth = 3 -- Number of spaces used by indents
+vim.o.shiftwidth = 2 -- Number of spaces used by indents
 
 vim.o.autoindent = true -- Indent new lines
 vim.o.smarttab = true -- Insert blanks based on 'shiftwidth'

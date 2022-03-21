@@ -31,6 +31,13 @@ local function toggleterm(cmd, opts)
       .. "}):toggle()"
 end
 
+--local legend_status_ok, legend = pcall(require, "legendary")
+--if not legend_status_ok then
+   --vim.notify "Error importing: Legendary.Nvim"
+   --return
+--end
+--legend.setup()
+
 which_key.register(
    -- Mapping
    {
@@ -76,6 +83,7 @@ which_key.register(
             p = map("Projects", "lua require('telescope').extensions.projects.projects()"),
             r = map("Recent files", telescope "oldfiles"),
             t = map("Text", telescope("live_grep", "ivy")),
+            s = map("Symbols", telescope "lsp_document_symbols"),
          },
 
          g = {
@@ -102,7 +110,7 @@ which_key.register(
             f = map("Format", "lua vim.lsp.buf.formatting_sync()"),
             i = map("File Lsp Info", "LspInfo"),
             l = map("Line diagnostics", "lua vim.diagnostic.open_float()"),
-            s = map("Document symbols", telescope "lsp_document_symbols"),
+            s = map("Find Document symbols", telescope "lsp_document_symbols"),
             r = map("Rename variable", "lua vim.lsp.buf.rename()"),
          },
 
@@ -146,3 +154,4 @@ which_key.register(
    --Opts
    {}
 )
+

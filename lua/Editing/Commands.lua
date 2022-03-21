@@ -12,7 +12,6 @@ vim.cmd [[
 	augroup _general_settings
          autocmd BufDelete alpha :set cursorline
 	    autocmd FileType qf,help,man,packer,lspinfo nnoremap <silent> <buffer> q :close<CR> 
-	    autocmd FileType toggleterm tnoremap <silent> <buffer> q <C-\\><C-n>:ToggleTerm<CR> 
 	    autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200})
 	augroup end
 ]]
@@ -23,6 +22,7 @@ vim.cmd[[
    augroup _run
       autocmd FileType cabal :command! Run execute ":!cabal run"
       autocmd FileType haskell :command! Run execute ":!echo 'main' | cabal repl"
+      autocmd FileType cpp :command! Run execute ":make"
    augroup end
 ]]
 
