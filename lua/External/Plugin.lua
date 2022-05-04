@@ -171,7 +171,7 @@ return require("packer").startup({
       use "ggandor/lightspeed.nvim"
 
        --Legend
-      --use "mrjones2014/legendary.nvim"
+      -- use "mrjones2014/legendary.nvim" CURRENTLY REQUIRES NVIM 0.7
 
       -- Start menu
       use "goolord/alpha-nvim"
@@ -234,9 +234,9 @@ return require("packer").startup({
 
       -- Smarter Highlighting
       use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-      use({ "p00f/nvim-ts-rainbow", requires = {
-         "nvim-treesitter/nvim-treesitter",
-      } })
+      --use({ "p00f/nvim-ts-rainbow", requires = {
+         --"nvim-treesitter/nvim-treesitter",
+      --} })
 
       use "nvim-treesitter/nvim-treesitter-textobjects"
 

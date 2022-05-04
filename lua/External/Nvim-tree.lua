@@ -16,7 +16,6 @@ nvim_tree.setup({
       "dashboard",
       "alpha",
    },
-   auto_close = true,
    update_cwd = true,
    disable_netrw = true,
    hijack_netrw = true,
@@ -26,7 +25,6 @@ nvim_tree.setup({
    },
    diagnostics = { enable = true},
    view = {
-      auto_resize = true,
       mappings = {
          custom_only = false,
          list = {

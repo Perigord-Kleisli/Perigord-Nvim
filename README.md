@@ -1,3 +1,3 @@
 # Perigord NVIM-config
 
-## Requires Neovim >=0.5
+## Requires Neovim >=0.6

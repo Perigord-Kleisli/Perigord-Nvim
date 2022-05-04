@@ -4,7 +4,7 @@ if not status_ok then
    return
 end
 
-local servers = {"bashls", "clangd", "cmake", "hls", "html", "pyright", "rls", "sumneko_lua", "tsserver"}
+local servers = {"bashls", "clangd", "cmake", "hls", "html", "pyright", "rls", "sumneko_lua", "tsserver", "rnix"}
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup{}
 end
