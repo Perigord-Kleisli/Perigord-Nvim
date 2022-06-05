@@ -43,7 +43,6 @@
 (vim.api.nvim_create_autocmd [:InsertLeave] 
   {:pattern "*"
    :command "set relativenumber"})
-
 (vim.api.nvim_create_autocmd [:TextYankPost]
   {:pattern "*"
    :callback (fn [] (vim.highlight.on_yank
@@ -52,3 +51,11 @@
 
 (set vim.g.apl_prefix_key ".")
 (set vim.g.Hexokinase_highlighters ["backgroundfull"])
+
+(vim.api.nvim_create_autocmd [:TermEnter]
+  {:pattern "*"
+   :command "set nocursorline"})
+
+;(vim.api.nvim_create_autocmd [:TerminalClose]
+  ;{:pattern "*"
+   ;:command "set cursorline"})

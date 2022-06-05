@@ -28,7 +28,7 @@
    '(string.format 
        "lua require('toggleterm.terminal').Terminal:new({%s %s}):toggle()"
        (or (and ,cmd (.. "cmd='" ,cmd "',")) "")
-       (or ,opts "hidden=true, direction=float")))
+       (or ,opts "hidden=true, direction='float'")))
 
 (macro fallback [cmd-name cmd1 cmd2]
   `(defn ,cmd-name [] (Func.maybe
@@ -59,7 +59,7 @@
            :b (keymap "lua require('nvim-comment-frame').add_multiline_comment" "Box")}
    :<A-s> (keymap :ISwapWith "Swap")
 
-   :<C-l> (keymap :nohl "Unhighlight Matches")
+   ;:<C-l> (keymap :nohl "Unhighlight Matches")
 
    :<C-Up> (keymap "call animate#window_delta_height(10)" "Vertical Upsize")
    :<C-A-j> (keymap "call animate#window_delta_height(10)" "Vertical Upsize")
@@ -93,8 +93,8 @@
        :i (keymap (vim-lsp :implementation) "Implementation")
        :t (keymap :BufferLineMovePrev "Previous Buffer")
        :T (keymap :BufferLineMoveNext "Next Buffer")
-       "d]" (keymap "lua vim.lsp.diagnostics.goto_next()" "Next Diagnostic")
-       "d[" (keymap "lua vim.lsp.diagnostics.goto_prev()" "Previous Diagnostic")}})
+       "]" (keymap "lua vim.diagnostic.goto_next()" "Next Diagnostic")
+       "[" (keymap "lua vim.diagnostic.goto_prev()" "Previous Diagnostic")}})
   
 (def- norm-binds
   {:<leader> (keymap (telescope :find_files) "Find Files")
@@ -148,13 +148,15 @@
         :b (keymap (toggleterm :btop "direction = 'float'") "Task Manager")
         :c (keymap "Copilot panel" "Copilot")
         :e (keymap :ene "Empty File")
-        :l [ "`-1" "Last Opened File"]
+        :l [ "`1" "Last Opened File"]
         :p (keymap :NvimTreeToggle "File Explorer")
         :P (keymap "Telescope file_browser" "File Browser")
         :s (keymap :RestoreSession "Last Session")
-        :t (keymap (toggleterm nil "direction = 'horizontal'") "Terminal")
-        :T (keymap (toggleterm nil "direction='float', float_opts={border='rounded'}") "Floating Terminal")
-        :v (keymap (toggleterm nil "direction='vertical'") "Vertical Terminal") 
+        :t (keymap (toggleterm nil "direction = 'horizontal', size=1") "Terminal")
+        :T (keymap (toggleterm nil "direction='float' , float_opts={border='rounded'}") "Floating Terminal") 
+        :v (keymap (.. (toggleterm nil "direction='vertical'")
+                       "; vim.api.nvim_command('call animate#window_percent_width(0.5)')")
+                   "Vertical Terminal")
         :z (keymap :ZenMode "Zen Mode")}
    :P {:name "Packer" 
        :i (keymap :PackerInstall "Install")
@@ -192,7 +194,9 @@
 
   {:mode :v})
 (vim.api.nvim_set_keymap :t :<Esc> :<C-\><C-n> {:silent true})
-(vim.api.nvim_set_keymap :t :<Space>ot :<C-\><C-n>:ToggleTerm<CR> {:silent true})
+(vim.api.nvim_set_keymap :t :<Space>ot :<C-\><C-n>:q<CR> {:silent true})
+(vim.api.nvim_set_keymap :t :<Space>oT :<C-\><C-n>:q<CR> {:silent true})
+(vim.api.nvim_set_keymap :t :<Space>ov :<C-\><C-n>:q<CR> {:silent true})
 
 (set vim.g.copilot_no_tab_map true)
 (let [to-leader 

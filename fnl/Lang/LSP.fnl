@@ -5,12 +5,30 @@
    autoload {folding folding}})
 
 (def- capabilities (cmp-lsp.update_capabilities (vim.lsp.protocol.make_client_capabilities)))
-(def- servers [ "bashls" "clangd" "cmake" "hls" "html" "pyright" "rls" "sumneko_lua" "tsserver" "rnix"])
+(def- servers [ "bashls" "clangd" "cmake" "html" "pyright" "rls" "sumneko_lua" "tsserver" "rnix"])
 
 (each [_ server (ipairs servers)]
   ((. (. lspconfig server) :setup)
    {:capabilities capabilities
     :on_attach (fn [client bufnr] (folding.on_attach))})) 
+
+(lspconfig.hls.setup
+  {:capabilities capabilities
+   :settings {:haskell 
+              {:formattingProvider "brittany"
+               :hlintOn true
+               :renameOn true
+               :plugin
+                  {:hlint {:globalOn true}}
+                  {:eval {:globalOn true
+                          :config 
+                            {:exception true}}}
+                  {:tactics {:globalOn true}}
+                  {:gadt {:globalOn true}}
+                  {:splice {:globalOn true}}
+                  {:rename {:globalOn true}}
+                  {:haddockComments {:globalOn true}}}}
+   :on_attach (fn [client bufnr] (folding.on_attach))})
                        
 
 

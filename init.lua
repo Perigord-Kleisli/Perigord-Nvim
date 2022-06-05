@@ -30,7 +30,6 @@ vim.g["aniseed#env"] = {
 if bootstrap then
   vim.ui.input({prompt = "All Installs Succesfull! Please run ':PackerInstall' to install the rest"}, function() end)
 end
-
 vim.cmd
 [[
 imap <silent><script><expr> <C-l> copilot#Accept("\<CR>")
