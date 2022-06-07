@@ -140,6 +140,11 @@
 
 
     ;LANG
+    :simrat39/symbols-outline.nvim {}             ;LSP Symbol Outline
+    :amrbashir/nvim-docs-view {}                  ;Documentation Viewer
+    :j-hui/fidget.nvim                            ;LSP Progress Indicator
+      (setup :fidget)
+
     :mfussenegger/nvim-dap                        ;Debugger
       {:conf-module :Lang.Dap
        :requires 
@@ -183,6 +188,8 @@
        :requires 
         [[:hrsh7th/nvim-cmp]
          [:pierreglaser/folding-nvim]]}
+
+    :LnL7/vim-nix {}                              ;Nix 
 
     :vlime/vlime {}                               ;Common Lisp Dev Environment
     :bhurlow/vim-parinfer {}                      ;Parenthesis Inferring for Writting Lisps

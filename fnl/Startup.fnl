@@ -3,6 +3,7 @@
    require {Options Options}
    require {Mapping Mapping}})
 
+; Searches bind from registered which-key bindings
 (defn- button [bind icon extra-text]
   (match (Mapping.get-action bind)
     nil (print (.. "Bind: '" (table.concat bind) "' Not Found"))
@@ -64,7 +65,7 @@
 
       buttons [
                (if in-session-dir
-                 (button [:<space> :o :s] :)
+                 (button [:<space> :o :S] :)
                  (button [:<space> :o :l] :))
                (button [:<space> :f :r] :)
                (button [:<space> :p :p] :)

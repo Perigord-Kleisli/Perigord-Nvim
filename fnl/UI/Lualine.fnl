@@ -1,6 +1,7 @@
 (module UI.Lualine 
   {autoload {lualine lualine}
-   autoload {nvim-gps nvim-gps}})
+   autoload {nvim-gps nvim-gps}
+   autoload {lsp-signature lsp_signature}})
 
 (def lsp-func 
   [(fn [] 
@@ -24,7 +25,7 @@
   {:options
     {:disable_fileypes [:NvimTree]} 
    :sections 
-    {:lualine_c [:filetype 
+    {:lualine_b [:filetype 
                  lsp-func 
                  {1 :diagnostics 
                   :sources ["nvim_diagnostic"]

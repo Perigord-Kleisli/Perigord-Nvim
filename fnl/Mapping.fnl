@@ -86,6 +86,7 @@
    :<A-L> (keymap :BufferLineMoveNext "Next Buffer")
    
    :K (keymap (vim-lsp :hover) "Show Symbol Info")
+   :<A-K> (keymap :DocsViewToggle "Language LSP Documentation")
 
    :g {:name "Go To"
        :b (keymap :BufferLinePick "Buffer")
@@ -119,6 +120,7 @@
         :r (keymap (telescope :oldfiles) "Recently Opened Files")
         :t (keymap (telescope :live_grep :ivy) "Text")
         :s (keymap (mapping :symbol_search) "Document Symbols")}
+
    :p {:name "Project"
         :p (keymap (telescope :projects) "Projects")}
 
@@ -136,28 +138,35 @@
         :s (keymap (telescope  :git_status) "Git Status")
         :S (keymap (gitsigns   :stage_hunk) "Stage Hunk")
         :U (keymap (gitsigns   :undo_stage_hunk) "Unstage Hunk")}
+
    :l {:name "Language" 
         :a (keymap (vim-lsp   :code_action) "Code Action")
         :d (keymap (telescope :diagnostics :ivy) "Diagnostics")
         :f (keymap (vim-lsp   :formatting_sync) "Format")
         :i (keymap :LspInfo "LSP Info")
         :l (keymap "lua vim.diagnostic.open_float()" "Line Diagnostic")
+        :L (keymap :LspLog "LSP Log")
+        :k (keymap :DocsViewToggle "Language LSP Documentation")
         :r (keymap (mapping :rename) "Rename")
         :s (keymap (mapping :symbol_search) "Document Symbols")}
+
    :o {:name "Open"
-        :b (keymap (toggleterm :btop "direction = 'float'") "Task Manager")
-        :c (keymap "Copilot panel" "Copilot")
-        :e (keymap :ene "Empty File")
-        :l [ "`1" "Last Opened File"]
-        :p (keymap :NvimTreeToggle "File Explorer")
-        :P (keymap "Telescope file_browser" "File Browser")
-        :s (keymap :RestoreSession "Last Session")
-        :t (keymap (toggleterm nil "direction = 'horizontal', size=1") "Terminal")
-        :T (keymap (toggleterm nil "direction='float' , float_opts={border='rounded'}") "Floating Terminal") 
-        :v (keymap (.. (toggleterm nil "direction='vertical'")
-                       "; vim.api.nvim_command('call animate#window_percent_width(0.5)')")
-                   "Vertical Terminal")
-        :z (keymap :ZenMode "Zen Mode")}
+       :b (keymap (toggleterm :btop "direction = 'float'") "Task Manager")
+       :c (keymap "Copilot panel" "Copilot")
+       :d (keymap :DocsViewToggle "Language LSP Documentation")
+       :e (keymap :ene "Empty File")
+       :l [ "`1" "Last Opened File"]
+       :p (keymap :NvimTreeToggle "File Explorer")
+       :P (keymap "Telescope file_browser" "File Browser")
+       :s (keymap :SymbolsOutline "Document Symbol Tree")
+       :S (keymap :RestoreSession "Last Session")
+       :t (keymap (toggleterm nil "direction = 'horizontal', size=1") "Terminal")
+       :T (keymap (toggleterm nil "direction='float' , float_opts={border='rounded'}") "Floating Terminal") 
+       :v (keymap (.. (toggleterm nil "direction='vertical'")
+                      "; vim.api.nvim_command('call animate#window_percent_width(0.5)')")
+                  "Vertical Terminal")
+       :Z (keymap :ZenMode "Zen Mode")}
+
    :P {:name "Packer" 
        :i (keymap :PackerInstall "Install")
        :s (keymap :PackerSync "Sync") 
