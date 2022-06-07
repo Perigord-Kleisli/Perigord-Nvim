@@ -52,15 +52,8 @@
 
 (legendary.setup)
 
-    
 (which-key.register
-  {:<C-x> {:name "Comment"
-           ";" (keymap "call nerdcommenter#Comment('i','toggle')" "Line")
-           :b (keymap "lua require('nvim-comment-frame').add_multiline_comment" "Box")}
-   :<A-s> (keymap :ISwapWith "Swap")
-
-   ;:<C-l> (keymap :nohl "Unhighlight Matches")
-
+  {
    :<C-Up> (keymap "call animate#window_delta_height(10)" "Vertical Upsize")
    :<C-A-j> (keymap "call animate#window_delta_height(10)" "Vertical Upsize")
 
@@ -73,6 +66,9 @@
 
    :<C-Right> (keymap "call animate#window_delta_width(-10)" "Horizontal Downsize")
    :<C-A-h> (keymap "call animate#window_delta_width(-10)" "Horizontal Downsize")
+
+   :<A-s> (keymap "lua require'nvim-treesitter.textobjects.swap'.swap_next('@parameter.inner')" "Swap With Next Parameter")
+   :<A-S> (keymap "lua require'nvim-treesitter.textobjects.swap'.swap_previous('@parameter.inner')" "Swap With Previous Parameter")
 
    :<A-j> (keymap "m +1" "Move Line Upwards")
    :<A-k> (keymap "m -2" "Move Line Downwards")
@@ -99,6 +95,8 @@
   
 (def- norm-binds
   {:<leader> (keymap (telescope :find_files) "Find Files")
+   :c {:name "Comment"
+       :b (keymap "lua require('nvim-comment-frame').add_multiline_comment" "Boxed Comment")}
    :d {:name "Debug"
        :b (keymap (dap :toggle_breakpoint) "Toggle Breakpoint")
        :B (keymap "lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))" "Set Conditional Breakpoint")
@@ -148,7 +146,11 @@
         :L (keymap :LspLog "LSP Log")
         :k (keymap :DocsViewToggle "Language LSP Documentation")
         :r (keymap (mapping :rename) "Rename")
-        :s (keymap (mapping :symbol_search) "Document Symbols")}
+        :S (keymap (mapping :symbol_search) "Document Symbols")
+        :s {:name "Snippet"
+            :s (keymap :SnipRun "Run Snippet")
+            :S (keymap :SnipClose "Stop Snippet")
+            :t (keymap "lua require'sniprun.live_mode'.toggle()" "Toggle Live Snippet")}}
 
    :o {:name "Open"
        :b (keymap (toggleterm :btop "direction = 'float'") "Task Manager")
@@ -189,6 +191,12 @@
 
 (which-key.register 
   {
+   :<space>s 
+      {:name "Snippet"
+       :s (keymap :SnipRun "Run Snippet")
+       :S (keymap :SnipClose "Stop Snippet")
+       :t (keymap "lua require'sniprun.live_mode'.toggle()" "Toggle Live Snippet")}
+
    :<DOWN> [":m '>+1<CR>gv=gv" "Move Selected Lines Downwards"]
    :<A-j> [":m '>+1<CR>gv=gv" "Move Selected Lines Downwards"]
 
@@ -196,7 +204,7 @@
    :<UP> [":m '<-2<CR>gv=gv" "Move Selected Lines Downwards"]
    :<A-k> [":m '<-2<CR>gv=gv" "Move Selected Lines Downwards"]
 
-   "<C-x>;" ["<Plug>NERDCommenterToggle" "Comment Selection"]
+   "<space>c<space>" ["<Plug>NERDCommenterToggle" "Comment Selection"]
 
    :< [ "<gv" "Unindent"]
    :> [ ">gv" "Indent"]} 

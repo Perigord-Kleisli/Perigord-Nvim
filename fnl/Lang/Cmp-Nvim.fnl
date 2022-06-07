@@ -1,6 +1,7 @@
 (module Lang.Cmp-Nvim
   {autoload {cmp cmp}
    autoload {dictionary cmp_dictionary}
+   autoload {comparator cmp-under-comparator}
    autoload {luasnip luasnip}})
 
 (def- kind-icons
@@ -68,6 +69,17 @@
                     :winhighlight "FloatBorder:VertSplit"})
      :documentation (cmp.config.window.bordered
                      {:winhighlight "FloatBorder:VisualNOS"})}
+
+   :sorting
+    {:comparators
+      [cmp.config.compare.offset
+       cmp.config.compare.exact
+       cmp.config.compare.score
+       comparator.under
+       cmp.config.compare.kind
+       cmp.config.compare.sort_text
+       cmp.config.compare.length
+       cmp.config.compare.order]}
 
    :formatting
     {:fields [:kind :abbr :menu]

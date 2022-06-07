@@ -16,7 +16,11 @@
       {:enable false}}
 
     :textobjects
-     {:select
+     {:lsp_interop
+      {:enable true}
+      :swap 
+        {:enable true}
+      :select
        {:enable true
         :lookahead true
         :keymaps 
