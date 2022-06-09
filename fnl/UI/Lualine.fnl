@@ -5,11 +5,7 @@
 
 (def lsp-func 
   [(fn [] 
-     (let 
-       [msg "No LSP"
-        buf-ft (vim.api.nvim_buf_get_options -1 :filetype)
-        clients (vim.lsp.get_active_clients)]
-       (when (= (next clients) nil) msg)
+     (let [msg "No LSP"] buf-ft (vim.api.nvim_buf_get_options -1 :filetype) clients (vim.lsp.get_active_clients) (when (= (next clients) nil) msg)
        (each [ft non_language_ft]
          (when (ft:match buf-ft) ""))
        (each [_ client (ipairs clients)]
@@ -31,6 +27,8 @@
                   :sources ["nvim_diagnostic"]
                   :sections ["error" "warn" "info"]}
                  :filename]
+
+      :lualine_c [:diff]
                   
      :lualine_x [{1 nvim-gps.get_location :cond nvim-gps.is_available}]
      :lualine_y ["os.date('%I:%M %p')"]

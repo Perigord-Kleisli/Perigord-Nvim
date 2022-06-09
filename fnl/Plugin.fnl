@@ -31,7 +31,7 @@
     (do (let [(status_ok# module-name#) (pcall require ,modname)]
           (if status_ok#
             (module-name#.setup ,config)
-            (print "Error Configuring" ,modname))))})
+            (print "Error Configuring" ,modname "\n"))))})
 
 (macro setup [x extra?]
   `(a.merge
@@ -39,7 +39,7 @@
         ((. (Func.alternative
               require
               (fn [x#]
-                {:setup (fn [] (print "Error Configuring:" x#))})
+                {:setup (fn [] (print "Error Configuring:" x# "\n"))})
               ,x)
             :setup))}
      ,extra?))
@@ -68,8 +68,11 @@
       (setup :nvim-comment-frame)
 
     :ggandor/lightspeed.nvim {}                   ;Hopper
-    :mizlan/iswap.nvim {}                         ;Swap List Items, Function Arguments, etc..
     :tpope/vim-fugitive {}                        ;Git Integration
+    :TimUntersberger/neogit (setup :neogit)       ;Git Integration
+    :f-person/git-blame.nvim {}
+
+    :editorconfig/editorconfig-vim {}             ;EditorConfig
 
     ;;Project Navigation
     :nvim-telescope/telescope.nvim                ;General Fuzzy Finder
@@ -103,6 +106,8 @@
 
 
     ;;UI
+
+    :rcarriga/nvim-notify {}                      ;Notification UI
 
     :nacro90/numb.nvim (setup :numb)              ;Non Intrusive Line Peeking
 
@@ -140,7 +145,12 @@
 
 
     ;LANG
+    :CRAG666/code_runner.nvim {:conf-module :Lang.CodeRunner}
     :simrat39/symbols-outline.nvim {}             ;LSP Symbol Outline
+    :michaelb/sniprun                             ;Code Snippet Runner
+      (config :sniprun
+              {:display
+                [:TempFloatingWindow]})
     :amrbashir/nvim-docs-view {}                  ;Documentation Viewer
     :j-hui/fidget.nvim                            ;LSP Progress Indicator
       (setup :fidget)
@@ -149,10 +159,12 @@
       {:conf-module :Lang.Dap
        :requires
         [[:rcarriga/nvim-dap-ui]
+         [:mfussenegger/nvim-dap-python]
          [:theHamsta/nvim-dap-virtual-text]]}
 
     :jose-elias-alvarez/null-ls.nvim              ;Null Language Server
       {:conf-module :Lang.Null-ls}
+
     :hrsh7th/nvim-cmp
       {:conf-module :Lang.Cmp-Nvim
        :requires
@@ -184,14 +196,13 @@
     :davidgranstrom/nvim-markdown-preview         ;Markdown Compiler and Previewer
       {:config (set vim.g.nvim_markdown_preview_theme :solarized-dark)}
 
-    :michaelb/sniprun                             ;Run Code Snippets
-      {:run "bash './install.sh"}
-
     :neovim/nvim-lspconfig                        ;LSP Config
       {:conf-module :Lang.LSP
        :requires
-        [[:hrsh7th/nvim-cmp]
-         [:pierreglaser/folding-nvim]]}
+        [[:hrsh7th/nvim-cmp]]}
+
+    :simrat39/rust-tools.nvim                     ;Rust Tools
+      (setup :rust-tools)
 
     :LnL7/vim-nix {}                              ;Nix
 
@@ -201,7 +212,7 @@
 
     ;;Misc
     :p00f/godbolt.nvim                            ;Godbolt
-      (config 
+      (config :godbolt
         {:languages 
           {:haskell {:compiler :ghc901}}})
 

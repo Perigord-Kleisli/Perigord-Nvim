@@ -16,3 +16,7 @@
   catch 
       echo \"Error Configuring: dracula.nvim\"
   endtry")
+
+(vim.cmd "highlight debugPC guibg=#10504A")
+(vim.cmd "highlight CopilotSuggestion guifg=#8292B4 guibg=#202A21")
+

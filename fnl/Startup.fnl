@@ -3,25 +3,23 @@
    require {Options Options}
    require {Mapping Mapping}})
 
-; Searches bind from registered which-key bindings
 (defn- button [bind icon extra-text]
   (match (Mapping.get-action bind)
     nil (print (.. "Bind: '" (table.concat bind) "' Not Found"))
     [cmd text] {:type :button 
                 :val (..  icon "  " (or (and extra-text (. extra-text 1)) "") 
                          text (or (and extra-text (. extra-text 2)) ""))
-                :on_press (fn [] 
+                :on_press (fn []
                             (vim.api.nvim_feedkeys 
                               (vim.api.nvim_replace_termcodes (.. cmd "<Ignore>") true false true)
-                              "normal" false)) 
+                              "t" false)) 
                 :opts {:position :center
                        :shortcut (table.concat bind " ") 
                        :align_shortcut :right
                        :hl :Conditional
                        :hl_shortcut :Keyword
                        :cursor 2
-                       :width 50 
-                       :keymap [ :n (table.concat bind) (.. cmd "<CR>") {:noremap true :silent true :nowait true}]}}))
+                       :width 50}})) 
 
 (set-forcibly! scandir (fn [directory]
                          (do
@@ -84,16 +82,13 @@
                           :width 50}}]]
       
       
-  ((. alpha :setup) 
+  (alpha.setup
    {:layout 
       [{:type :padding :val 2} 
        {:type :text :val header :opts {:position :center :hl :diffnewfile}}
-       {:type :padding :val 2} 
        {:type :group :val buttons :opts {:spacing 1}}
        {:type :text :val "" :opts {:position :center :hl :Number}}
        github-repo]
-       
-        
     :opts {:margin 5}}))
 
-(set vim.opt.termguicolors true)
+;(alpha.setup (. (require :alpha.themes.dashboard) :config))

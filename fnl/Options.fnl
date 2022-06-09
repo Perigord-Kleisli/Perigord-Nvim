@@ -55,7 +55,3 @@
 (vim.api.nvim_create_autocmd [:TermEnter]
   {:pattern "*"
    :command "set nocursorline"})
-
-;(vim.api.nvim_create_autocmd [:TerminalClose]
-  ;{:pattern "*"
-   ;:command "set cursorline"})
