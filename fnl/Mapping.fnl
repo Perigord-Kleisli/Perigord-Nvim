@@ -12,11 +12,9 @@
 (set vim.g.mapleader " ")
       
 (macro keymap [cmd name] '[(.. "<cmd>" ,cmd "<cr>") ,name])
-(macro telescope [cmd theme?] '(.. "Telescope " 
-                                  ,cmd 
-                                  (or 
-                                    (and ,theme? (.. " theme=" ,theme?))
-                                    "")))
+(macro telescope [cmd theme?] '(string.format "Telescope %s %s"
+                                              ,cmd
+                                              ,(if theme? (.. "theme=" theme?) "")))
 
 (macro gitsigns [cmd] '(.. "lua require('gitsigns')." ,cmd "()"))
 (macro dap [cmd] '(.. "lua require('dap')." ,cmd "()"))
@@ -33,7 +31,7 @@
 (macro fallback [cmd-name cmd1 cmd2]
   `(defn ,cmd-name [] (Func.maybe
                         (Func.alternative ,cmd1 ,cmd2 nil)
-                        (print "No fallback for " ,cmd-name))))
+                        (print "Command:" (.. "'" ,(tostring cmd-name) "'") "Failed"))))
 
 (fallback
   definition
@@ -67,6 +65,8 @@
    :<C-Right> (keymap "call animate#window_delta_width(-10)" "Horizontal Downsize")
    :<C-A-h> (keymap "call animate#window_delta_width(-10)" "Horizontal Downsize")
 
+   :<C-s> (keymap "w | :SaveSession" "Save Session")
+
    :<A-s> (keymap "lua require'nvim-treesitter.textobjects.swap'.swap_next('@parameter.inner')" "Swap With Next Parameter")
    :<A-S> (keymap "lua require'nvim-treesitter.textobjects.swap'.swap_previous('@parameter.inner')" "Swap With Previous Parameter")
 
@@ -94,33 +94,35 @@
        "[" (keymap "lua vim.diagnostic.goto_prev()" "Previous Diagnostic")}})
   
 (def- norm-binds
-  {:<leader> (keymap (telescope :find_files) "Find Files")
+  {:<leader> [":Telescope find_files<cr>" "Find Files"]
    :c {:name "Comment"
        :b (keymap "lua require('nvim-comment-frame').add_multiline_comment" "Boxed Comment")}
    :d {:name "Debug"
        :b (keymap (dap :toggle_breakpoint) "Toggle Breakpoint")
        :B (keymap "lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))" "Set Conditional Breakpoint")
        :<A-b> (keymap "lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log Point Messsage: '))" "Set Logpoint")
+       :h (keymap (dap :step_out) "Step Out")
        :l (keymap (dap :step_into) "Step Into")
+       :j (keymap (dap :step_over) "Step Over")
+       :k (keymap (dap :step_back) "Step Back")
        :p (keymap (telescope "dap list_breakpoints") "List Breakpoints")
        :f (keymap (telescope "dap frames") "Frames")
-       :h (keymap (dap :step_out) "Step Out")
-       :r (keymap (dap :repl.open) "Open REPL")
+       :r (keymap (dap :restart) "Restart")
        :n (keymap (dap :continue) "Continue")
-       :_ (keymap (dap :run_last) "Run Last")}
-       ;:i (keymap (dap-ui :variables :visual_hover) "Visual Hover")
-       ;:? (keymap (dap-ui :variables :scopes) "Variable Scopes")}
+       :_ (keymap (dap :run_last) "Run Last")
+       :u (keymap "lua require'dapui'.toggle()" "Toggle DAP UI")}
 
 
    :f {:name "Find"
         :f (keymap (telescope :find_files) "Find File")
         :m (keymap (telescope :media_files) "Find Media Files")
         :r (keymap (telescope :oldfiles) "Recently Opened Files")
+        :R (keymap (vim-lsp :references) "Find References")
         :t (keymap (telescope :live_grep :ivy) "Text")
         :s (keymap (mapping :symbol_search) "Document Symbols")}
 
    :p {:name "Project"
-        :p (keymap (telescope :projects) "Projects")}
+        :p [":Telescope projects<cr>" "Projects"]}
 
    :g {:name "Git" 
         :b (keymap (gitsigns   :blame_line) "Blame")
@@ -130,6 +132,7 @@
         :j (keymap (gitsigns   :next_hunk) "Next Hunk")
         :k (keymap (gitsigns   :prev_hunk) "Previous Hunk")
         :l (keymap (toggleterm :lazygit) "Open Lazygit")
+        :n (keymap :Neogit "NeoGit")
         :p (keymap (gitsigns   :preview_hunk) "Preview Diff")
         :R (keymap (gitsigns   :reset_hunk) "Reset Hunk")
         :RR (keymap (gitsigns  :reset_buffer) "Reset Buffer")
@@ -146,11 +149,14 @@
         :L (keymap :LspLog "LSP Log")
         :k (keymap :DocsViewToggle "Language LSP Documentation")
         :r (keymap (mapping :rename) "Rename")
+        :R (keymap (vim-lsp :references) "Find References")
         :S (keymap (mapping :symbol_search) "Document Symbols")
         :s {:name "Snippet"
             :s (keymap :SnipRun "Run Snippet")
             :S (keymap :SnipClose "Stop Snippet")
-            :t (keymap "lua require'sniprun.live_mode'.toggle()" "Toggle Live Snippet")}}
+            :t (keymap "lua require'sniprun.live_mode'.toggle()" "Toggle Live Snippet")}
+        :u (keymap :RunCode "Run File")
+        :U (keymap :RunProject "Run Project")}
 
    :o {:name "Open"
        :b (keymap (toggleterm :btop "direction = 'float'") "Task Manager")
@@ -196,6 +202,9 @@
        :s (keymap :SnipRun "Run Snippet")
        :S (keymap :SnipClose "Stop Snippet")
        :t (keymap "lua require'sniprun.live_mode'.toggle()" "Toggle Live Snippet")}
+   :<space>d
+      {:name "Debug"
+       :e (keymap "lua require'dapui'.eval()" "Start Debugging")}
 
    :<DOWN> [":m '>+1<CR>gv=gv" "Move Selected Lines Downwards"]
    :<A-j> [":m '>+1<CR>gv=gv" "Move Selected Lines Downwards"]
@@ -232,4 +241,7 @@
           (set bind-table (. bind-table (to-leader key)))))
 
       bind-table)))
-
+(vim.api.nvim_create_user_command 
+  :W
+  ":SaveSession | :w"
+  {})
