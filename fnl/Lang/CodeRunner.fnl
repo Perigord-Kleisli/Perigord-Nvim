@@ -2,6 +2,7 @@
   {autoload {code-runner code_runner}})
 (code-runner.setup
   {:mode :toggle
+   :startInsert true
    :project
     {"~/.local/src/sandbox/haskell"
       {:name "Haskell Cabal Project"
