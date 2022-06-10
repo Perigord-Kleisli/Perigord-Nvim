@@ -211,6 +211,10 @@
     :justin2004/vim-apl {}                        ;APL Syntax Highlighting
 
     ;;Misc
+
+    :glacambre/firenvim                           ;Firefox Integration
+      {:run (fn [] ((. vim.fn :firenvim#install) 0))}
+
     :p00f/godbolt.nvim                            ;Godbolt
       (config :godbolt
         {:languages 
