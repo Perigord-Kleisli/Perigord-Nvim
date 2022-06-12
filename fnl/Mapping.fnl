@@ -10,7 +10,7 @@
 
 
 (set vim.g.mapleader " ")
-      
+
 (defn newFile []
   (vim.ui.input
     {:prompt "File Name: "

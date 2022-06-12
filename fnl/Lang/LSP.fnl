@@ -1,6 +1,7 @@
 (module Lang.LSP
   {autoload {lspconfig lspconfig}
    autoload {a aniseed.core}
+   autoload {navic nvim-navic}
    autoload {cmp-lsp cmp_nvim_lsp}})
 
 (def- capabilities (cmp-lsp.update_capabilities (vim.lsp.protocol.make_client_capabilities)))
@@ -8,10 +9,14 @@
 
 (each [_ server (ipairs servers)]
   ((. (. lspconfig server) :setup)
-   {:capabilities capabilities}))
+   {:capabilities capabilities
+    :on_attach (fn [client bufnr]
+                 (navic.attach client bufnr))}))
 
 (lspconfig.hls.setup
   {:capabilities capabilities
+   :on_attach (fn [client bufnr]
+                 (navic.attach client bufnr))
    :settings {:haskell 
               {:formattingProvider "brittany"
                :hlintOn true

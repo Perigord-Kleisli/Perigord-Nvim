@@ -1,6 +1,7 @@
 (module UI.Lualine 
   {autoload {lualine lualine}
    autoload {nvim-gps nvim-gps}
+   autoload {nvim-navic nvim-navic}
    autoload {lsp-signature lsp_signature}})
 
 (def lsp-func 
@@ -16,6 +17,7 @@
          msg)))])
 
 (nvim-gps.setup)
+(nvim-navic.setup {})
 
 (lualine.setup 
   {:options
@@ -30,6 +32,9 @@
 
       :lualine_c [:diff]
                   
-     :lualine_x [{1 nvim-gps.get_location :cond nvim-gps.is_available}]
+     :lualine_x [{1 (fn [] (if (nvim-navic.is_available)
+                               (nvim-navic.get_location)
+                               (nvim-gps.get_location)))
+                  :cond (fn [] (or (nvim-gps.is_available) (nvim-navic.is_available)))}]
      :lualine_y ["os.date('%I:%M %p')"]
      :lualine_z [[:] ["location"] "progress"]}}) 

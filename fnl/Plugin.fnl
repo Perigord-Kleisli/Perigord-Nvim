@@ -62,7 +62,7 @@
                :check_ts true
                :fast_wrap {:map :<M-e>}})
     :andymass/vim-matchup {}                      ;Enchanced % Key Functionality
-    :abecodes/tabout.nvim (setup :tabout)         ;Tabing out of delimeters
+    ;:abecodes/tabout.nvim (setup :tabout)         ;Tabing out of delimeters
 
     :preservim/nerdcommenter {}                   ;Commenting
     :s1n7ax/nvim-comment-frame                    ;Creating Comment Boxes
@@ -71,7 +71,7 @@
     :ggandor/lightspeed.nvim {}                   ;Hopper
     :tpope/vim-fugitive {}                        ;Git Integration
     :TimUntersberger/neogit (setup :neogit)       ;Git Integration
-    :f-person/git-blame.nvim {}
+    :f-person/git-blame.nvim {}                   ;Git Blame Integration
 
     :editorconfig/editorconfig-vim {}             ;EditorConfig
 
@@ -89,7 +89,6 @@
         :requires :kyazdani42/nvim-web-devicons}
 
     :akinsho/toggleterm.nvim (setup :toggleterm)  ;Terminal
-    :ahmedkhalf/project.nvim (setup :project_nvim);Vim Project Manager
 
     :folke/which-key.nvim                         ;Key Binding
       {:conf-module :Mapping
@@ -139,7 +138,9 @@
     :nvim-lualine/lualine.nvim                    ;Vim Status-Line
       {:conf-module :UI.Lualine
        :requires
-        [[:SmiteshP/nvim-gps]]}
+        [[:SmiteshP/nvim-gps]
+         [:SmiteshP/nvim-navic]]}
+         
 
     :camspiers/animate.vim {}                     ;Window Animation Library
     :rainbowhxch/beacon.nvim {}                   ;Highlight On Large Cursor Jumps
