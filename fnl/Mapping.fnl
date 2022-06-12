@@ -11,6 +11,15 @@
 
 (set vim.g.mapleader " ")
       
+(defn newFile []
+  (vim.ui.input
+    {:prompt "File Name: "
+     :default (match (vim.fn.expand "%:e")
+                "" ""
+                ext (.. "." ext))}
+    (fn [input]
+      (vim.api.nvim_command (.. "edit " input)))))
+
 (macro keymap [cmd name] '[(.. "<cmd>" ,cmd "<cr>") ,name])
 (macro telescope [cmd theme?] '(string.format "Telescope %s %s"
                                               ,cmd
@@ -107,7 +116,7 @@
        :k (keymap (dap :step_back) "Step Back")
        :p (keymap (telescope "dap list_breakpoints") "List Breakpoints")
        :f (keymap (telescope "dap frames") "Frames")
-       :r (keymap (dap :restart) "Restart")
+       :t (keymap :DapTerminate "Terminate")
        :n (keymap (dap :continue) "Continue")
        :_ (keymap (dap :run_last) "Run Last")
        :u (keymap "lua require'dapui'.toggle()" "Toggle DAP UI")}
@@ -164,6 +173,7 @@
        :d (keymap :DocsViewToggle "Language LSP Documentation")
        :e (keymap :ene "Empty File")
        :l [ "`1" "Last Opened File"]
+       :n (keymap (mapping :newFile) "New File")
        :p (keymap :NvimTreeToggle "File Explorer")
        :P (keymap "Telescope file_browser" "File Browser")
        :s (keymap :SymbolsOutline "Document Symbol Tree")
@@ -245,3 +255,4 @@
   :W
   ":SaveSession | :w"
   {})
+

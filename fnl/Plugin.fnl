@@ -62,6 +62,7 @@
                :check_ts true
                :fast_wrap {:map :<M-e>}})
     :andymass/vim-matchup {}                      ;Enchanced % Key Functionality
+    :abecodes/tabout.nvim (setup :tabout)         ;Tabing out of delimeters
 
     :preservim/nerdcommenter {}                   ;Commenting
     :s1n7ax/nvim-comment-frame                    ;Creating Comment Boxes
