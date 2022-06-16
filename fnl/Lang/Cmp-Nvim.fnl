@@ -44,7 +44,7 @@
    :path "[Path]"})
 
 (cmp.setup
-  {:snippet (fn [args] (luasnip.lsp_expand (. args :body)))
+  {:snippet {:expand (fn [args] (luasnip.lsp_expand (. args :body)))}
    :sources (cmp.config.sources 
               [
                {:name "nvim_lsp"}
@@ -66,10 +66,7 @@
                          [ :i :c])
      :<CR>  (cmp.mapping.confirm {:select true})}
    :window 
-    {:completion (cmp.config.window.bordered
-                   {:border [ "╭" "─" "╮" "│" "╯" "─" "╰" "│"]
-                    :winhighlight "FloatBorder:VertSplit"})
-     :documentation (cmp.config.window.bordered
+    {:documentation (cmp.config.window.bordered
                      {:winhighlight "FloatBorder:VisualNOS"})}
 
    :sorting

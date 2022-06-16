@@ -136,7 +136,7 @@
         :r (keymap (telescope :oldfiles) "Recently Opened Files")
         :R (keymap (vim-lsp :references) "Find References")
         :t (keymap (telescope :live_grep :ivy) "Text")
-        :s (keymap (mapping :symbol_search) "Document Symbols")}
+        :s (keymap (mapping :symbol-search) "Document Symbols")}
 
    :p {:name "Project"
         :p [":Telescope projects<cr>" "Projects"]}

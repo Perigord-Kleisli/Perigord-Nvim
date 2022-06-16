@@ -18,5 +18,7 @@
   endtry")
 
 (vim.cmd "highlight debugPC guibg=#10504A")
+(vim.cmd "highlight TreeSitterContext guibg=#081220")
+(vim.cmd "highlight TreesitterContextLineNumber guifg=#8A888A gui=underline")
 (vim.cmd "highlight CopilotSuggestion guifg=#8292B4 guibg=#202A21")
 
