@@ -62,7 +62,9 @@
                :check_ts true
                :fast_wrap {:map :<M-e>}})
     :andymass/vim-matchup {}                      ;Enchanced % Key Functionality
-    ;:abecodes/tabout.nvim (setup :tabout)         ;Tabing out of delimeters
+    ;:abecodes/tabout.nvim (setup :tabout)        ;Tabing out of delimeters
+    :Trouble-Truffle/Prog-Nvim                    ;Project Manager
+      (setup :prog {:requires [[:Trouble-Truffle/PeriLib-Nvim]]})      
 
     :preservim/nerdcommenter {}                   ;Commenting
     :s1n7ax/nvim-comment-frame                    ;Creating Comment Boxes
@@ -106,6 +108,9 @@
 
 
     ;;UI
+
+    :rmagatti/goto-preview                        ;Goto Previewer
+      {:config (fn [] ((. (require :goto-preview) :setup)) {})}
 
     :rcarriga/nvim-notify {}                      ;Notification UI
 
@@ -167,21 +172,22 @@
     :jose-elias-alvarez/null-ls.nvim              ;Null Language Server
       {:conf-module :Lang.Null-ls}
 
-    :hrsh7th/nvim-cmp
+    :hrsh7th/nvim-cmp                             ;Completion
       {:conf-module :Lang.Cmp-Nvim
        :requires
-        [[:hrsh7th/cmp-nvim-lsp]
-         [:L3MON4D3/LuaSnip
-          :hrsh7th/cmp-calc
-          :uga-rosa/cmp-dictionary
-          :lukas-reineke/cmp-under-comparator
-          :hrsh7th/cmp-cmdline
-          :hrsh7th/cmp-nvim-lua
-          :kdheepak/cmp-latex-symbols
-          :ray-x/cmp-treesitter
-          :hrsh7th/cmp-nvim-lsp-signature-help
-          :hrsh7th/cmp-path
-          :hrsh7th/cmp-buffer]]}
+       [
+        [:hrsh7th/cmp-nvim-lsp]
+        [:L3MON4D3/LuaSnip]
+        [:hrsh7th/cmp-calc]
+        [:uga-rosa/cmp-dictionary]
+        [:lukas-reineke/cmp-under-comparator]
+        [:hrsh7th/cmp-cmdline]
+        [:hrsh7th/cmp-nvim-lua]
+        [:kdheepak/cmp-latex-symbols]
+        [:ray-x/cmp-treesitter]
+        [:hrsh7th/cmp-nvim-lsp-signature-help]
+        [:hrsh7th/cmp-path]
+        [:hrsh7th/cmp-buffer]]}
 
     :p00f/nvim-ts-rainbow {}                      ;Color Coded Parentheses
 
@@ -207,6 +213,10 @@
       (setup :rust-tools)
 
     :LnL7/vim-nix {}                              ;Nix
+
+    :ShinKage/idris2-nvim 
+      ;{:config (fn [] ((. (require :idris2) :setup)) {})
+       {:requires [[:MunifTanjim/nui.nvim]]}
 
     :vlime/vlime {}                               ;Common Lisp Dev Environment
     :bhurlow/vim-parinfer {}                      ;Parenthesis Inferring for Writting Lisps

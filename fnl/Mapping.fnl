@@ -30,17 +30,25 @@
 (macro dap-ui [mod cmd] '(.. "lua require('dap.ui." ,mod "')." ,cmd "()"))
 (macro unmap [bind] '(vim.api.nvim_set_keymap "" ,bind :<Nop> {:noremap true :silent true}))
 (macro vim-lsp [cmd] '(.. "lua vim.lsp.buf." ,cmd "()"))
-(macro mapping [cmd] '(.. "lua require('Mapping')." ,cmd "()"))
+(macro mapping [cmd] '(.. "lua require('Mapping')['" ,cmd "']()"))
 (macro toggleterm [cmd opts] 
    '(string.format 
        "lua require('toggleterm.terminal').Terminal:new({%s %s}):toggle()"
        (or (and ,cmd (.. "cmd='" ,cmd "',")) "")
        (or ,opts "hidden=true, direction='float'")))
 
+                 
+(defn has-lsp []
+  (do
+    (each [_ key (ipairs (vim.lsp.buf_get_clients))]
+      (if (not (or (= key.name :null-ls) (= key.name :copilot)))
+        (lua "return true")))
+    false))
+    
 (macro fallback [cmd-name cmd1 cmd2]
-  `(defn ,cmd-name [] (Func.maybe
-                        (Func.alternative ,cmd1 ,cmd2 nil)
-                        (print "Command:" (.. "'" ,(tostring cmd-name) "'") "Failed"))))
+  `(defn ,cmd-name [] (if (has-lsp)
+                        (,cmd1)
+                        (,cmd2))))
 
 (fallback
   definition
@@ -48,7 +56,7 @@
   tsref-navigation.goto_definition)
 
 (fallback
-  symbol_search
+  symbol-search
   telescope-builtin.lsp_document_symbols
   telescope-builtin.treesitter)
 

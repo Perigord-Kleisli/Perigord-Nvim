@@ -36,6 +36,7 @@
   {:nvim_lsp "[LSP]"
    :luasnip "[Snippet]"
    :calc "[Calc]"
+   :greek "[Greek]"
    :latex_symbols "[Symbol]"
    :treesitter "[TS]"
    :dictionary "[Dict]"
@@ -62,7 +63,8 @@
      :<C-d> (cmp.mapping (cmp.mapping.scroll_docs 1)
                          [ :i :c])
      :<C-u> (cmp.mapping (cmp.mapping.scroll_docs -1)
-                         [ :i :c])}
+                         [ :i :c])
+     :<CR>  (cmp.mapping.confirm {:select true})}
    :window 
     {:completion (cmp.config.window.bordered
                    {:border [ "╭" "─" "╮" "│" "╯" "─" "╰" "│"]

@@ -1,17 +1,19 @@
 (module Lang.LSP
   {autoload {lspconfig lspconfig}
    autoload {a aniseed.core}
+   autoload {idris idris2}
    autoload {navic nvim-navic}
    autoload {cmp-lsp cmp_nvim_lsp}})
 
 (def- capabilities (cmp-lsp.update_capabilities (vim.lsp.protocol.make_client_capabilities)))
-(def- servers [ "bashls" "clangd" "cmake" "html" "pyright" "rls" "sumneko_lua" "tsserver" "rnix"])
+(def- servers [ "bashls" "clangd" "cmake" "html" "idris2_lsp" "pyright" "rls" "sumneko_lua" "tsserver" "rnix"])
 
 (each [_ server (ipairs servers)]
   ((. (. lspconfig server) :setup)
    {:capabilities capabilities
     :on_attach (fn [client bufnr]
                  (navic.attach client bufnr))}))
+
 
 (lspconfig.hls.setup
   {:capabilities capabilities
