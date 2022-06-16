@@ -261,6 +261,10 @@
       bind-table)))
 (vim.api.nvim_create_user_command 
   :W
-  ":SaveSession | :w"
+  ":execute \"SaveSession\" | w"
   {})
 
+(vim.api.nvim_create_user_command 
+  :WQ
+  ":execute \"SaveSession\" | wqall"
+  {})
