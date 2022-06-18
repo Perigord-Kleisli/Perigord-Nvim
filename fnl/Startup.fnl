@@ -39,7 +39,7 @@
               " -'·    :  \\      |     '-                        |WWW|                                      "
               "'.-.·   :   \\     |       |                                                                  "
               "|. .-·  :    \\    |       |    MMM=         =MMM  |MMM|  |M|  +===+   +====+                  "
-              "| . .-··:     \\   |       |    \\HHB`       'BHH/  |HHH|  |H|\\/sMMMs\\_/sMMMMs\\             "
+              "| . .-· :     \\   |       |    \\HHB`       'BHH/  |HHH|  |H|\\/sMMMs\\_/sMMMMs\\             "
               "|. . .-·;      \\  |       |     \\HHH\\     /HHH/   |HHH|  |HBBWWWWWHMMMHWWWW:B\\             "
               "| . . .-|       \\ |       |      \\HHH\\   /HHH/    |HHH|  |HK/     \\KYK/    \\KH|           "
               "|. . . .|\\       \\|       |       \\HHH\\ /HHH/     |HHH|  |H|       |H|      |H|            "
