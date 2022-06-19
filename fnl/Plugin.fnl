@@ -73,13 +73,14 @@
     :ggandor/lightspeed.nvim {}                   ;Hopper
     :tpope/vim-fugitive {}                        ;Git Integration
     :TimUntersberger/neogit (setup :neogit)       ;Git Integration
+    :lewis6991/gitsigns.nvim (setup :gitsigns)    ;Git Integration
     :f-person/git-blame.nvim {}                   ;Git Blame Integration
 
     :editorconfig/editorconfig-vim {}             ;EditorConfig
 
     ;;Project Navigation
     :nvim-telescope/telescope.nvim                ;General Fuzzy Finder
-      {:conf-module :Util.Telescope
+      {:conf-module :Util.Telescopeplug
        :requires
         [[:nvim-telescope/telescope-file-browser.nvim]
          [:nvim-telescope/telescope-media-files.nvim]
