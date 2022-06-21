@@ -248,6 +248,5 @@
                     {:neovim_image_text "Neovim"})
                    (print "Error Configuring: Presence")))}
 
-    :wakatime/vim-wakatime {}                     ;Code Time Tracking
-    :github/copilot.vim {}})                      ;Copilot
+    :wakatime/vim-wakatime {}})                     ;Code Time Tracking
 
