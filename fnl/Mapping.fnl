@@ -69,18 +69,13 @@
 
 (which-key.register
   {
-   :<C-Up> (keymap "call animate#window_delta_height(10)" "Vertical Upsize")
-   :<C-A-j> (keymap "call animate#window_delta_height(10)" "Vertical Upsize")
+   :<C-Up> (keymap "resize +3" "Vertical Resize+")
 
-   :<C-Down> (keymap "call animate#window_delta_height(-10)" "Vertical Downsize")
-   :<C-A-k> (keymap "call animate#window_delta_height(-10)" "Vertical Downsize")
+   :<C-Down> (keymap "resize -3" "Vertical Resize-")
 
+   :<C-Left> (keymap "vertical resize +3" "Horizontal Resize+")
 
-   :<C-Left> (keymap "call animate#window_delta_width(10)" "Horizontal Upsize")
-   :<C-A-l> (keymap "call animate#window_delta_width(10)" "Horizontal Upsize")
-
-   :<C-Right> (keymap "call animate#window_delta_width(-10)" "Horizontal Downsize")
-   :<C-A-h> (keymap "call animate#window_delta_width(-10)" "Horizontal Downsize")
+   :<C-Right> (keymap "vertical resize -3" "Horizontal Resize-")
 
    :<C-s> (keymap "w | :SaveSession" "Save Session")
 
@@ -188,9 +183,7 @@
        :S (keymap :RestoreSession "Last Session")
        :t (keymap (toggleterm nil "direction = 'horizontal', size=1") "Terminal")
        :T (keymap (toggleterm nil "direction='float' , float_opts={border='rounded'}") "Floating Terminal") 
-       :v (keymap (.. (toggleterm nil "direction='vertical'")
-                      "; vim.api.nvim_command('call animate#window_percent_width(0.5)')")
-                  "Vertical Terminal")
+       :v (keymap (toggleterm nil "direction='vertical'") "Vertical Terminal")
        :Z (keymap :ZenMode "Zen Mode")}
 
    :P {:name "Packer" 

@@ -159,8 +159,6 @@
         [[:SmiteshP/nvim-gps]
          [:SmiteshP/nvim-navic]]}
          
-
-    :camspiers/animate.vim {}                     ;Window Animation Library
     :rainbowhxch/beacon.nvim {}                   ;Highlight On Large Cursor Jumps
 
 
