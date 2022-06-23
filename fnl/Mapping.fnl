@@ -180,7 +180,7 @@
        :c (keymap "Copilot panel" "Copilot")
        :d (keymap :DocsViewToggle "Language LSP Documentation")
        :e (keymap :ene "Empty File")
-       :l [ "`1" "Last Opened File"]
+       :l [ "`0" "Last Opened File"]
        :n (keymap (mapping :newFile) "New File")
        :p (keymap :NvimTreeToggle "File Explorer")
        :P (keymap "Telescope file_browser" "File Browser")

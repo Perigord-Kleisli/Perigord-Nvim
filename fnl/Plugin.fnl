@@ -3,6 +3,8 @@
    autoload {Func Functions}
    autoload {Startup Startup}})
 
+(require :UI.Neovide)
+
 (defn safe-require [mod]
   (let [(status_ok plugin) (pcall require mod)]
     (when (not status_ok)
@@ -49,12 +51,15 @@
     :Olical/aniseed {}                            ;Fennel in Neovim
     :wbthomason/packer.nvim {}                    ;Package Manager
     :lewis6991/impatient.nvim {}                  ;Speeds up Startup Time
+   :MunifTanjim/nui.nvim {}                      ;Nvim UI Library
 
     ;;Common Dependencies
     :nvim-lua/plenary.nvim {}                     ;Some Lua Functions
     :nvim-lua/popup.nvim {}                       ;Vim Popup API Implementation
 
     ;;Utility
+    :arp242/undofile_warn.vim {}                  ;Warns when doing an Undo not part of current session
+
     :tpope/vim-surround {}                        ;Delimeter Operations
     :windwp/nvim-autopairs                         ;Delimeter Autopairing
       (config :nvim-autopairs
@@ -70,17 +75,19 @@
     :s1n7ax/nvim-comment-frame                    ;Creating Comment Boxes
       (setup :nvim-comment-frame)
 
+    :folke/todo-comments.nvim                     ;Todo Comments
+      (setup :todo-comments) 
+
     :ggandor/lightspeed.nvim {}                   ;Hopper
     :tpope/vim-fugitive {}                        ;Git Integration
     :TimUntersberger/neogit (setup :neogit)       ;Git Integration
     :lewis6991/gitsigns.nvim (setup :gitsigns)    ;Git Integration
     :f-person/git-blame.nvim {}                   ;Git Blame Integration
-
     :editorconfig/editorconfig-vim {}             ;EditorConfig
 
     ;;Project Navigation
     :nvim-telescope/telescope.nvim                ;General Fuzzy Finder
-      {:conf-module :Util.Telescopeplug
+      {:conf-module :Util.Telescope
        :requires
         [[:nvim-telescope/telescope-file-browser.nvim]
          [:nvim-telescope/telescope-media-files.nvim]
@@ -110,8 +117,13 @@
 
     ;;UI
 
-    :rmagatti/goto-preview                        ;Goto Previewer
-      {:config (fn [] ((. (require :goto-preview) :setup)) {})}
+   :luukvbaal/stabilize.nvim                     ;Stabilize Window on resize events
+      (setup :stabilize)
+
+   ;:VonHeikemen/fine-cmdline.nvim                ;Command Line UI
+      ;(config :fine-cmdline
+             ;{:popup {:position {:row "95%"}}
+              ;:cmdline {:prompt ":" :enable_keymaps false}})
 
     :rcarriga/nvim-notify {}                      ;Notification UI
 
@@ -137,7 +149,7 @@
       {:conf-module :Startup}
 
     :Mofiqul/dracula.nvim                         ;Dracula Theme
-       {:conf-module :UI.Dracula}
+       {:conf-module :UI.Colorscheme}
 
     :stevearc/dressing.nvim (setup :dressing)
 
@@ -214,10 +226,6 @@
       (setup :rust-tools)
 
     :LnL7/vim-nix {}                              ;Nix
-
-    :ShinKage/idris2-nvim 
-      ;{:config (fn [] ((. (require :idris2) :setup)) {})
-       {:requires [[:MunifTanjim/nui.nvim]]}
 
     :vlime/vlime {}                               ;Common Lisp Dev Environment
     :bhurlow/vim-parinfer {}                      ;Parenthesis Inferring for Writting Lisps

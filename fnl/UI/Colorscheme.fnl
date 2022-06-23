@@ -1,4 +1,4 @@
-(module UI.Dracula)
+(module UI.Colorscheme)
 
 
 ;(set vim.g.dracula_transparent_bg true)
@@ -22,3 +22,5 @@
 (vim.cmd "highlight TreesitterContextLineNumber guifg=#8A888A gui=underline")
 (vim.cmd "highlight CopilotSuggestion guifg=#8292B4 guibg=#202A21")
 
+(set vim.g.gitblame_highlight_group :NonText)
+(set vim.g.gitblame_ignored_filetypes [:NvimTree :TelescopePrompt])

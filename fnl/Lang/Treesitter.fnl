@@ -6,6 +6,7 @@
   { :ensure_installed ["toml" "bash" "c" "cpp" "fennel" "haskell" "python" "rust" "javascript" "lua" "html" "scss" "markdown" "nix" "html" "regex"] 
     :indent {:enable true}
     :autopairs {:enable true}
+    :highlight {:enable true}
     :matchup {:enable true}
     :rainbow 
      {:enable true}
