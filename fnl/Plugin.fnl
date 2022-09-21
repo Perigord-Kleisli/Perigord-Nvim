@@ -225,11 +225,16 @@
 
     :LnL7/vim-nix {}                              ;Nix
 
+    :Nymphium/vim-koka {}                         ;Koka Language
+
     :vlime/vlime {}                               ;Common Lisp Dev Environment
     :bhurlow/vim-parinfer {}                      ;Parenthesis Inferring for Writting Lisps
     :justin2004/vim-apl {}                        ;APL Syntax Highlighting
 
     ;;Misc
+
+    :ShinKage/idris2-nvim                        ;Idris2 integration
+      (config :idris2 {})
 
     :glacambre/firenvim                           ;Firefox Integration
       {:run (fn [] ((. vim.fn :firenvim#install) 0))}

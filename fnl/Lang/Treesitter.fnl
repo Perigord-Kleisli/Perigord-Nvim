@@ -1,5 +1,6 @@
 (module Lang.Treesitter 
   {autoload {treesitter nvim-treesitter.configs}
+   autoload {parsers nvim-treesitter.parsers}
    autoload {treesitter-context treesitter-context}})
 
 (treesitter.setup 

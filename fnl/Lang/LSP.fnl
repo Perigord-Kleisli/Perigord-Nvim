@@ -6,7 +6,7 @@
    autoload {cmp-lsp cmp_nvim_lsp}})
 
 (def- capabilities (cmp-lsp.update_capabilities (vim.lsp.protocol.make_client_capabilities)))
-(def- servers [ "bashls" "clangd" "cmake" "html" "idris2_lsp" "pyright" "rls" "sumneko_lua" "tsserver" "rnix"])
+(def- servers [ "bashls" "ccls" "cmake" "html" "idris2_lsp" "pyright" "rls" "sumneko_lua" "tsserver" "rnix"])
 
 (each [_ server (ipairs servers)]
   ((. (. lspconfig server) :setup)
