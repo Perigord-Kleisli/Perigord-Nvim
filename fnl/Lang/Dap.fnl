@@ -60,7 +60,13 @@
       :name :Debug
       :request :launch
       :program (fn [] (vim.fn.input "Program: " (.. (vim.fn.getcwd) "/target/debug/") :file))}])
-      
+
+(set dap.configurations.cpp
+    [{:type :lldb
+      :name :Debug
+      :request :launch
+      :program (fn [] (vim.fn.input "Program: " (.. (vim.fn.getcwd) "/") :file))}])      
+
 (set dap.configurations.c
     [{:type :lldb
       :name :Debug

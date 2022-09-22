@@ -229,6 +229,9 @@
 
     :vlime/vlime {}                               ;Common Lisp Dev Environment
     :bhurlow/vim-parinfer {}                      ;Parenthesis Inferring for Writting Lisps
+
+    :ShinKage/idris2-nvim {}
+
     :justin2004/vim-apl {}                        ;APL Syntax Highlighting
 
     ;;Misc

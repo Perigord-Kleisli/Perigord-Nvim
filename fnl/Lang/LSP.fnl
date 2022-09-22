@@ -13,12 +13,17 @@
    {:capabilities capabilities
     :on_attach (fn [client bufnr]
                  (navic.attach client bufnr))}))
-
+(lspconfig.html.setup 
+  {:capabilities capabilities
+   :on_attach (fn [client bufnr]
+                 (navic.attach client bufnr))
+   :cmd ["html-languageserver" "--stdio"]})
 
 (lspconfig.hls.setup
   {:capabilities capabilities
    :on_attach (fn [client bufnr]
                  (navic.attach client bufnr))
+   :cmd ["haskell-language-server" "--lsp"]
    :settings {:haskell 
               {:formattingProvider "brittany"
                :hlintOn true
