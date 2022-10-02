@@ -138,7 +138,7 @@
 
     :akinsho/bufferline.nvim                      ;Tabs
       (config :bufferline
-              {:diagnostics :nvim_lsp})
+              {:options {:diagnostics :nvim_lsp}})
 
     :RRethy/vim-hexokinase
       {:run "make hexokinase"}
