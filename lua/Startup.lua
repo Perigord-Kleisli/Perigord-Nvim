@@ -11,10 +11,10 @@ do
   _2amodule_locals_2a = (_2amodule_2a)["aniseed/locals"]
 end
 local autoload = (require("aniseed.autoload")).autoload
-local alpha, Options, Mapping = autoload("alpha"), require("Options"), require("Mapping")
+local alpha, Mapping, Options = autoload("alpha"), require("Mapping"), require("Options")
 do end (_2amodule_locals_2a)["alpha"] = alpha
-_2amodule_locals_2a["Options"] = Options
 _2amodule_locals_2a["Mapping"] = Mapping
+_2amodule_locals_2a["Options"] = Options
 local function button(bind, icon, extra_text)
   local _1_ = Mapping["get-action"](bind)
   if (_1_ == nil) then

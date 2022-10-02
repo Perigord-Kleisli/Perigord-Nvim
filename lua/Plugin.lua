@@ -11,10 +11,10 @@ do
   _2amodule_locals_2a = (_2amodule_2a)["aniseed/locals"]
 end
 local autoload = (require("aniseed.autoload")).autoload
-local Func, packer, Startup = autoload("Functions"), autoload("packer"), autoload("Startup")
-do end (_2amodule_locals_2a)["Func"] = Func
-_2amodule_locals_2a["packer"] = packer
+local packer, Startup, Func = autoload("packer"), autoload("Startup"), autoload("Functions")
+do end (_2amodule_locals_2a)["packer"] = packer
 _2amodule_locals_2a["Startup"] = Startup
+_2amodule_locals_2a["Func"] = Func
 require("UI.Neovide")
 local function safe_require(mod)
   local status_ok, plugin = pcall(require, mod)

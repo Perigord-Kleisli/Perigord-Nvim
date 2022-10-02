@@ -11,11 +11,11 @@ do
   _2amodule_locals_2a = (_2amodule_2a)["aniseed/locals"]
 end
 local autoload = (require("aniseed.autoload")).autoload
-local nvim_gps, nvim_navic, lsp_signature, lualine = autoload("nvim-gps"), autoload("nvim-navic"), autoload("lsp_signature"), autoload("lualine")
-do end (_2amodule_locals_2a)["nvim-gps"] = nvim_gps
+local lualine, nvim_navic, nvim_gps, lsp_signature = autoload("lualine"), autoload("nvim-navic"), autoload("nvim-gps"), autoload("lsp_signature")
+do end (_2amodule_locals_2a)["lualine"] = lualine
 _2amodule_locals_2a["nvim-navic"] = nvim_navic
+_2amodule_locals_2a["nvim-gps"] = nvim_gps
 _2amodule_locals_2a["lsp-signature"] = lsp_signature
-_2amodule_locals_2a["lualine"] = lualine
 local lsp_func
 local function _1_()
   local msg = "No LSP"

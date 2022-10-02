@@ -18,7 +18,6 @@ vim.cmd("\n  try \n      colorscheme dracula\n  catch \n      echo \"Error Confi
 vim.cmd("highlight debugPC guibg=#10504A")
 vim.cmd("highlight TreeSitterContext guibg=#081220")
 vim.cmd("highlight TreesitterContextLineNumber guifg=#8A888A gui=underline")
-vim.cmd("highlight CopilotSuggestion guifg=#8292B4 guibg=#202A21")
 vim.g.gitblame_highlight_group = "NonText"
 vim.g.gitblame_ignored_filetypes = {"NvimTree", "TelescopePrompt"}
 return _2amodule_2a

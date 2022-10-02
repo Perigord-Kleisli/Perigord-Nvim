@@ -41,7 +41,7 @@
 (defn has-lsp []
   (do
     (each [_ key (ipairs (vim.lsp.buf_get_clients))]
-      (if (not (or (= key.name :null-ls) (= key.name :copilot)))
+      (if (not (or (= key.name :null-ls)))
         (lua "return true")))
     false))
     
@@ -172,7 +172,6 @@
 
    :o {:name "Open"
        :b (keymap (toggleterm :btop "direction = 'float'") "Task Manager")
-       :c (keymap "Copilot panel" "Copilot")
        :d (keymap :DocsViewToggle "Language LSP Documentation")
        :e (keymap :ene "Empty File")
        :l [ "`0" "Last Opened File"]
@@ -235,7 +234,6 @@
 (vim.api.nvim_set_keymap :t :<Space>oT :<C-\><C-n>:q<CR> {:silent true})
 (vim.api.nvim_set_keymap :t :<Space>ov :<C-\><C-n>:q<CR> {:silent true})
 
-(set vim.g.copilot_no_tab_map true)
 (let [to-leader 
       (fn [key] 
         (if (= vim.g.mapleader (vim.api.nvim_replace_termcodes key true false true))

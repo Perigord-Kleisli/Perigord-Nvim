@@ -11,12 +11,12 @@ do
   _2amodule_locals_2a = (_2amodule_2a)["aniseed/locals"]
 end
 local autoload = (require("aniseed.autoload")).autoload
-local cmp_lsp, idris, navic, lspconfig, a = autoload("cmp_nvim_lsp"), autoload("idris2"), autoload("nvim-navic"), autoload("lspconfig"), autoload("aniseed.core")
+local cmp_lsp, idris, a, lspconfig, navic = autoload("cmp_nvim_lsp"), autoload("idris2"), autoload("aniseed.core"), autoload("lspconfig"), autoload("nvim-navic")
 do end (_2amodule_locals_2a)["cmp-lsp"] = cmp_lsp
 _2amodule_locals_2a["idris"] = idris
-_2amodule_locals_2a["navic"] = navic
-_2amodule_locals_2a["lspconfig"] = lspconfig
 _2amodule_locals_2a["a"] = a
+_2amodule_locals_2a["lspconfig"] = lspconfig
+_2amodule_locals_2a["navic"] = navic
 local capabilities = cmp_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 do end (_2amodule_locals_2a)["capabilities"] = capabilities
 local servers = {"bashls", "ccls", "cmake", "html", "idris2_lsp", "pyright", "rls", "sumneko_lua", "tsserver", "rnix"}
