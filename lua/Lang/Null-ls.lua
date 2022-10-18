@@ -1,4 +1,4 @@
-local _2afile_2a = "fnl/Lang/Null-ls.fnl"
+local _2afile_2a = "/home/truff/.config/nvim/fnl/Lang/Null-ls.fnl"
 local _2amodule_name_2a = "Lang.Null-ls"
 local _2amodule_2a
 do

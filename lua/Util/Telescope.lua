@@ -1,4 +1,4 @@
-local _2afile_2a = "fnl/Util/Telescope.fnl"
+local _2afile_2a = "/home/truff/.config/nvim/fnl/Util/Telescope.fnl"
 local _2amodule_name_2a = "Util.Telescope"
 local _2amodule_2a
 do
@@ -11,13 +11,13 @@ do
   _2amodule_locals_2a = (_2amodule_2a)["aniseed/locals"]
 end
 local autoload = (require("aniseed.autoload")).autoload
-local actions, themes, telescope, Func = autoload("telescope.actions"), autoload("telescope.themes"), autoload("telescope"), autoload("Functions")
+local actions, Func, themes, telescope = autoload("telescope.actions"), autoload("Functions"), autoload("telescope.themes"), autoload("telescope")
 do end (_2amodule_locals_2a)["actions"] = actions
+_2amodule_locals_2a["Func"] = Func
 _2amodule_locals_2a["themes"] = themes
 _2amodule_locals_2a["telescope"] = telescope
-_2amodule_locals_2a["Func"] = Func
 telescope.setup({defaults = {winblend = 1, file_ignore_patterns = {"__pycache__", "node_modules", ".jpg", ".jpeg", ".png", ".ico", "dist", "dist-newstyle"}, prompt_prefix = "\239\145\171 ", selection_caret = "\239\129\164  ", mappings = {i = {["<C-j>"] = actions.move_selection_next, ["<C-k>"] = actions.move_selection_previous, ["<C-n>"] = actions.cycle_history_next, ["<C-p>"] = actions.cycle_history_prev}}}})
-for _, i in ipairs({"media_files", "file_browser", "dap"}) do
+for _, i in ipairs({"media_files", "file_browser", "dap", "manix"}) do
   local function _1_(...)
     return print("Failed to load Telescope Extension:", ...)
   end

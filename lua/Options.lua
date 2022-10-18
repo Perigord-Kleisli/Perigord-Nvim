@@ -1,4 +1,4 @@
-local _2afile_2a = "fnl/Options.fnl"
+local _2afile_2a = "/home/truff/.config/nvim/fnl/Options.fnl"
 local _2amodule_name_2a = "Options"
 local _2amodule_2a
 do

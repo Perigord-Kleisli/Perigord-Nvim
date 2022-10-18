@@ -1,4 +1,4 @@
-local _2afile_2a = "fnl/Lang/CodeRunner.fnl"
+local _2afile_2a = "/home/truff/.config/nvim/fnl/Lang/CodeRunner.fnl"
 local _2amodule_name_2a = "Lang.CodeRunner"
 local _2amodule_2a
 do

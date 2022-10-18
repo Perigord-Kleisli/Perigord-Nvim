@@ -1,4 +1,4 @@
-local _2afile_2a = "fnl/UI/Indent-Blankline.fnl"
+local _2afile_2a = "/home/truff/.config/nvim/fnl/UI/Indent-Blankline.fnl"
 local _2amodule_name_2a = "UI.Indent-Blankline"
 local _2amodule_2a
 do

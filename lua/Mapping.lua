@@ -1,4 +1,4 @@
-local _2afile_2a = "fnl/Mapping.fnl"
+local _2afile_2a = "/home/truff/.config/nvim/fnl/Mapping.fnl"
 local _2amodule_name_2a = "Mapping"
 local _2amodule_2a
 do
@@ -11,15 +11,15 @@ do
   _2amodule_locals_2a = (_2amodule_2a)["aniseed/locals"]
 end
 local autoload = (require("aniseed.autoload")).autoload
-local a, telescope_builtin, tsref_rename, Func, telescope_themes, tsref_navigation, which_key, legendary = autoload("aniseed.core"), autoload("telescope.builtin"), autoload("nvim-treesitter-refactor.smart_rename"), autoload("Functions"), autoload("telescope.themes"), autoload("nvim-treesitter-refactor.navigation"), autoload("which-key"), autoload("legendary")
-do end (_2amodule_locals_2a)["a"] = a
-_2amodule_locals_2a["telescope-builtin"] = telescope_builtin
-_2amodule_locals_2a["tsref-rename"] = tsref_rename
+local telescope_builtin, Func, which_key, legendary, tsref_rename, a, telescope_themes, tsref_navigation = autoload("telescope.builtin"), autoload("Functions"), autoload("which-key"), autoload("legendary"), autoload("nvim-treesitter-refactor.smart_rename"), autoload("aniseed.core"), autoload("telescope.themes"), autoload("nvim-treesitter-refactor.navigation")
+do end (_2amodule_locals_2a)["telescope-builtin"] = telescope_builtin
 _2amodule_locals_2a["Func"] = Func
-_2amodule_locals_2a["telescope-themes"] = telescope_themes
-_2amodule_locals_2a["tsref-navigation"] = tsref_navigation
 _2amodule_locals_2a["which-key"] = which_key
 _2amodule_locals_2a["legendary"] = legendary
+_2amodule_locals_2a["tsref-rename"] = tsref_rename
+_2amodule_locals_2a["a"] = a
+_2amodule_locals_2a["telescope-themes"] = telescope_themes
+_2amodule_locals_2a["tsref-navigation"] = tsref_navigation
 vim.g.mapleader = " "
 local function newFile()
   local _2_

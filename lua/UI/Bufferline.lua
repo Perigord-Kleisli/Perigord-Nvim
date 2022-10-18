@@ -1,4 +1,4 @@
-local _2afile_2a = "fnl/UI/Bufferline.fnl"
+local _2afile_2a = "/home/truff/.config/nvim/fnl/UI/Bufferline.fnl"
 local _2amodule_name_2a = "UI.Bufferline"
 local _2amodule_2a
 do

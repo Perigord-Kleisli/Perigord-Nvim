@@ -17,7 +17,7 @@
            :<C-n> actions.cycle_history_next
            :<C-p> actions.cycle_history_prev}}}})
                 
-(each [_ i (ipairs [:media_files :file_browser :dap])]
+(each [_ i (ipairs [:media_files :file_browser :dap :manix])]
     (Func.alternative telescope.load_extension 
                       (fn [...] (print "Failed to load Telescope Extension:" ...))
                       i))

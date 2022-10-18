@@ -1,4 +1,4 @@
-local _2afile_2a = "fnl/Lang/Dap.fnl"
+local _2afile_2a = "/home/truff/.config/nvim/fnl/Lang/Dap.fnl"
 local _2amodule_name_2a = "Lang.Dap"
 local _2amodule_2a
 do
@@ -11,10 +11,10 @@ do
   _2amodule_locals_2a = (_2amodule_2a)["aniseed/locals"]
 end
 local autoload = (require("aniseed.autoload")).autoload
-local virtual_text, dap, dapui, dap_python = autoload("nvim-dap-virtual-text"), autoload("dap"), autoload("dapui"), autoload("dap-python")
-do end (_2amodule_locals_2a)["virtual-text"] = virtual_text
-_2amodule_locals_2a["dap"] = dap
+local dap, dapui, virtual_text, dap_python = autoload("dap"), autoload("dapui"), autoload("nvim-dap-virtual-text"), autoload("dap-python")
+do end (_2amodule_locals_2a)["dap"] = dap
 _2amodule_locals_2a["dapui"] = dapui
+_2amodule_locals_2a["virtual-text"] = virtual_text
 _2amodule_locals_2a["dap-python"] = dap_python
 vim.fn.sign_define("DapBreakpoint", {text = "\226\172\163", texthl = "ErrorMsg"})
 vim.fn.sign_define("DapBreakpointCondition", {text = "\239\159\152", texthl = "ErrorMsg"})

@@ -1,4 +1,4 @@
-local _2afile_2a = "fnl/UI/Colorscheme.fnl"
+local _2afile_2a = "/home/truff/.config/nvim/fnl/UI/Colorscheme.fnl"
 local _2amodule_name_2a = "UI.Colorscheme"
 local _2amodule_2a
 do

@@ -92,6 +92,7 @@
         [[:nvim-telescope/telescope-file-browser.nvim]
          [:nvim-telescope/telescope-media-files.nvim]
          [:nvim-telescope/telescope-dap.nvim]
+         { 1 :mrcjkb/telescope-manix :branch "0.1.x"}
          [:nvim-telescope/telescope-ui-select.nvim]]}
 
     :kyazdani42/nvim-tree.lua                     ;Sidebar File Browser

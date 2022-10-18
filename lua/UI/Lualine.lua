@@ -1,4 +1,4 @@
-local _2afile_2a = "fnl/UI/Lualine.fnl"
+local _2afile_2a = "/home/truff/.config/nvim/fnl/UI/Lualine.fnl"
 local _2amodule_name_2a = "UI.Lualine"
 local _2amodule_2a
 do
@@ -11,11 +11,11 @@ do
   _2amodule_locals_2a = (_2amodule_2a)["aniseed/locals"]
 end
 local autoload = (require("aniseed.autoload")).autoload
-local lualine, nvim_navic, nvim_gps, lsp_signature = autoload("lualine"), autoload("nvim-navic"), autoload("nvim-gps"), autoload("lsp_signature")
-do end (_2amodule_locals_2a)["lualine"] = lualine
-_2amodule_locals_2a["nvim-navic"] = nvim_navic
-_2amodule_locals_2a["nvim-gps"] = nvim_gps
+local nvim_navic, lsp_signature, lualine, nvim_gps = autoload("nvim-navic"), autoload("lsp_signature"), autoload("lualine"), autoload("nvim-gps")
+do end (_2amodule_locals_2a)["nvim-navic"] = nvim_navic
 _2amodule_locals_2a["lsp-signature"] = lsp_signature
+_2amodule_locals_2a["lualine"] = lualine
+_2amodule_locals_2a["nvim-gps"] = nvim_gps
 local lsp_func
 local function _1_()
   local msg = "No LSP"
