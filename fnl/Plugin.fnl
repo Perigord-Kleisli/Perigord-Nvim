@@ -150,7 +150,8 @@
       {:conf-module :Startup}
 
     :Mofiqul/dracula.nvim                         ;Dracula Theme
-       {:conf-module :UI.Colorscheme}
+       {:conf-module :UI.Colorscheme
+        :commit :0b4f6e009867027caddc1f28a81d8a7da6a2b277}
 
     :stevearc/dressing.nvim (setup :dressing)
 

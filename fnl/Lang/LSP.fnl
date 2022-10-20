@@ -5,7 +5,7 @@
    autoload {navic nvim-navic}
    autoload {cmp-lsp cmp_nvim_lsp}})
 
-(def- capabilities (cmp-lsp.update_capabilities (vim.lsp.protocol.make_client_capabilities)))
+(def- capabilities (cmp-lsp.default_capabilities (vim.lsp.protocol.make_client_capabilities)))
 (def- servers [ "bashls" "ccls" "cmake" "html" "idris2_lsp" "pyright" "rls" "sumneko_lua" "tsserver" "rnix"])
 
 (each [_ server (ipairs servers)]
