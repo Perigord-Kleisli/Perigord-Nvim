@@ -148,7 +148,7 @@
     :goolord/alpha-nvim                           ;Startup Dashboard
       {:conf-module :Startup}
 
-    :catppuccin/nvim                              ;Theme
+    :Mofiqul/dracula.nvim                         ;Theme
        {:conf-module :UI.Colorscheme}
 
     :stevearc/dressing.nvim (setup :dressing)
