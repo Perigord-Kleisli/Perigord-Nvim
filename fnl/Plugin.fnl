@@ -68,8 +68,8 @@
                :fast_wrap {:map :<M-e>}})
     :andymass/vim-matchup {}                      ;Enchanced % Key Functionality
     ;:abecodes/tabout.nvim (setup :tabout)        ;Tabing out of delimeters
-    :Trouble-Truffle/Prog-Nvim                    ;Project Manager
-      (setup :prog {:requires [[:Trouble-Truffle/PeriLib-Nvim]]})      
+    ;:Trouble-Truffle/Prog-Nvim                    ;Project Manager
+      ;(setup :prog {:requires [[:Trouble-Truffle/PeriLib-Nvim]]})      
 
     :preservim/nerdcommenter {}                   ;Commenting
     :s1n7ax/nvim-comment-frame                    ;Creating Comment Boxes
@@ -92,7 +92,7 @@
         [[:nvim-telescope/telescope-file-browser.nvim]
          [:nvim-telescope/telescope-media-files.nvim]
          [:nvim-telescope/telescope-dap.nvim]
-         { 1 :mrcjkb/telescope-manix :branch "0.1.x"}
+         [:MrcJkb/telescope-manix]
          [:nvim-telescope/telescope-ui-select.nvim]]}
 
     :kyazdani42/nvim-tree.lua                     ;Sidebar File Browser
@@ -149,9 +149,8 @@
     :goolord/alpha-nvim                           ;Startup Dashboard
       {:conf-module :Startup}
 
-    :Mofiqul/dracula.nvim                         ;Dracula Theme
-       {:conf-module :UI.Colorscheme
-        :commit :0b4f6e009867027caddc1f28a81d8a7da6a2b277}
+    :catppuccin/nvim                              ;Theme
+       {:conf-module :UI.Colorscheme}
 
     :stevearc/dressing.nvim (setup :dressing)
 
@@ -221,6 +220,8 @@
       {:conf-module :Lang.LSP
        :requires
         [[:hrsh7th/nvim-cmp]]}
+
+    :neovimhaskell/haskell-vim {}                 ;Extra haskell support
 
     :simrat39/rust-tools.nvim                     ;Rust Tools
       (setup :rust-tools)

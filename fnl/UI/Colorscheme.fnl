@@ -1,20 +1,12 @@
 (module UI.Colorscheme
-  {autoload {dracula dracula}})
+  {autoload {catppuccin catppuccin}})
 
-(dracula.setup
-  {:colors {:bg  "#09090A"
-            :menu  "#080a0c"
-            :visual  "#272568"
-            :selection "#232057"}
-   :italic_comment true})
-  
-(vim.cmd 
-  "
-  try 
-      colorscheme dracula
-  catch 
-      echo \"Error Configuring: dracula.nvim\"
-  endtry")
+(set vim.g.catpuccin_flavour :mocha)
+
+(catppuccin.setup
+  {:dim_inactive {:enabled true}})
+   
+(vim.api.nvim_command "colorscheme catppuccin")
 
 (vim.cmd "highlight debugPC guibg=#10504A")
 (vim.cmd "highlight TreeSitterContext guibg=#081220")
