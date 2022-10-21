@@ -19,27 +19,11 @@
                  (navic.attach client bufnr))
    :cmd ["html-languageserver" "--stdio"]})
 
-(lspconfig.hls.setup
+(lspconfig.hls.setup 
   {:capabilities capabilities
    :on_attach (fn [client bufnr]
-                 (navic.attach client bufnr))
-   :cmd ["haskell-language-server" "--lsp"]
-   :settings {:haskell 
-              {:formattingProvider "brittany"
-               :hlintOn true
-               :renameOn true
-               :plugin
-                  {:hlint {:globalOn true}}
-                  {:eval {:globalOn true
-                          :config 
-                            {:exception true}}}
-                  {:tactics {:globalOn true}}
-                  {:gadt {:globalOn true}}
-                  {:splice {:globalOn true}}
-                  {:rename {:globalOn true}}
-                  {:haddockComments {:globalOn true}}}}})
-                       
-
+                (navic.attach client bufnr))
+   :cmd ["haskell-language-server" "--lsp"]})
 
 (vim.diagnostic.config 
   {:virtual_text false

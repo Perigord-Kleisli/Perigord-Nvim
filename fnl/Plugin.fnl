@@ -51,7 +51,7 @@
     :Olical/aniseed {}                            ;Fennel in Neovim
     :wbthomason/packer.nvim {}                    ;Package Manager
     :lewis6991/impatient.nvim {}                  ;Speeds up Startup Time
-   :MunifTanjim/nui.nvim {}                      ;Nvim UI Library
+    :MunifTanjim/nui.nvim {}                      ;Nvim UI Library
 
     ;;Common Dependencies
     :nvim-lua/plenary.nvim {}                     ;Some Lua Functions
@@ -114,7 +114,6 @@
                :auto_session_create_enabled false})
 
     :ekickx/clipboard-image.nvim {}               ;Allow Image Pasting
-
 
     ;;UI
 
