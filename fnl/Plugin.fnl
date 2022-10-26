@@ -221,6 +221,7 @@
         [[:hrsh7th/nvim-cmp]]}
 
     :neovimhaskell/haskell-vim {}                 ;Extra haskell support
+    :MrcJkb/haskell-tools.nvim (setup :haskell-tools)
 
     :simrat39/rust-tools.nvim                     ;Rust Tools
       (setup :rust-tools)
