@@ -4,7 +4,7 @@
    autoload {treesitter-context treesitter-context}})
 
 (treesitter.setup 
-  { :ensure_installed ["toml" "c" "fennel" "haskell" "rust" "javascript" "lua" "scss" "nix" "regex"] 
+  { :ensure_installed ["toml" "c" "cpp" "fennel" "haskell" "rust" "javascript" "lua" "scss" "nix" "regex"] 
   ;{ :ensure_installed ["toml" "bash" "c" "cpp" "fennel" "haskell" "python" "rust" "javascript" "lua" "html" "scss" "markdown" "nix" "html" "regex"] 
     :indent {:enable true}
     :autopairs {:enable true}
