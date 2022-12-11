@@ -245,6 +245,9 @@
     :glacambre/firenvim                           ;Firefox Integration
       {:run (fn [] ((. vim.fn :firenvim#install) 0))}
 
+    "https://git.sr.ht/~detegr/nvim-bqn" {}       ;BQN
+    :mlochbaum/BQN { :rtp "editors/vim"}
+
     :p00f/godbolt.nvim                            ;Godbolt
       (config :godbolt
         {:languages 

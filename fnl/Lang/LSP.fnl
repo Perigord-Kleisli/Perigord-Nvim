@@ -5,14 +5,25 @@
    autoload {navic nvim-navic}
    autoload {cmp-lsp cmp_nvim_lsp}})
 
+(tset (require :lspconfig.configs) :fennel_language_server
+      {:default_config {:cmd [:/home/truff/.cargo/bin/fennel-language-server]
+                        :filetypes [:fennel]
+                        :single_file_support true
+                        :root_dir (lspconfig.util.root_pattern :fnl)
+                        :settings {:fennel {:workspace {:library (vim.api.nvim_list_runtime_paths)}
+                                            :diagnostics {:globals [:vim]}}}}})
+
 (def- capabilities (cmp-lsp.default_capabilities (vim.lsp.protocol.make_client_capabilities)))
-(def- servers [ "bashls" "ccls" "cmake" "html" "idris2_lsp" "pyright" "rls" "sumneko_lua" "tsserver" "rnix"])
+(def- servers [ "bashls" "ccls" "cmake" "html" "idris2_lsp" "pyright" "rls" "sumneko_lua" "tsserver" "rnix" "fennel_language_server"])
 
 (each [_ server (ipairs servers)]
   ((. (. lspconfig server) :setup)
    {:capabilities capabilities
     :on_attach (fn [client bufnr]
                  (navic.attach client bufnr))}))
+
+
+
 (lspconfig.html.setup 
   {:capabilities capabilities
    :on_attach (fn [client bufnr]
