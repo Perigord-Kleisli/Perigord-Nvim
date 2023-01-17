@@ -1,65 +1,69 @@
-(module Lang.LSP
-  {autoload {lspconfig lspconfig}
-   autoload {a aniseed.core}
-   autoload {idris idris2}
-   autoload {navic nvim-navic}
-   autoload {cmp-lsp cmp_nvim_lsp}})
+(local lspconfig (require :lspconfig))
+(local cmp-lsp (require :cmp_nvim_lsp))
+(local lsp-lines (require :lsp_lines))
+(local notify (require :notify))
+
+(local capabilities (-> (vim.lsp.protocol.make_client_capabilities)
+                        cmp-lsp.default_capabilities))
+
+(local neodev (require :neodev))
+(neodev.setup {:override (fn [root lib]
+                           (local neodev-util (require :neodev-util))
+                           (if (neodev-util.has_file root :/etc/nixos)
+                               (set lib.enabled true)
+                               (set lib.plugins true)))})
+
+(var runtime-path (vim.split package.path ";"))
+(table.insert runtime-path :lua/?.lua)
+(table.insert runtime-path :lua/?/init.lua)
+
+(lspconfig.sumneko_lua.setup {: capabilities
+                              :settings {:Lua {:runtime {:version :LuaJIT
+                                                         :path runtime-path}
+                                               :diagnostics {:globals [:vim]}
+                                               :workspace {:library (vim.api.nvim_get_runtime_file ""
+                                                                                                   true)}
+                                               :telemetry {:enable false}}}})
 
 (tset (require :lspconfig.configs) :fennel_language_server
-      {:default_config {:cmd [:/home/truff/.cargo/bin/fennel-language-server]
+      {:default_config {:cmd [:fennel-language-server]
                         :filetypes [:fennel]
                         :single_file_support true
                         :root_dir (lspconfig.util.root_pattern :fnl)
-                        :settings {:fennel {:workspace {:library (vim.api.nvim_list_runtime_paths)}
+                        :settings {:fennel {:workspace {:library (vim.api.nvim_get_runtime_file "" true)}
                                             :diagnostics {:globals [:vim]}}}}})
 
-(def- capabilities (cmp-lsp.default_capabilities (vim.lsp.protocol.make_client_capabilities)))
-(def- servers [ "bashls" "ccls" "cmake" "html" "idris2_lsp" "pyright" "rls" "sumneko_lua" "tsserver" "rnix" "fennel_language_server"])
+(lspconfig.nil_ls.setup {: capabilities})
+(lspconfig.ccls.setup {: capabilities})
+(lspconfig.marksman.setup {: capabilities})
+(lspconfig.pyright.setup {: capabilities})
+(lspconfig.fennel_language_server.setup {: capabilities})
 
-(each [_ server (ipairs servers)]
-  ((. (. lspconfig server) :setup)
-   {:capabilities capabilities
-    :on_attach (fn [client bufnr]
-                 (navic.attach client bufnr))}))
-
-
-
-(lspconfig.html.setup 
-  {:capabilities capabilities
-   :on_attach (fn [client bufnr]
-                 (navic.attach client bufnr))
-   :cmd ["html-languageserver" "--stdio"]})
-
-(lspconfig.hls.setup 
-  {:capabilities capabilities
-   :on_attach (fn [client bufnr]
-                (navic.attach client bufnr))
-   :cmd ["haskell-language-server" "--lsp"]})
-
-(vim.diagnostic.config 
-  {:virtual_text false
-   :signs true
-   :float 
-    {:focusable false
-     :style :minimal
-     :border :rounded
-     :source :always}})
-      
-(def- signs
-  {:DiagnosticSignError ""
-   :DiagnosticSignWarn  ""
-   :DiagnosticSignHint  ""
-   :DiagnosticSignInfo  ""})
+(local signs {:DiagnosticSignError ""
+              :DiagnosticSignWarn ""
+              :DiagnosticSignHint ""
+              :DiagnosticSignInfo ""})
 
 (each [diag-type icon (pairs signs)]
-    (vim.fn.sign_define diag-type 
-                        {:text icon 
-                         :texthl diag-type 
-                         :numhl diag-type}))
+  (vim.fn.sign_define diag-type {:text icon :texthl diag-type :numhl diag-type}))
 
-(tset vim.lsp.handlers "textDocument/hover"
-      (vim.lsp.with vim.lsp.handlers.hover {:border :rounded}))  
+(tset vim.lsp.handlers :textDocument/hover
+      (vim.lsp.with vim.lsp.handlers.hover {:border :rounded}))
 
-(tset vim.lsp.handlers "textDocument/signatureHelp" 
-     (vim.lsp.with vim.lsp.handlers.signature_help {:border :rounded}))
+(tset vim.lsp.handlers :textDocument/signatureHelp
+      (vim.lsp.with vim.lsp.handlers.signature_help {:border :rounded}))
 
+(tset vim.lsp.handlers :window/showMessage
+      (fn [_ result ctx]
+        (let [client (vim.lsp.get_client_by_id ctx.client_id)
+              lvl (. [:ERROR :WARN :INFO :DEBUG] result.type)]
+          (notify result.message lvl
+                  {:title (.. "LSP | " client.name)
+                   :timeout 10000
+                   :keep (fn []
+                           (or (= lvl :ERROR) (= lvl :WARN)))}))))
+
+(vim.diagnostic.config {:virtual_text false})
+(lsp-lines.setup)
+
+{: capabilities}
