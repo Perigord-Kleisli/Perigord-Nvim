@@ -17,6 +17,19 @@ local function ensure(user, repo)
   end
 end
 
+local f = io.open(vim.fn.stdpath('config') .. "/secrets.json", 'r')
+if f == nil then
+  local fw = io.open(vim.fn.stdpath('config') .. "/secrets.json", 'w+')
+  fw:write([[
+  {
+    "huggingface-token": ""
+  }
+  ]])
+else
+  f:close()
+end
+
+
 ensure("wbthomason", "packer.nvim")
 ensure("lewis6991", "impatient.nvim")
 ensure("rktjmp", "hotpot.nvim")

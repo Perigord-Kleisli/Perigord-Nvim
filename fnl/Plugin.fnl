@@ -37,7 +37,8 @@
                                         :requires [:windwp/nvim-ts-autotag]}
       :HiPhish/nvim-ts-rainbow2 {:requires :nvim-treesitter}
       :winston0410/range-highlight.nvim {:mod :UI.Highlight
-                                         :requires :winston0410/cmd-parser.nvim}
+                                         :requires [:nvim-treesitter/nvim-treesitter
+                                                    :winston0410/cmd-parser.nvim]}
       :nvim-treesitter/playground {}
       :sudormrfbin/cheatsheet.nvim {:requires [:nvim-telescope/telescope.nvim
                                                :nvim-lua/popup.nvim
@@ -92,7 +93,9 @@
       :arp242/undofile_warn.vim {}
       :junegunn/limelight.vim {}
       :junegunn/goyo.vim {}
-      :henriquehbr/nvim-tup.lua {}
       "https://git.sr.ht/~detegr/nvim-bqn" {}
       :mlochbaum/BQN {:run "cp -r editors/vim/* ."}
+      :NvChad/nvim-colorizer.lua {:mod :UI}
+      :nvim-colortils/colortils.nvim {:mod :UI}
       :farmergreg/vim-lastplace {}})
+

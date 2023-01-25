@@ -3,7 +3,8 @@
                          :menu "#080a0c"
                          :visual "#272568"
                          :selection "#232057"}
-                :italic_comment true})
+                :italic_comment true
+                :transparent-background true})
 
 (vim.api.nvim_command "colorscheme dracula")
 

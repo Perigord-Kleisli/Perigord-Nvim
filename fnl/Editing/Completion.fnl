@@ -55,14 +55,13 @@
                                                     :key utils.secrets.huggingface-token}}
                                           {:name :calc}
                                           {:name :crates}
-                                          {:name :latex_symbols}
-                                          {:name :nvim_lsp_signature_help}
                                           {:name :buffer :keyword_length 4}
+                                          {:name :nerdfont}
+                                          {:name :latex_symbols}
+                                          {:name :emoji}
                                           {:name :fonts
                                            :keyword_length 5
-                                           :option {:space_filter "-"}}
-                                          {:name :nerdfont}
-                                          {:name :emoji}])
+                                           :option {:space_filter "-"}}])
             :mapping {:<C-k> (cmp.mapping.select_prev_item)
                       :<C-j> (cmp.mapping.select_next_item)
                       :<C-e> (cmp.mapping.abort)
@@ -95,6 +94,17 @@
                                                       {:name :cmdline
                                                        :option {:ignore_cmds [:Man
                                                                               "!"]}}])
+                        :mapping cmd-mapping})
+
+(cmp.setup.cmdline ":%s"
+                   {:sources (cmp.config.sources [{:name :path}
+                                                  {:name :cmdline
+                                                   :option {:ignore_cmds [:Man
+                                                                          "!"]}}])}
+                   :mapping cmd-mapping)
+
+(cmp.setup.cmdline "/" {:sources (cmp.config.sources [{:name :treesitter}
+                                                      {:name :buffer}])
                         :mapping cmd-mapping})
 
 (local cmp-autopairs (require :nvim-autopairs.completion.cmp))
