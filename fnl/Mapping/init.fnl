@@ -82,3 +82,4 @@
 (require :Mapping.Tabs)
 (require :Mapping.Lang)
 (require :Mapping.Debug)
+(require :Mapping.Actions)
