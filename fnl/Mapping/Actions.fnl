@@ -2,16 +2,16 @@
 (import-macros {: run} :Macros)
 (fn colortils-actions [_]
   ;; (local word ((vim.fn.expand :<cWORD>):match ".*#%x%x+"))
-  (local word (-> :<cWORD>
+  (local word (-> :<cword>
                   vim.fn.expand
-                  (string.find ".*#%x%x%x")))
+                  (string.find "%x%x%x")))
   (if (not= word nil)
       [{:title "Color Picker"
         :action (run (vim.cmd "Colortils picker"))}
        {:title "Darken Color"
         :action (run (vim.cmd "Colortils darken"))}
        {:title "Lighten Color"
-        :action (run (vim.cmd "Colortils darken"))}
+        :action (run (vim.cmd "Colortils lighten"))}
        {:title "Desaturate Color"
         :action (run (vim.cmd "Colortils greyscale"))}]))
 

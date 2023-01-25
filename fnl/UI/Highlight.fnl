@@ -7,6 +7,8 @@
 
 ((. (require :colortils) :setup) {:mappings {:replace_default_format :<cr>}})
 
+(vim.api.nvim_set_hl 0 :LspCodeLens {:fg :#6272A4})
+(vim.api.nvim_set_hl 0 :LspCodeLensSeparator {:fg :#7F8CB5})
 (vim.api.nvim_set_hl 0 :TSRainbowRed {:fg "#cc241d"})
 (vim.api.nvim_set_hl 0 :TSRainbowOrange {:fg "#d65d0e"})
 (vim.api.nvim_set_hl 0 :TSRainbowYellow {:fg "#d79921"})
