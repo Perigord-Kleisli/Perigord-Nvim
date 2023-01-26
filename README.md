@@ -1,11 +1,24 @@
-# Table of Contents
 ![image](https://user-images.githubusercontent.com/90542764/213342938-2b62f300-eb58-42e9-9249-3328b8e2ec26.png)
 
 <!--toc:start-->
 - [Dependencies](#dependencies)
+  - [Required](#required)
+  - [Optional](#optional)
+    - [Haskell](#haskell)
+    - [Rust](#rust)
+    - [C++](#c)
+    - [Fennel](#fennel)
+    - [Lua](#lua)
+    - [Nix](#nix)
+    - [Python](#python)
+    - [Markdown](#markdown)
+    - [Shell](#shell)
+    - [Misc](#misc)
 - [Keymap](#keymap)
+  - [Normal](#normal)
 - [Modules](#modules)
 <!--toc:end-->
+
 
 ## Dependencies
 
@@ -17,6 +30,7 @@ Requires Neovim >=0.8
 - [huggingface-hub](https://huggingface.co/welcome) (_store token in 'secrets.json' as "huggingface-token"_)
 - [fontconfig](https://www.freedesktop.org/wiki/Software/fontconfig/)
 - [npm](https://www.npmjs.com/)
+- [wakatime](https://wakatime.com) *(sorry for whoever didn't want to have their stats tracked)*
 
 ### Optional
 
@@ -62,17 +76,19 @@ Requires Neovim >=0.8
 - [black](https://github.com/psf/black)
 - [pytest](https://docs.pytest.org/en/7.2.x/)
 
+#### Markdown
+- [marksman](https://github.com/artempyanykh/marksman) - Markdown language server
+- [prettier](https://prettier.io/) - Markdown Formatter
+
 #### Shell
 
 - [shellcheck](https://hackage.haskell.org/package/ShellCheck)
+- [beautysh](https://github.com/lovesegfault/beautysh)
 
 #### Misc
 
 - [cspell](https://github.com/streetsidesoftware/cspell) - Spellchecker
 - [jq](https://github.com/stedolan/jq) - Json processor
-- [prettier](https://prettier.io/) - Markdown Formatter
-- [marksman](https://github.com/artempyanykh/marksman) - Markdown language server
-- [wakatime](https://wakatime.com) - Programming stats
 
 ## Keymap
 

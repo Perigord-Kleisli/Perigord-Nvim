@@ -1,101 +1,136 @@
-(local packer (require :packer))
-(local packer (require :packer))
+(import-macros {: run} :Macros)
 
-(fn safe-require-plugin-config [name]
-  (let [(ok? val-or-err) (pcall require name)]
-    (when (not ok?)
-      (print (.. "dotfiles error: " name ":" val-or-err)))))
+(local lazym (require :lazy))
+(fn import [path]
+  (fn []
+    (if path
+        (let [(ok val) (pcall require path)]
+          (when (not ok)
+            (error (vim.inspect val)))))))
 
-(fn assoc [t k v]
-  (tset t k v)
-  t)
+(fn lazy [x]
+  (lazym.setup (icollect [k v (pairs x)]
+                 (do
+                   (var v- v)
+                   (when (not= nil (?. v- :rtp))
+                     (tset v- :config
+                           (fn [plugin]
+                             (vim.opt.rtp:append (.. plugin.dir (. v- :rtp))))))
+                   (when (and (not= nil (?. v- :file)) (= nil (?. v- :config)))
+                     (tset v- :config (import v.file)))
+                   (tset v- 1 k)
+                   v-))))
 
-(fn use [plugins]
-  (packer.startup (fn [use]
-                    (each [name opts (pairs plugins)]
-                      (when (not= opts.setup nil)
-                        (tset opts :config
-                              (do
-                                ((. (require opts.setup) :setup)))))
-                      (-?> opts.mod safe-require-plugin-config)
-                      (use (assoc opts 1 name))))))
+(fn telescope-extension [name]
+  (run ((. (require :telescope) :load_extension) name)))
 
-(use {:wbthomason/packer.nvim {}
-      :lewis6991/impatient.nvim {}
-      :rktjmp/hotpot.nvim {}
-      :nvim-telescope/telescope.nvim {:mod :Editing.Telescope
-                                      :requires [:luc-tielen/telescope_hoogle
-                                                 :nvim-lua/plenary.nvim]}
-      :nvim-tree/nvim-tree.lua {:mod :UI.Sidebar-Explorer
-                                :requires :nvim-tree/nvim-web-devicons}
-      :anuvyklack/hydra.nvim {}
-      :Mofiqul/dracula.nvim {}
-      :neovim/nvim-lspconfig {:mod :Lang.LSP}
-      :numToStr/Comment.nvim {:mod :Mapping.Comment}
-      :echasnovski/mini.indentscope {:mod :UI.IndentLine}
-      :nvim-treesitter/nvim-treesitter {:mod :Lang.Treesitter
-                                        :requires [:windwp/nvim-ts-autotag]}
-      :HiPhish/nvim-ts-rainbow2 {:requires :nvim-treesitter}
-      :winston0410/range-highlight.nvim {:mod :UI.Highlight
-                                         :requires [:nvim-treesitter/nvim-treesitter
-                                                    :winston0410/cmd-parser.nvim]}
-      :nvim-treesitter/playground {}
-      :sudormrfbin/cheatsheet.nvim {:requires [:nvim-telescope/telescope.nvim
-                                               :nvim-lua/popup.nvim
-                                               :nvim-lua/plenary.nvim]}
-      :akinsho/bufferline.nvim {:mod :UI.Tabline
-                                :tag :v3.*
-                                :requires :nvim-tree/nvim-web-devicons}
-      :lewis6991/gitsigns.nvim {}
-      :bhurlow/vim-parinfer {}
-      :hrsh7th/nvim-cmp {:mod :Editing.Completion
-                         :requires [:neovim/nvim-lspconfig
-                                    :hrsh7th/cmp-buffer
-                                    :hrsh7th/cmp-calc
-                                    :ray-x/cmp-treesitter
-                                    :hrsh7th/cmp-nvim-lua
-                                    :kdheepak/cmp-latex-symbols
-                                    :amarakon/nvim-cmp-fonts
-                                    :chrisgrieser/cmp-nerdfont
-                                    :hrsh7th/cmp-emoji
-                                    :hrsh7th/cmp-nvim-lsp
-                                    :hrsh7th/cmp-path
-                                    :hrsh7th/cmp-nvim-lsp-signature-help
-                                    :hrsh7th/cmp-cmdline
-                                    :vappolinario/cmp-clippy
-                                    :L3MON4D3/LuaSnip]}
-      :Saecki/crates.nvim {}
-      :jose-elias-alvarez/null-ls.nvim {:mod :Lang.Null-ls}
-      :j-hui/fidget.nvim {:mod :UI.Statusline}
-      :akinsho/toggleterm.nvim {:mod :UI.Terminal}
-      :hkupty/iron.nvim {:mod :Lang.Repl}
-      "https://git.sr.ht/~whynothugo/lsp_lines.nvim" {}
-      :MrcJkb/haskell-tools.nvim {:requires [:neovim/nvim-lspconfig
-                                             :nvim-lua/plenary.nvim
-                                             :nvim-telescope/telescope.nvim]}
-      :iamcco/markdown-preview.nvim {:run "cd app && npm install"}
-      :mfussenegger/nvim-dap {:mod :Lang.Debug}
-      :nvim-neotest/neotest {:mod :Lang.Debug
-                             :requires [:MrcJkb/neotest-haskell
-                                        :rouge8/neotest-rust
-                                        :folke/neodev.nvim
-                                        :nvim-neotest/neotest-python
-                                        :antoinemadec/FixCursorHold.nvim]}
-      :kevinhwang91/nvim-bqf {:mod :UI}
-      :simrat39/rust-tools.nvim {}
-      :rcarriga/nvim-notify {}
-      :stevearc/dressing.nvim {:mod :UI}
-      :mbbill/undotree {:mod :Editing}
-      :andweeb/presence.nvim {:mod :UI}
-      :ggandor/lightspeed.nvim {}
-      :wakatime/vim-wakatime {}
-      :windwp/nvim-autopairs {}
-      :arp242/undofile_warn.vim {}
-      :junegunn/limelight.vim {}
-      :junegunn/goyo.vim {}
-      "https://git.sr.ht/~detegr/nvim-bqn" {}
-      :mlochbaum/BQN {:run "cp -r editors/vim/* ."}
-      :NvChad/nvim-colorizer.lua {:mod :UI}
-      :nvim-colortils/colortils.nvim {:mod :UI}
-      :farmergreg/vim-lastplace {}})
+(lazy {:rktjmp/hotpot.nvim {:lazy false}
+       :folke/neodev.nvim {:ft [:lua :fennel]}
+       ;; Treesitter and LSP
+       :nvim-treesitter/nvim-treesitter {:file :Lang.Treesitter}
+       :neovim/nvim-lspconfig {:file :Lang.LSP
+                               :dependencies [:hrsh7th/cmp-nvim-lsp]}
+       :nvim-treesitter/playground {}
+       :jose-elias-alvarez/null-ls.nvim {:file :Lang.Null-ls}
+       ;; Editing
+       :lewis6991/gitsigns.nvim {}
+       :ggandor/lightspeed.nvim {:config true}
+       :numToStr/Comment.nvim {:file :Mapping.Comment}
+       :akinsho/toggleterm.nvim {:config true :keys [:<leader>ot]}
+       :hkupty/iron.nvim {:mod :Lang.Repl :keys [:<leader>or]}
+       :farmergreg/vim-lastplace {}
+       ;; :folke/which-key.nvim {:file :Mapping}
+       :anuvyklack/hydra.nvim {:file :Mapping}
+       :nvim-colortils/colortils.nvim {:opts {:mappings {:replace_default_format :<cr>}}
+                                       :cmd :Colortils}
+       :hrsh7th/nvim-cmp {:file :Editing.Completion
+                          :dependencies [:neovim/nvim-lspconfig
+                                         :hrsh7th/cmp-buffer
+                                         :hrsh7th/cmp-calc
+                                         :ray-x/cmp-treesitter
+                                         :hrsh7th/cmp-nvim-lua
+                                         :L3MON4D3/LuaSnip
+                                         :kdheepak/cmp-latex-symbols
+                                         :amarakon/nvim-cmp-fonts
+                                         :chrisgrieser/cmp-nerdfont
+                                         :hrsh7th/cmp-emoji
+                                         {1 :hrsh7th/cmp-nvim-lsp
+                                          :dependencies [:neovim/nvim-lspconfig]}
+                                         :hrsh7th/cmp-path
+                                         :hrsh7th/cmp-nvim-lsp-signature-help
+                                         :hrsh7th/cmp-cmdline
+                                         :vappolinario/cmp-clippy
+                                         :L3MON4D3/LuaSnip]}
+       :mbbill/undotree {:keys [:U]}
+       :windwp/nvim-autopairs {:config true}
+       :arp242/undofile_warn.vim {}
+       ;; Searching
+       :nvim-tree/nvim-tree.lua {:file :UI.Sidebar-Explorer
+                                 :keys [:<leader>op]
+                                 :dependencies [:nvim-tree/nvim-web-devicons]}
+       :nvim-telescope/telescope.nvim {:file :Editing.Telescope
+                                       :dependencies [:nvim-lua/plenary.nvim]}
+       ;; Markdown
+       :iamcco/markdown-preview.nvim {:build "cd app && npm install"
+                                      :ft [:markdown]}
+       ;; Haskell
+       ;; Rust
+       :Saecki/crates.nvim {:ft [:toml]}
+       :simrat39/rust-tools.nvim {:ft [:rust]}
+       ;; BQN
+       "https://git.sr.ht/~detegr/nvim-bqn" {:ft [:bqn]}
+       :mlochbaum/BQN {:rtp :editors/vim}
+       ;; Lisp
+       :bhurlow/vim-parinfer {:ft [:clojure
+                                   :racket
+                                   :lisp
+                                   :scheme
+                                   :lfe
+                                   :fennel
+                                   :dune]}
+       ;; UI
+       :j-hui/fidget.nvim {:config true}
+       :HiPhish/nvim-ts-rainbow2 {:requires :nvim-treesitter}
+       :NvChad/nvim-colorizer.lua {:opts {:user_default_options {:mode :virtualtext}}
+                                   :name :colorizer}
+       :stefanwatt/lsp-lines.nvim {:config true
+                                   :dependencies [:neovim/nvim-lspconfig]}
+       :rcarriga/nvim-notify {:lazy false
+                              :priority 1000
+                              :name :notify
+                              :opts {:background_colour "#000000"}
+                              :init (run (set vim.notify (require :notify)))}
+       :echasnovski/mini.indentscope {:config (run ((. (require :mini.indentscope)
+                                                       :setup)))}
+       :Mofiqul/dracula.nvim {:lazy false :file :UI.Colors}
+       :dstein64/vim-startuptime {:cmd :StartupTime}
+       :stevearc/dressing.nvim {:event :VeryLazy}
+       :winston0410/range-highlight.nvim {:name :range-highlight
+                                          :config true
+                                          :dependencies [:nvim-treesitter/nvim-treesitter
+                                                         :winston0410/cmd-parser.nvim]}
+       :kevinhwang91/nvim-bqf {:name :bqf :config true}
+       :akinsho/bufferline.nvim {:file :UI.Tabline
+                                 :dependencies :nvim-tree/nvim-web-devicons}
+       :wakatime/vim-wakatime {}
+       :andweeb/presence.nvim {:config (run (: (require :presence) :setup))}
+       :junegunn/limelight.vim {}
+       :MrcJkb/haskell-tools.nvim {:dependencies [:neovim/nvim-lspconfig
+                                                  :nvim-lua/plenary.nvim
+                                                  :nvim-telescope/telescope.nvim]
+                                   :ft [:haskell]}
+;;       :mfussenegger/nvim-dap {:mod :Lang.Debug}
+       :nvim-neotest/neotest {:file :Lang.Debug
+                              :keys [:<leader>d]
+                              :requires [:MrcJkb/neotest-haskell
+                                         :rouge8/neotest-rust
+                                         :folke/neodev.nvim
+                                         :nvim-neotest/neotest-python
+                                         :antoinemadec/FixCursorHold.nvim]}
+       :junegunn/goyo.vim {}})
 
+;;       :sudormrfbin/cheatsheet.nvim {:requires [:nvim-telescope/telescope.nvim
+;;                                                :nvim-lua/popup.nvim
+;;                                                :nvim-lua/plenary.nvim]}
+
+(require :Editing)

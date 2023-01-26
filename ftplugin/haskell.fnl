@@ -11,7 +11,7 @@
     :on_attach
       (fn [client bufnr]
         (local _opts (vim.tbl_extend :keep {:noremap true :silent true} {:buffer bufnr}))
-        (local extensions (. (require :telescope) :extensions))
+        ;; (local extensions (. (require :telescope) :extensions))
         (ht.tags.generate_project_tags nil {:refresh true})
 
         (local cmd (. (require :hydra.keymap-util) :cmd))
@@ -34,7 +34,6 @@
 
         (hydra {:extra-heads [[:R ht.repl.toggle {:desc "Toggle REPL" :exit true}]
                               [:<C-r> ht.repl.reload {:desc "Reload REPL" :exit true}]
-                              [:h extensions.hoogle.hoogle {:desc :Hoogle :exit true}]
                               [:e vim.lsp.codelens.run {:desc "Evaluate Codelens" :exit true}]]}))}
    :repl :toggleterm})
 

@@ -1,6 +1,5 @@
 (local bufferline (require :bufferline))
 
-(set vim.opt.termguicolors true)
 (bufferline.setup 
   {:options 
     {:hover {:enabled true}

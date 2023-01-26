@@ -1,7 +1,5 @@
 (local lspconfig (require :lspconfig))
 (local cmp-lsp (require :cmp_nvim_lsp))
-(local lsp-lines (require :lsp_lines))
-(local notify (require :notify))
 
 (local capabilities (-> (vim.lsp.protocol.make_client_capabilities)
                         cmp-lsp.default_capabilities))
@@ -57,13 +55,14 @@
       (fn [_ result ctx]
         (let [client (vim.lsp.get_client_by_id ctx.client_id)
               lvl (. [:ERROR :WARN :INFO :DEBUG] result.type)]
-          (notify result.message lvl
+          (vim.notify result.message lvl
                   {:title (.. "LSP | " client.name)
                    :timeout 10000
                    :keep (fn []
                            (or (= lvl :ERROR) (= lvl :WARN)))}))))
 
 (vim.diagnostic.config {:virtual_text false})
-(lsp-lines.setup)
+
+(require :Mapping.Lang)
 
 {: capabilities}

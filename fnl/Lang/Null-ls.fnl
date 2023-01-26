@@ -31,3 +31,5 @@
                             null-ls.builtins.hover.dictionary
                             null-ls.builtins.hover.printenv
                             code_actions.gitsigns]}))
+
+(require :Mapping.Actions)

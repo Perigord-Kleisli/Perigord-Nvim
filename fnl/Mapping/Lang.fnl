@@ -1,6 +1,5 @@
 (local Utils (require :Utils))
 (local buf vim.lsp.buf)
-(local lsp-lines (require :lsp_lines))
 (import-macros {: run} :Macros)
 
 (fn preview-location-callback [_ result]
@@ -26,6 +25,7 @@
 (map :<C-k> vim.lsp.buf.signature_help "")
 (map :gi vim.lsp.buf.implementation "go to implementation")
 
+(local lsp-lines (require :lsp_lines))
 (local heads
        [[:f (run (buf.format {:async true})) {:desc :Format :exit true}]
         [:a buf.code_action {:desc "Code Action" :exit true}]

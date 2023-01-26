@@ -1,6 +1,3 @@
-(set vim.g.mapleader " ")
-(set vim.o.mouse :a)
-
 (local hydra (require :hydra))
 
 (local cmd (. (require :hydra.keymap-util) :cmd))
@@ -78,8 +75,9 @@
                 [:h (cmd :BufferLineCyclePrev) {:desc "Previous Buffer"}]
                 [:l (cmd :BufferLineCycleNext) {:desc "Next Buffer"}]
                 [:<esc> nil {:desc :Exit :exit true}]]})
-
+;;
 (require :Mapping.Tabs)
-(require :Mapping.Lang)
-(require :Mapping.Debug)
-(require :Mapping.Actions)
+; (require :Mapping.Lang)
+; (require :Mapping.Debug)
+; (require :Mapping.Actions)
+;; (local which-key (require :which-key))

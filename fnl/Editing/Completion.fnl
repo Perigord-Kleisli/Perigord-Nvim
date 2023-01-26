@@ -1,6 +1,5 @@
 (local cmp (require :cmp))
 (local luasnip (require :luasnip))
-(local crates (require :crates))
 (local utils (require :Utils))
 (local rename-key (. (require :Utils) :rename-key))
 
@@ -89,7 +88,6 @@
                         (rename-key :<C-P> :<C-k>)
                         (rename-key :<C-N> :<C-j>)))
 
-(crates.setup)
 (cmp.setup.cmdline ":" {:sources (cmp.config.sources [{:name :path}
                                                       {:name :cmdline
                                                        :option {:ignore_cmds [:Man
@@ -107,5 +105,5 @@
                                                       {:name :buffer}])
                         :mapping cmd-mapping})
 
-(local cmp-autopairs (require :nvim-autopairs.completion.cmp))
-(cmp.event:on :confirm_done (cmp-autopairs.on_confirm_done))
+; (local cmp-autopairs (require :nvim-autopairs.completion.cmp))
+; (cmp.event:on :confirm_done (cmp-autopairs.on_confirm_done))
