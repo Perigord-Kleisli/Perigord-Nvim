@@ -9,7 +9,6 @@
                             formatting.alejandra
                             formatting.beautysh
                             formatting.black
-                            formatting.brittany
                             formatting.cabal_fmt
                             formatting.clang_format
                             formatting.cmake_format

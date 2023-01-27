@@ -61,7 +61,7 @@
                                          :hrsh7th/cmp-cmdline
                                          :vappolinario/cmp-clippy
                                          :L3MON4D3/LuaSnip]}
-       :mbbill/undotree {:keys [:U]}
+       :mbbill/undotree {}
        :windwp/nvim-autopairs {:config true}
        :arp242/undofile_warn.vim {}
        ;; Searching
