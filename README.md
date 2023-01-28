@@ -1,6 +1,7 @@
 ![image](https://user-images.githubusercontent.com/90542764/213342938-2b62f300-eb58-42e9-9249-3328b8e2ec26.png)
 
 <!--toc:start-->
+
 - [Dependencies](#dependencies)
   - [Required](#required)
   - [Optional](#optional)
@@ -19,20 +20,24 @@
 - [Modules](#modules)
 <!--toc:end-->
 
-
 ## Dependencies
 
 ### Required
 
-Requires Neovim >=0.8
+#### For building
 
-- [fennel](https://fennel-lang.org/)
-- [huggingface-hub](https://huggingface.co/welcome) (_store token in 'secrets.json' as "huggingface-token"_)
-- [fontconfig](https://www.freedesktop.org/wiki/Software/fontconfig/)
+- Neovim >=0.8
 - [npm](https://www.npmjs.com/)
-- [wakatime](https://wakatime.com) *(sorry for whoever didn't want to have their stats tracked)*
+- [fennel](https://fennel-lang.org/)
 
 ### Optional
+
+#### General usage
+
+- [huggingface-hub](https://huggingface.co/welcome) (_store token in 'secrets.json' as "huggingface-token"_)
+- [fontconfig](https://www.freedesktop.org/wiki/Software/fontconfig/)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [wakatime](https://wakatime.com) _(sorry for whoever didn't want to have their stats tracked)_
 
 #### Haskell
 
@@ -46,6 +51,7 @@ Requires Neovim >=0.8
 - [rust-analyzer](https://rust-analyzer.github.io/)
 - [clippy](https://github.com/rust-lang/rust-clippy)
 - [nextest](https://github.com/nextest-rs/nextest)
+- [evcxr](https://github.com/google/evcxr)
 
 #### C++
 
@@ -77,6 +83,7 @@ Requires Neovim >=0.8
 - [pytest](https://docs.pytest.org/en/7.2.x/)
 
 #### Markdown
+
 - [marksman](https://github.com/artempyanykh/marksman) - Markdown language server
 - [prettier](https://prettier.io/) - Markdown Formatter
 

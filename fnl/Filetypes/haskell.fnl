@@ -17,7 +17,7 @@
                          {:desc "Evaluate Codelens" :exit true}]]}))
 
 (ht.setup {:hls {: capabilities
-                 :settings {:haskell {:formattingProvider :ormolu
+                 :settings {:haskell {:formattingProvider :fourmolu
                                       :plugin {:rename {:config {:diff true}}}}}
                  :cmd [:haskell-language-server :--lsp]
                  : on_attach}

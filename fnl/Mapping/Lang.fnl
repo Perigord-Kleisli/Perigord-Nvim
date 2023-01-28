@@ -1,6 +1,5 @@
 (local Utils (require :Utils))
 (local buf vim.lsp.buf)
-(import-macros {: run} :Macros)
 
 (fn preview-location-callback [_ result]
   (when (or (= result nil) (vim.tbl_isempty result))
@@ -27,10 +26,10 @@
 
 (local lsp-lines (require :lsp_lines))
 (local heads
-       [[:f (run (buf.format {:async true})) {:desc :Format :exit true}]
+       [[:f #(buf.format {:async true}) {:desc :Format :exit true}]
         [:a buf.code_action {:desc "Code Action" :exit true}]
         [:r buf.rename {:desc :Rename :exit true}]
-        [:t lsp-lines.toggle {:desc "Toggle Diagnostic Lines" :exit true}]])
+        [:L lsp-lines.toggle {:desc "Toggle Diagnostic Lines" :exit true}]])
 
 (local lang-hydra (Utils.hydra-with-defaults {:mode :n
                                               :body :<leader>l

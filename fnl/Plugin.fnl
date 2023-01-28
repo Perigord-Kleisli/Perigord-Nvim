@@ -1,5 +1,3 @@
-(import-macros {: run} :Macros)
-
 (local lazym (require :lazy))
 (fn import [path]
   (fn []
@@ -7,6 +5,8 @@
         (let [(ok val) (pcall require path)]
           (when (not ok)
             (error (vim.inspect val)))))))
+
+;; (fn ftplugins [x] (.. (vim.fn.stdpath :config) :/fnl/Filetypes/ x :.fnl))
 
 (fn lazy [x]
   (lazym.setup (icollect [k v (pairs x)]
@@ -21,8 +21,8 @@
                    (tset v- 1 k)
                    v-))))
 
-(fn telescope-extension [name]
-  (run ((. (require :telescope) :load_extension) name)))
+;; (fn telescope-extension [name]
+;;   (run ((. (require :telescope) :load_extension) name)))
 
 (lazy {:rktjmp/hotpot.nvim {:lazy false}
        :folke/neodev.nvim {:ft [:lua :fennel]}
@@ -37,7 +37,7 @@
        :ggandor/lightspeed.nvim {:config true}
        :numToStr/Comment.nvim {:file :Mapping.Comment}
        :akinsho/toggleterm.nvim {:config true :keys [:<leader>ot]}
-       :hkupty/iron.nvim {:mod :Lang.Repl :keys [:<leader>or]}
+       :hkupty/iron.nvim {:file :Lang.Repl}
        :farmergreg/vim-lastplace {}
        ;; :folke/which-key.nvim {:file :Mapping}
        :anuvyklack/hydra.nvim {:file :Mapping}
@@ -99,9 +99,9 @@
                               :priority 1000
                               :name :notify
                               :opts {:background_colour "#000000"}
-                              :init (run (set vim.notify (require :notify)))}
-       :echasnovski/mini.indentscope {:config (run ((. (require :mini.indentscope)
-                                                       :setup)))}
+                              :init #(set vim.notify (require :notify))}
+       :echasnovski/mini.indentscope {:config #((. (require :mini.indentscope)
+                                                   :setup))}
        :Mofiqul/dracula.nvim {:lazy false :file :UI.Colors}
        :dstein64/vim-startuptime {:cmd :StartupTime}
        :stevearc/dressing.nvim {:event :VeryLazy}
@@ -113,13 +113,13 @@
        :akinsho/bufferline.nvim {:file :UI.Tabline
                                  :dependencies :nvim-tree/nvim-web-devicons}
        :wakatime/vim-wakatime {}
-       :andweeb/presence.nvim {:config (run (: (require :presence) :setup))}
+       :andweeb/presence.nvim {:config #(: (require :presence) :setup)}
        :junegunn/limelight.vim {}
        :MrcJkb/haskell-tools.nvim {:dependencies [:neovim/nvim-lspconfig
                                                   :nvim-lua/plenary.nvim
                                                   :nvim-telescope/telescope.nvim]
                                    :ft [:haskell]}
-;;       :mfussenegger/nvim-dap {:mod :Lang.Debug}
+       ;;       :mfussenegger/nvim-dap {:mod :Lang.Debug}
        :nvim-neotest/neotest {:file :Lang.Debug
                               :keys [:<leader>d]
                               :requires [:MrcJkb/neotest-haskell
@@ -134,3 +134,8 @@
 ;;                                                :nvim-lua/plenary.nvim]}
 
 (require :Editing)
+
+(let [{: nvim_create_autocmd : nvim_create_augroup} vim.api
+      au-group (nvim_create_augroup :hotpot-ft {})
+      cb #(pcall require (.. :Filetypes. (vim.fn.expand "<amatch>")))]
+  (nvim_create_autocmd :FileType {:callback cb :group au-group}))
