@@ -5,9 +5,10 @@
 (fn on_attach [client bufnr]
   (vim.lsp.codelens.display nil bufnr client)
   (local {:lang-map wk} (require :Mapping.Lang))
-  (wk {:R [ht.repl.toggle "Toggle REPL"] 
-       :p [(cmd :HsProjectFile) "Open Project File"]}
-      {:prefix :<leader>l :name :Haskell}))
+  (wk 
+      {:R [ht.repl.toggle "Toggle REPL"] 
+       :p [(cmd :HsProjectFile) "Open Project File"]
+       :h [(cmd "Telescope hoogle") "Hoogle search"]}))
 
 (ht.setup {:hls {: capabilities
                  :settings {:haskell {:formattingProvider :fourmolu
