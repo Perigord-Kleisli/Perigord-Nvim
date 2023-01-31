@@ -89,7 +89,7 @@
                                      :ft [:haskell]
                                      :dependencies [:nvim-telescope/telescope.nvim]}
        ;; Rust
-       :Saecki/crates.nvim {:ft [:toml]}
+       :Saecki/crates.nvim {:opts {:null_ls {:enabled true :name "Crates"}}}
        :simrat39/rust-tools.nvim {:ft [:rust]}
        ;; BQN
        "https://git.sr.ht/~detegr/nvim-bqn" {:ft [:bqn]}
@@ -145,5 +145,5 @@
 
 (let [{: nvim_create_autocmd : nvim_create_augroup} vim.api
       au-group (nvim_create_augroup :hotpot-ft {})
-      cb #(pcall require (.. :Filetypes. (vim.fn.expand :<amatch>)))]
+      cb #(require (.. :Filetypes. (vim.fn.expand :<amatch>)))]
   (nvim_create_autocmd :FileType {:callback cb :group au-group}))
