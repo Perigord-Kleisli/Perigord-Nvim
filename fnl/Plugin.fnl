@@ -145,5 +145,5 @@
 
 (let [{: nvim_create_autocmd : nvim_create_augroup} vim.api
       au-group (nvim_create_augroup :hotpot-ft {})
-      cb #(require (.. :Filetypes. (vim.fn.expand :<amatch>)))]
+      cb #(pcall require (.. :Filetypes. (vim.fn.expand :<amatch>)))]
   (nvim_create_autocmd :FileType {:callback cb :group au-group}))
