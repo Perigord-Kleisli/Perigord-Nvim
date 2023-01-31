@@ -1,26 +1,19 @@
-(local hydra (require :Mapping.Lang))
 (local ht (require :haskell-tools))
-(local capabilities (. (require :Lang.LSP) :capabilities))
+(local {: capabilities} (require :Lang.LSP))
+(local {: cmd} (require :hydra.keymap-util))
 
 (fn on_attach [client bufnr]
-  (local _opts (vim.tbl_extend :keep {:noremap true :silent true}
-                               {:buffer bufnr}))
-  ;; (local extensions (. (require :telescope) :extensions))
-  (ht.tags.generate_project_tags nil {:refresh true})
   (vim.lsp.codelens.display nil bufnr client)
-  (hydra {:extra-heads [[:R ht.repl.toggle {:desc "Toggle REPL" :exit true}]
-                        [:<C-r>
-                         ht.repl.reload
-                         {:desc "Reload REPL" :exit true}]
-                        [:e
-                         vim.lsp.codelens.run
-                         {:desc "Evaluate Codelens" :exit true}]]}))
+  (local {:lang-map wk} (require :Mapping.Lang))
+  (wk {:R [ht.repl.toggle "Toggle REPL"] 
+       :p [(cmd :HsProjectFile) "Open Project File"]}
+      {:prefix :<leader>l :name :Haskell}))
 
 (ht.setup {:hls {: capabilities
                  :settings {:haskell {:formattingProvider :fourmolu
                                       :plugin {:rename {:config {:diff true}}}}}
                  :cmd [:haskell-language-server :--lsp]
                  : on_attach}
-           :repl :toggleterm})
+           :tools {:repl {:handler :toggleterm :auto_focus true}}})
 
-(vim.cmd ":LspStart hls")
+(ht.lsp.start)

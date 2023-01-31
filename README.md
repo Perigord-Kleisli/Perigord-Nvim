@@ -24,25 +24,24 @@
 
 ### Required
 
-#### For building
-
 - Neovim >=0.8
 - [npm](https://www.npmjs.com/)
 - [fennel](https://fennel-lang.org/)
+- [git](https://git-scm.com/)
+- [gcc](https://gcc.gnu.org/)
 
 ### Optional
 
 #### General usage
-
 - [huggingface-hub](https://huggingface.co/welcome) (_store token in 'secrets.json' as "huggingface-token"_)
 - [fontconfig](https://www.freedesktop.org/wiki/Software/fontconfig/)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
-- [wakatime](https://wakatime.com) _(sorry for whoever didn't want to have their stats tracked)_
+- [wakatime](https://wakatime.com)
+- [btop](https://github.com/aristocratos/btop)
 
 #### Haskell
 
 - [haskell-language-server](https://github.com/haskell/haskell-language-server)
-- [fast-tags](https://hackage.haskell.org/package/fast-tags)
 - [brittany](https://hackage.haskell.org/package/brittany)
 - [cabal-fmt](https://hackage.haskell.org/package/cabal-fmt)
 

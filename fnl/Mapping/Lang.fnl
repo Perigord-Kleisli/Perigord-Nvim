@@ -1,6 +1,3 @@
-(local Utils (require :Utils))
-(local buf vim.lsp.buf)
-
 (fn preview-location-callback [_ result]
   (when (or (= result nil) (vim.tbl_isempty result))
     (lua "return nil"))
@@ -11,29 +8,39 @@
     (vim.lsp.buf_request 0 :textDocument/definition params
                          preview-location-callback)))
 
-(fn map [key action desc]
-  (vim.keymap.set :n key action {:noremap true :silent true : desc}))
+(local {:register wk} (require :which-key))
+(local {: cmd} (require :hydra.keymap-util))
 
-(map :gD vim.lsp.buf.declaration "go to declaration")
-(map "g]" vim.diagnostic.goto_next "go to next diagnostic")
-(map "g[" vim.diagnostic.goto_prev "go to previous diagnostic")
-(map :gd vim.lsp.buf.definition "go to definition")
-(map :gr vim.lsp.buf.references "find references")
-(map :gp Peek-definition "peek definition")
-(map :K vim.lsp.buf.hover :hover)
-(map :<C-k> vim.lsp.buf.signature_help "")
-(map :gi vim.lsp.buf.implementation "go to implementation")
+(let [ft vim.bo.filetype]
+  (if (= 0 (string.len ft)) :Lang ft))
+
+(fn lang-map [maps]
+  (wk maps {:prefix :<leader>l
+            :name (let [ft vim.bo.filetype]
+                    (if (= 0 (string.len ft)) :Lang
+                        (ft:gsub "^%l" string.upper)))}))
 
 (local lsp-lines (require :lsp_lines))
-(local heads
-       [[:f #(buf.format {:async true}) {:desc :Format :exit true}]
-        [:a buf.code_action {:desc "Code Action" :exit true}]
-        [:r buf.rename {:desc :Rename :exit true}]
-        [:L lsp-lines.toggle {:desc "Toggle Diagnostic Lines" :exit true}]])
+(wk {:D [vim.lsp.buf.declaration :Declaration]
+     "]" [vim.diagnostic.goto_next "Next diagnostic"]
+     "[" [vim.diagnostic.goto_next "Previous diagnostic"]
+     :d [vim.lsp.buf.definition :Definition]
+     :r [vim.lsp.buf.references :References]
+     :p [Peek-definition "Definition peek"]
+     :i [vim.lsp.buf.implementation :Implementation]}
+    {:prefix :g :name "Go to"})
 
-(local lang-hydra (Utils.hydra-with-defaults {:mode :n
-                                              :body :<leader>l
-                                              : heads}))
+(lang-map {:f [#(vim.lsp.buf.format {:async true}) :Format]
+           :a [vim.lsp.buf.code_action "Code Action"]
+           :e [vim.lsp.codelens.run "Code lens"]
+           :r [vim.lsp.buf.rename :Rename]
+           :i [(cmd :LspInfo) "LSP Info"]
+           :L [lsp-lines.toggle "Toggle line diagnostics"]})
 
-(lang-hydra)
-lang-hydra
+(vim.keymap.set :n :K vim.lsp.buf.hover
+                {:noremap true :silent true :desc :hover})
+
+(vim.keymap.set :n :<C-k> vim.lsp.buf.signature_help
+                {:noremap true :silent true :desc "signature help"})
+
+{: lang-map}

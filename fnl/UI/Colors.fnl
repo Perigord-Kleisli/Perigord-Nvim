@@ -6,7 +6,7 @@
                          :selection "#232057"}
                 :italic_comment true
                 :transparent_bg true
-                :overrides {               
+                :overrides {
                             :LspCodeLens {:fg :#6272A4}
                             :LspCodeLensSeparator {:fg :#7F8CB5}
                             :TSRainbowRed {:fg "#cc241d"}

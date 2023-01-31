@@ -5,38 +5,10 @@
                         cmp-lsp.default_capabilities))
 
 
-(var runtime-path (vim.split package.path ";"))
-(table.insert runtime-path :lua/?.lua)
-(table.insert runtime-path :lua/?/init.lua)
-
-;; (local neodev (require :neodev))
-;; (neodev.setup {:override (fn [root lib]
-;;                            (local neodev-util (require :neodev-util))
-;;                            (if (neodev-util.has_file root :/etc/nixos)
-;;                                (set lib.enabled true)
-;;                                (set lib.plugins true)))})
-
-;; (lspconfig.sumneko_lua.setup {: capabilities
-;;                               :settings {:Lua {:runtime {:version :LuaJIT
-;;                                                          :path runtime-path}
-;;                                                :diagnostics {:globals [:vim]}
-;;                                                :workspace {:library (vim.api.nvim_get_runtime_file ""
-;;                                                                                                    true)}
-;;                                                :telemetry {:enable false}}}})
-
-;; (tset (require :lspconfig.configs) :fennel_language_server
-;;       {:default_config {:cmd [:fennel-language-server]
-;;                         :filetypes [:fennel]
-;;                         :single_file_support true
-;;                         :root_dir (lspconfig.util.root_pattern :fnl)
-;;                         :settings {:fennel {:workspace {:library (vim.api.nvim_get_runtime_file "" true)}
-;;                                             :diagnostics {:globals [:vim]}}}}})
-
 ;; (lspconfig.nil_ls.setup {: capabilities})
 ;; (lspconfig.ccls.setup {: capabilities})
 ;; (lspconfig.marksman.setup {: capabilities})
 ;; (lspconfig.pyright.setup {: capabilities})
-;; (lspconfig.fennel_language_server.setup {: capabilities})
 
 (local signs {:DiagnosticSignError ""
               :DiagnosticSignWarn ""
@@ -64,6 +36,5 @@
 
 (vim.diagnostic.config {:virtual_text false})
 
-(require :Mapping.Lang)
-
 {: capabilities}
+

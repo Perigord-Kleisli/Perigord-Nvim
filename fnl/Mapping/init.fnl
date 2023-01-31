@@ -1,17 +1,6 @@
-(local hydra (require :hydra))
-
-(local cmd (. (require :hydra.keymap-util) :cmd))
-(macro cmd-tele [command]
-  (.. "<CMD>Telescope " command :<CR>))
 
 (vim.keymap.set :t :<Esc> "<C-\\><C-n>"
                 {:noremap true :silent true :desc "Exit terminal"})
-
-(vim.keymap.set :n :<leader><leader> (cmd-tele :find_files)
-                {:noremap true :silent true :desc "Browse Files"})
-
-(vim.keymap.set :n :<leader><leader> (cmd-tele :find_files)
-                {:noremap true :silent true :desc "Browse Files"})
 
 (vim.keymap.set :v :<C-c> "\"+y"
                 {:silent false :desc "Copy to system clipboard"})
@@ -55,6 +44,10 @@
                 {:noremap true :silent true :desc "Go to line start"})
 
 (vim.keymap.set :n :gl "$" {:noremap true :silent true :desc "Go to line end"})
+(vim.keymap.set :v :gh "^"
+                {:noremap true :silent true :desc "Go to line start"})
+
+(vim.keymap.set :v :gl "$" {:noremap true :silent true :desc "Go to line end"})
 
 (vim.keymap.set :n :<A-k> ":m -2<CR>"
                 {:noremap true :silent true :desc "Move Line Downwards"})
@@ -65,19 +58,25 @@
 (vim.keymap.set :n :U :<cmd>UndotreeToggle<CR>
                 {:noremap true :silent true :desc "Toggle undotree"})
 
-(hydra {:name :Browse/Open
-        :mode :n
-        :config {:invoke_on_body true :foreign_keys :run :type :statusline}
-        :body :<leader>o
-        :heads [[:p (cmd :NvimTreeToggle) {:desc :Sidebar :exit true}]
-                [:t (cmd :ToggleTerm) {:desc :Terminal :exit true}]
-                [:r (cmd-tele :oldfiles) {:desc "Recent Files" :exit true}]
-                [:h (cmd :BufferLineCyclePrev) {:desc "Previous Buffer"}]
-                [:l (cmd :BufferLineCycleNext) {:desc "Next Buffer"}]
-                [:<esc> nil {:desc :Exit :exit true}]]})
-;;
-(require :Mapping.Tabs)
-; (require :Mapping.Lang)
-; (require :Mapping.Debug)
-; (require :Mapping.Actions)
-;; (local which-key (require :which-key))
+
+(local {:register wk} (require :which-key))
+(local telescope (require :telescope.builtin))
+
+(local {: cmd} (require :hydra.keymap-util))
+(local {: Terminal} (require :toggleterm.terminal))
+(local btop (Terminal:new {:cmd :btop :direction :float}))
+
+(wk {:o {:name :Open
+         :p [(cmd :NvimTreeToggle) :Sidebar]
+         :t [(cmd :ToggleTerm) :Terminal]
+         :T [(cmd "ToggleTerm direction=float") "Floating Terminal"]
+         :n [(cmd "Telescope notify") "Recent Notifications"]
+         :b [#(btop:toggle) "Task Manager"]
+         :r [telescope.oldfiles "Recent Files"]}
+     :f {:name :Find
+         :t [telescope.live_grep "Text"]}
+     :<leader> [telescope.find_files "Browse Files"]} 
+    {:prefix :<leader>})
+
+(require :Mapping.Buffers)
+(require :Mapping.Lang)

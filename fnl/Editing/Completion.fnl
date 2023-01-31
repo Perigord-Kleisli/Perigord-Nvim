@@ -1,7 +1,6 @@
 (local cmp (require :cmp))
 (local luasnip (require :luasnip))
-(local utils (require :Utils))
-(local rename-key (. (require :Utils) :rename-key))
+
 
 (local kind-icons {:Text ""
                    :Method :m
@@ -28,7 +27,6 @@
                    :Event ""
                    :Operator ""
                    :TypeParameter ""})
-
 (local kind-menu {:nvim_lsp "[LSP]"
                   :luasnip "[Snippet]"
                   :calc "[Calc]"
@@ -36,24 +34,26 @@
                   :latex_symbols "[Symbol]"
                   :nerdfont "[Nerdfont]"
                   :emoji "[Emoji]"
+                  :rg "[Ripgrep]"
                   :fonts "[Font]"
                   :treesitter "[TS]"
-                  :cmp-clippy "[Clippy]"
                   :buffer "[File]"
                   :path "[Path]"})
+(local {: rename-key} (require :Utils))
 
+((. (require :luasnip.loaders.from_vscode) :lazy_load))
 (cmp.setup {:snippet {:expand (fn [args]
+
                                 (luasnip.lsp_expand (. args :body)))}
             :sources (cmp.config.sources [{:name :nvim_lsp}
+                                          {:name :luasnip}
                                           {:name :nvim_lua}
                                           {:name :treesitter :keyword_length 2}
-                                          {:name :luasnip}
                                           {:name :path}
-                                          {:name :cmp-clippy
-                                           :option {:model :EleutherAI/gpt-neo-2.7B
-                                                    :key utils.secrets.huggingface-token}}
+                                          {:name :codeium}
                                           {:name :calc}
                                           {:name :crates}
+                                          {:name :rg :keyword_length 5}
                                           {:name :buffer :keyword_length 4}
                                           {:name :nerdfont}
                                           {:name :latex_symbols}
@@ -104,6 +104,3 @@
 (cmp.setup.cmdline "/" {:sources (cmp.config.sources [{:name :treesitter}
                                                       {:name :buffer}])
                         :mapping cmd-mapping})
-
-; (local cmp-autopairs (require :nvim-autopairs.completion.cmp))
-; (cmp.event:on :confirm_done (cmp-autopairs.on_confirm_done))

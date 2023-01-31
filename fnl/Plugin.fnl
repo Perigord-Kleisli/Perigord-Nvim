@@ -21,8 +21,8 @@
                    (tset v- 1 k)
                    v-))))
 
-;; (fn telescope-extension [name]
-;;   (run ((. (require :telescope) :load_extension) name)))
+(fn telescope-extension [name]
+  #((. (require :telescope) :load_extension) name))
 
 (lazy {:rktjmp/hotpot.nvim {:lazy false}
        :folke/neodev.nvim {:ft [:lua :fennel]}
@@ -33,14 +33,17 @@
        :nvim-treesitter/playground {}
        :jose-elias-alvarez/null-ls.nvim {:file :Lang.Null-ls}
        ;; Editing
-       :lewis6991/gitsigns.nvim {}
+       :lewis6991/gitsigns.nvim {:file :Editing.Git}
        :ggandor/lightspeed.nvim {:config true}
        :numToStr/Comment.nvim {:file :Mapping.Comment}
-       :akinsho/toggleterm.nvim {:config true :keys [:<leader>ot]}
+       :akinsho/toggleterm.nvim {:config true}
        :hkupty/iron.nvim {:file :Lang.Repl}
        :farmergreg/vim-lastplace {}
-       ;; :folke/which-key.nvim {:file :Mapping}
-       :anuvyklack/hydra.nvim {:file :Mapping}
+       :folke/which-key.nvim {:opts {:ignore_missing true
+                                     :layout {:align :center
+                                              :height {:min 2}
+                                              :spacing 2}}}
+       :anuvyklack/hydra.nvim {}
        :nvim-colortils/colortils.nvim {:opts {:mappings {:replace_default_format :<cr>}}
                                        :cmd :Colortils}
        :hrsh7th/nvim-cmp {:file :Editing.Completion
@@ -49,7 +52,10 @@
                                          :hrsh7th/cmp-calc
                                          :ray-x/cmp-treesitter
                                          :hrsh7th/cmp-nvim-lua
+                                         :lukas-reineke/cmp-rg
+                                         :saadparwaiz1/cmp_luasnip
                                          :L3MON4D3/LuaSnip
+                                         :rafamadriz/friendly-snippets
                                          :kdheepak/cmp-latex-symbols
                                          :amarakon/nvim-cmp-fonts
                                          :chrisgrieser/cmp-nerdfont
@@ -59,21 +65,29 @@
                                          :hrsh7th/cmp-path
                                          :hrsh7th/cmp-nvim-lsp-signature-help
                                          :hrsh7th/cmp-cmdline
-                                         :vappolinario/cmp-clippy
-                                         :L3MON4D3/LuaSnip]}
+                                         {1 :vappolinario/cmp-clippy
+                                          :dependencies [:nvim-lua/plenary.nvim]}]}
        :mbbill/undotree {}
-       :windwp/nvim-autopairs {:config true}
+       :windwp/nvim-autopairs {:opts {:check_ts true :fast_wrap {}}
+                               :dependencies [:nvim-treesitter/nvim-treesitter
+                                              :windwp/nvim-ts-autotag]}
        :arp242/undofile_warn.vim {}
        ;; Searching
-       :nvim-tree/nvim-tree.lua {:file :UI.Sidebar-Explorer
-                                 :keys [:<leader>op]
+       :nvim-tree/nvim-tree.lua {:config true
                                  :dependencies [:nvim-tree/nvim-web-devicons]}
        :nvim-telescope/telescope.nvim {:file :Editing.Telescope
-                                       :dependencies [:nvim-lua/plenary.nvim]}
+                                       :dependencies [:nvim-lua/plenary.nvim
+                                                      :rcarriga/nvim-notify]}
        ;; Markdown
        :iamcco/markdown-preview.nvim {:build "cd app && npm install"
                                       :ft [:markdown]}
        ;; Haskell
+       :MrcJkb/haskell-tools.nvim {:dependencies [:nvim-lua/plenary.nvim
+                                                  :nvim-telescope/telescope.nvim]
+                                   :ft [:haskell]}
+       :luc-tielen/telescope_hoogle {:config (telescope-extension :hoogle)
+                                     :ft [:haskell]
+                                     :dependencies [:nvim-telescope/telescope.nvim]}
        ;; Rust
        :Saecki/crates.nvim {:ft [:toml]}
        :simrat39/rust-tools.nvim {:ft [:rust]}
@@ -98,10 +112,10 @@
        :rcarriga/nvim-notify {:lazy false
                               :priority 1000
                               :name :notify
-                              :opts {:background_colour "#000000"}
+                              :opts {:background_colour "#000000"
+                                     :max_width 100}
                               :init #(set vim.notify (require :notify))}
-       :echasnovski/mini.indentscope {:config #((. (require :mini.indentscope)
-                                                   :setup))}
+       :lukas-reineke/indent-blankline.nvim {:file :UI.IndentLine}
        :Mofiqul/dracula.nvim {:lazy false :file :UI.Colors}
        :dstein64/vim-startuptime {:cmd :StartupTime}
        :stevearc/dressing.nvim {:event :VeryLazy}
@@ -115,18 +129,12 @@
        :wakatime/vim-wakatime {}
        :andweeb/presence.nvim {:config #(: (require :presence) :setup)}
        :junegunn/limelight.vim {}
-       :MrcJkb/haskell-tools.nvim {:dependencies [:neovim/nvim-lspconfig
-                                                  :nvim-lua/plenary.nvim
-                                                  :nvim-telescope/telescope.nvim]
-                                   :ft [:haskell]}
-       ;;       :mfussenegger/nvim-dap {:mod :Lang.Debug}
        :nvim-neotest/neotest {:file :Lang.Debug
                               :keys [:<leader>d]
-                              :requires [:MrcJkb/neotest-haskell
-                                         :rouge8/neotest-rust
-                                         :folke/neodev.nvim
-                                         :nvim-neotest/neotest-python
-                                         :antoinemadec/FixCursorHold.nvim]}
+                              :dependencies [:MrcJkb/neotest-haskell
+                                             :rouge8/neotest-rust
+                                             :folke/neodev.nvim
+                                             :nvim-neotest/neotest-python]}
        :junegunn/goyo.vim {}})
 
 ;;       :sudormrfbin/cheatsheet.nvim {:requires [:nvim-telescope/telescope.nvim
@@ -137,5 +145,5 @@
 
 (let [{: nvim_create_autocmd : nvim_create_augroup} vim.api
       au-group (nvim_create_augroup :hotpot-ft {})
-      cb #(pcall require (.. :Filetypes. (vim.fn.expand "<amatch>")))]
+      cb #(pcall require (.. :Filetypes. (vim.fn.expand :<amatch>)))]
   (nvim_create_autocmd :FileType {:callback cb :group au-group}))

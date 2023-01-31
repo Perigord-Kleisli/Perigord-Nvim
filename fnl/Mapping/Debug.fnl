@@ -1,4 +1,3 @@
-(local Utils (require :Utils))
 (local neotest (require :neotest))
 (local heads
        [[:j vim.diagnostic.goto_next {:desc "Next Diagnostic"}]
@@ -8,10 +7,3 @@
         [:R #(neotest.run.run (vim.fn.expand "%")) {:desc "Run file" :exit true}]
         [:o neotest.output.open {:desc "View output" :exit true}]
         [:s neotest.summary.toggle {:desc "View summary" :exit true}]])
-
-(local debug-hydra (Utils.hydra-with-defaults {:mode :n
-                                               :body :<leader>d
-                                               : heads}))
-
-(debug-hydra)
-debug-hydra

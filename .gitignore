@@ -1,2 +1,4 @@
 secrets.json
 ./ftplugin/*.lua
+result
+.direnv/

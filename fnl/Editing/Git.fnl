@@ -1,2 +1,2 @@
-(local gitsigns (require :gitsigns))
-(gitsigns.setup)
+(let [{: setup} (require :gitsigns)]
+  (setup))
