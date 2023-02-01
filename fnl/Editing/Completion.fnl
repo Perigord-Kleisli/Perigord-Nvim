@@ -50,7 +50,6 @@
                                           {:name :nvim_lua}
                                           {:name :treesitter :keyword_length 2}
                                           {:name :path}
-                                          {:name :codeium}
                                           {:name :calc}
                                           {:name :crates}
                                           {:name :rg :keyword_length 5}

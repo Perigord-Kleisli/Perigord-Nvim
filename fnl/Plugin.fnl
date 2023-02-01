@@ -39,7 +39,7 @@
        :akinsho/toggleterm.nvim {:config true}
        :hkupty/iron.nvim {:file :Lang.Repl}
        :farmergreg/vim-lastplace {}
-       :folke/which-key.nvim {:opts {:ignore_missing true
+       :folke/which-key.nvim {:opts {:ignore_missing false
                                      :layout {:align :center
                                               :height {:min 2}
                                               :spacing 2}}}
@@ -89,7 +89,7 @@
                                      :ft [:haskell]
                                      :dependencies [:nvim-telescope/telescope.nvim]}
        ;; Rust
-       :Saecki/crates.nvim {:opts {:null_ls {:enabled true :name "Crates"}}}
+       :Saecki/crates.nvim {:opts {:null_ls {:enabled true :name :Crates}}}
        :simrat39/rust-tools.nvim {:ft [:rust]}
        ;; BQN
        "https://git.sr.ht/~detegr/nvim-bqn" {:ft [:bqn]}
@@ -147,3 +147,7 @@
       au-group (nvim_create_augroup :hotpot-ft {})
       cb #(pcall require (.. :Filetypes. (vim.fn.expand :<amatch>)))]
   (nvim_create_autocmd :FileType {:callback cb :group au-group}))
+
+(vim.api.nvim_create_autocmd [:BufRead :BufNewFile]
+                             {:pattern :Cargo.toml
+                              :callback #(require :Filetypes.cargo)})

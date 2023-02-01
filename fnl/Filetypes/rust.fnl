@@ -25,10 +25,12 @@
                                 :buffer bufnr})
   (vim.schedule vim.lsp.codelens.refresh)
   (local {:lang-map wk} (require :Mapping.Lang))
-  (wk {:h [toggle-inlay-hints "Toggle inlay hints"]
-       :P [rt.open_cargo_toml.open_cargo_toml "Open Cargo File"]
-       :m [rt.expand_macro.expand_macro "View Macro Expansion"]
-       :<C-r> [rt.runnables.runnables "Runnables"]})
+  (wk {:name :Rust
+       :config {:exit true}
+       :heads [[:h toggle-inlay-hints {:desc "Toggle inlay hints"}]
+               [:P rt.open_cargo_toml.open_cargo_toml {:desc "Open Cargo File"}]
+               [:m rt.expand_macro.expand_macro {:desc "View Macro Expansion"}]
+               [:<C-r> rt.runnables.runnables {:desc :Runnables}]]})
   (vim.keymap.set :n :K rt.hover_actions.hover_actions
                   {:noremap true :silent true :desc :hover}))
 
