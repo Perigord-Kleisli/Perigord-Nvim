@@ -48,26 +48,23 @@
        :nvim-colortils/colortils.nvim {:opts {:mappings {:replace_default_format :<cr>}}
                                        :cmd :Colortils}
        :hrsh7th/nvim-cmp {:file :Editing.Completion
-                          :dependencies [:neovim/nvim-lspconfig
-                                         :hrsh7th/cmp-buffer
-                                         :hrsh7th/cmp-calc
-                                         :ray-x/cmp-treesitter
-                                         :hrsh7th/cmp-nvim-lua
-                                         :lukas-reineke/cmp-rg
-                                         :saadparwaiz1/cmp_luasnip
-                                         :L3MON4D3/LuaSnip
-                                         :rafamadriz/friendly-snippets
-                                         :kdheepak/cmp-latex-symbols
-                                         :amarakon/nvim-cmp-fonts
-                                         :chrisgrieser/cmp-nerdfont
-                                         :hrsh7th/cmp-emoji
-                                         {1 :hrsh7th/cmp-nvim-lsp
-                                          :dependencies [:neovim/nvim-lspconfig]}
-                                         :hrsh7th/cmp-path
-                                         :hrsh7th/cmp-nvim-lsp-signature-help
-                                         :hrsh7th/cmp-cmdline
-                                         {1 :vappolinario/cmp-clippy
-                                          :dependencies [:nvim-lua/plenary.nvim]}]}
+                          :dependencies [:neovim/nvim-lspconfig]}
+       :hrsh7th/cmp-buffer {:dependencies [:hrsh7th/nvim-cmp]}
+       :hrsh7th/cmp-calc {:dependencies [:hrsh7th/nvim-cmp]}
+       :ray-x/cmp-treesitter {:dependencies [:hrsh7th/nvim-cmp]}
+       :hrsh7th/cmp-nvim-lua {:dependencies [:hrsh7th/nvim-cmp]}
+       :lukas-reineke/cmp-rg {:dependencies [:hrsh7th/nvim-cmp]}
+       :saadparwaiz1/cmp_luasnip {:dependencies [:hrsh7th/nvim-cmp]}
+       :L3MON4D3/LuaSnip {:dependencies [:hrsh7th/nvim-cmp]}
+       :rafamadriz/friendly-snippets {:dependencies [:L3MON4D3/LuaSnip :hrsh7th/nvim-cmp]}
+       :kdheepak/cmp-latex-symbols {:dependencies [:hrsh7th/nvim-cmp]}
+       :amarakon/nvim-cmp-fonts {:dependencies [:hrsh7th/nvim-cmp]}
+       :chrisgrieser/cmp-nerdfont {:dependencies [:hrsh7th/nvim-cmp]}
+       :hrsh7th/cmp-emoji {:dependencies [:hrsh7th/nvim-cmp]}
+       :hrsh7th/cmp-nvim-lsp {:dependencies [:neovim/nvim-lspconfig :hrsh7th/nvim-cmp]}
+       :hrsh7th/cmp-path {:dependencies [:hrsh7th/nvim-cmp]}
+       :hrsh7th/cmp-cmdline {:dependencies [:hrsh7th/nvim-cmp]}
+
        :mbbill/undotree {}
        :windwp/nvim-autopairs {:opts {:check_ts true :fast_wrap {}}
                                :dependencies [:nvim-treesitter/nvim-treesitter
@@ -119,7 +116,8 @@
                               :init #(set vim.notify (require :notify))}
        :folke/noice.nvim {:opts {:notify {:enabled false}
                                  :views {:cmdline_popup {:position {:row "95%"
-                                                                    :col "50%"}}}}}
+                                                                    :col "50%"}}}}
+                          :dependencies [:MunifTanjim/nui.nvim]}
        :nvim-lualine/lualine.nvim {:opts {:sections {:lualine_b [:filetype
                                                                  :filename
                                                                  :diagnostics]
