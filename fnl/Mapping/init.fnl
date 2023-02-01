@@ -55,9 +55,14 @@
 (vim.keymap.set :t :<leader>ot :<cmd>ToggleTerm<CR>
                 {:noremap true :silent true :desc "Toggle Terminal"})
 
+(vim.keymap.set :n :<C-l> :<cmd>nohl<CR>
+                {:noremap true :silent true :desc "Toggle Terminal"})
+
 (vim.keymap.set :n :U :<cmd>UndotreeToggle<CR>
                 {:noremap true :silent true :desc "Toggle undotree"})
-
+(let [leap (require :leap)]
+  (vim.keymap.set [:n :x :o] :<A-f> #(leap.leap []) {:noremap true :silent true :desc "Leap forwards"})
+  (vim.keymap.set [:n :x :o] :<A-F> #(leap.leap {:backward true}) {:noremap true :silent true :desc "Leap backwards"}))
 
 (local {:register wk} (require :which-key))
 (local telescope (require :telescope.builtin))

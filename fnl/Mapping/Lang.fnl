@@ -10,7 +10,6 @@
 
 (local {:register wk} (require :which-key))
 (local {: cmd} (require :hydra.keymap-util))
-
 (fn lang-map [maps]
   (let [ft (. maps :name)
         hydra (require :hydra)
@@ -19,6 +18,7 @@
                   [:a vim.lsp.buf.code_action {:desc "Code Action"}]
                   [:e vim.lsp.codelens.run {:desc "Code lens"}]
                   [:r vim.lsp.buf.rename {:desc :Rename}]
+                  [:t (cmd :TroubleToggle) {:desc "Toggle Diagnostic List"}]
                   [:i (cmd :LspInfo) {:desc "LSP Info"}]
                   [:L lsp-lines.toggle {:desc "Toggle line diagnostics"}]]
         {: auto-gen-hint} (require :Utils)]
@@ -47,4 +47,6 @@
 (vim.keymap.set :n :<C-k> vim.lsp.buf.signature_help
                 {:noremap true :silent true :desc "signature help"})
 
+(lang-map {:name "Lang"
+           :heads []})
 {: lang-map}

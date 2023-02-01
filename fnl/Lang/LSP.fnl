@@ -1,9 +1,7 @@
-;; (local lspconfig (require :lspconfig))
 (local cmp-lsp (require :cmp_nvim_lsp))
 
 (local capabilities (-> (vim.lsp.protocol.make_client_capabilities)
                         cmp-lsp.default_capabilities))
-
 
 ;; (lspconfig.nil_ls.setup {: capabilities})
 ;; (lspconfig.ccls.setup {: capabilities})

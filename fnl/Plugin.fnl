@@ -34,7 +34,8 @@
        :jose-elias-alvarez/null-ls.nvim {:file :Lang.Null-ls}
        ;; Editing
        :lewis6991/gitsigns.nvim {:file :Editing.Git}
-       :ggandor/lightspeed.nvim {:config true}
+       :ggandor/leap.nvim {:config true}
+       :ggandor/flit.nvim {:config true :dependencies [:ggandor/leap.nvim]}
        :numToStr/Comment.nvim {:file :Mapping.Comment}
        :akinsho/toggleterm.nvim {:config true}
        :hkupty/iron.nvim {:file :Lang.Repl}
@@ -102,22 +103,48 @@
                                    :lfe
                                    :fennel
                                    :dune]}
+       ;; Testing
+       :nvim-neotest/neotest {:file :Lang.Debug
+                              :keys [:<leader>d]
+                              :dependencies [:MrcJkb/neotest-haskell
+                                             :rouge8/neotest-rust
+                                             :folke/neodev.nvim
+                                             :nvim-neotest/neotest-python]}
        ;; UI
-       :j-hui/fidget.nvim {:config true}
-       :HiPhish/nvim-ts-rainbow2 {:requires :nvim-treesitter}
-       :NvChad/nvim-colorizer.lua {:opts {:user_default_options {:mode :virtualtext}}
-                                   :name :colorizer}
-       :stefanwatt/lsp-lines.nvim {:config true
-                                   :dependencies [:neovim/nvim-lspconfig]}
        :rcarriga/nvim-notify {:lazy false
                               :priority 1000
                               :name :notify
                               :opts {:background_colour "#000000"
                                      :max_width 100}
                               :init #(set vim.notify (require :notify))}
+       :folke/noice.nvim {:opts {:notify {:enabled false}
+                                 :views {:cmdline_popup {:position {:row "95%"
+                                                                    :col "50%"}}}}}
+       :nvim-lualine/lualine.nvim {:opts {:sections {:lualine_b [:filetype
+                                                                 :filename
+                                                                 :diagnostics]
+                                                     :lualine_c [:branch :diff]
+                                                     :lualine_x [:encoding]
+                                                     :lualine_y [[""]
+                                                                 :location
+                                                                 :progress]
+                                                     :lualine_z ["os.date('%I:%M %p')"]}}
+                                   :init #(set vim.o.laststatus 3)
+                                   :dependencies [:nvim-tree/nvim-web-devicons]}
+       :utilyre/barbecue.nvim {:config true
+                               :dependencies [:neovim/nvim-lspconfig
+                                              :SmiteshP/nvim-navic
+                                              :nvim-tree/nvim-web-devicons]}
+       :folke/trouble.nvim {:config true
+                            :dependencies [:nvim-tree/nvim-web-devicons]}
+       ;; :j-hui/fidget.nvim {:config true}
+       :HiPhish/nvim-ts-rainbow2 {:requires :nvim-treesitter}
+       :NvChad/nvim-colorizer.lua {:opts {:user_default_options {:mode :virtualtext}}
+                                   :name :colorizer}
+       :stefanwatt/lsp-lines.nvim {:config true
+                                   :dependencies [:neovim/nvim-lspconfig]}
        :lukas-reineke/indent-blankline.nvim {:file :UI.IndentLine}
        :Mofiqul/dracula.nvim {:lazy false :file :UI.Colors}
-       :dstein64/vim-startuptime {:cmd :StartupTime}
        :stevearc/dressing.nvim {:event :VeryLazy}
        :winston0410/range-highlight.nvim {:name :range-highlight
                                           :config true
@@ -129,12 +156,6 @@
        :wakatime/vim-wakatime {}
        :andweeb/presence.nvim {:config #(: (require :presence) :setup)}
        :junegunn/limelight.vim {}
-       :nvim-neotest/neotest {:file :Lang.Debug
-                              :keys [:<leader>d]
-                              :dependencies [:MrcJkb/neotest-haskell
-                                             :rouge8/neotest-rust
-                                             :folke/neodev.nvim
-                                             :nvim-neotest/neotest-python]}
        :junegunn/goyo.vim {}})
 
 ;;       :sudormrfbin/cheatsheet.nvim {:requires [:nvim-telescope/telescope.nvim

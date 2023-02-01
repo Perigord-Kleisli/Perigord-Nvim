@@ -11,7 +11,7 @@
     x))
 
 (fn respace-str [str size]
-  (let [space (string.rep " " (- size (string.len str)))]
+  (let [space (string.rep " " (- size (strlen str)))]
     (.. str space)))
 
 (fn chunks [arr size]
@@ -36,7 +36,7 @@
                          (. v 1)
                          (. v 3 :desc))
         max-strlen (accumulate [max 0 k v (pairs binds-and-desc)]
-                     (math.max max (string.len (.. k v))))
+                     (math.max max (strlen (.. k v))))
         spaced-strs (icollect [k v (pairs binds-and-desc)]
                       (respace-str (.. "_" k "_: " v) (+ 7 max-strlen)))
         name (or name "")]
