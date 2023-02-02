@@ -6,8 +6,6 @@
           (when (not ok)
             (error (vim.inspect val)))))))
 
-;; (fn ftplugins [x] (.. (vim.fn.stdpath :config) :/fnl/Filetypes/ x :.fnl))
-
 (fn lazy [x]
   (lazym.setup (icollect [k v (pairs x)]
                  (do
@@ -24,6 +22,10 @@
 (fn telescope-extension [name]
   #((. (require :telescope) :load_extension) name))
 
+(fn cur-macro []
+  (let [recording (vim.fn.reg_recording)]
+    (if (= "" recording) "" (.. "recording macro: (" recording ")"))))
+
 (lazy {:rktjmp/hotpot.nvim {:lazy false}
        :folke/neodev.nvim {:ft [:lua :fennel]}
        ;; Treesitter and LSP
@@ -33,12 +35,21 @@
        :nvim-treesitter/playground {}
        :jose-elias-alvarez/null-ls.nvim {:file :Lang.Null-ls}
        ;; Editing
+       :matze/vim-move {}
+       :gennaro-tedesco/nvim-possession {:opts {:autosave true
+                                                :autoload true
+                                                :sessions {:sessions_variable :loaded-session}}}
        :lewis6991/gitsigns.nvim {:file :Editing.Git}
        :ggandor/leap.nvim {:config true}
        :ggandor/flit.nvim {:config true :dependencies [:ggandor/leap.nvim]}
-       :numToStr/Comment.nvim {:file :Mapping.Comment}
+       :numToStr/Comment.nvim {:opts {:toggler {:line :<leader>c<leader>
+                                                :block :<leader>cbb}
+                                      :opleader {:line :<leader>c
+                                                 :block :<leader>cb}
+                                      :extra {:above :<leader>cO
+                                              :below :<leader>co
+                                              :eol :<leader>cA}}}
        :akinsho/toggleterm.nvim {:config true}
-       :hkupty/iron.nvim {:file :Lang.Repl}
        :farmergreg/vim-lastplace {}
        :folke/which-key.nvim {:opts {:ignore_missing false
                                      :layout {:align :center
@@ -56,15 +67,16 @@
        :lukas-reineke/cmp-rg {:dependencies [:hrsh7th/nvim-cmp]}
        :saadparwaiz1/cmp_luasnip {:dependencies [:hrsh7th/nvim-cmp]}
        :L3MON4D3/LuaSnip {:dependencies [:hrsh7th/nvim-cmp]}
-       :rafamadriz/friendly-snippets {:dependencies [:L3MON4D3/LuaSnip :hrsh7th/nvim-cmp]}
+       :rafamadriz/friendly-snippets {:dependencies [:L3MON4D3/LuaSnip
+                                                     :hrsh7th/nvim-cmp]}
        :kdheepak/cmp-latex-symbols {:dependencies [:hrsh7th/nvim-cmp]}
        :amarakon/nvim-cmp-fonts {:dependencies [:hrsh7th/nvim-cmp]}
        :chrisgrieser/cmp-nerdfont {:dependencies [:hrsh7th/nvim-cmp]}
        :hrsh7th/cmp-emoji {:dependencies [:hrsh7th/nvim-cmp]}
-       :hrsh7th/cmp-nvim-lsp {:dependencies [:neovim/nvim-lspconfig :hrsh7th/nvim-cmp]}
+       :hrsh7th/cmp-nvim-lsp {:dependencies [:neovim/nvim-lspconfig
+                                             :hrsh7th/nvim-cmp]}
        :hrsh7th/cmp-path {:dependencies [:hrsh7th/nvim-cmp]}
        :hrsh7th/cmp-cmdline {:dependencies [:hrsh7th/nvim-cmp]}
-
        :mbbill/undotree {}
        :windwp/nvim-autopairs {:opts {:check_ts true :fast_wrap {}}
                                :dependencies [:nvim-treesitter/nvim-treesitter
@@ -108,6 +120,7 @@
                                              :folke/neodev.nvim
                                              :nvim-neotest/neotest-python]}
        ;; UI
+       :nacro90/numb.nvim {:config true}
        :rcarriga/nvim-notify {:lazy false
                               :priority 1000
                               :name :notify
@@ -118,12 +131,13 @@
                                  :views {:cmdline_popup {:position {:row "95%"
                                                                     :col "50%"}}}}
                           :dependencies [:MunifTanjim/nui.nvim]}
-       :nvim-lualine/lualine.nvim {:opts {:sections {:lualine_b [:filetype
+       :nvim-lualine/lualine.nvim {:opts {:sections {:lualine_a [:mode]
+                                                     :lualine_b [:filetype
                                                                  :filename
                                                                  :diagnostics]
                                                      :lualine_c [:branch :diff]
-                                                     :lualine_x [:encoding]
-                                                     :lualine_y [[""]
+                                                     :lualine_x [cur-macro]
+                                                     :lualine_y [:encoding
                                                                  :location
                                                                  :progress]
                                                      :lualine_z ["os.date('%I:%M %p')"]}}
@@ -135,7 +149,6 @@
                                               :nvim-tree/nvim-web-devicons]}
        :folke/trouble.nvim {:config true
                             :dependencies [:nvim-tree/nvim-web-devicons]}
-       ;; :j-hui/fidget.nvim {:config true}
        :HiPhish/nvim-ts-rainbow2 {:requires :nvim-treesitter}
        :NvChad/nvim-colorizer.lua {:opts {:user_default_options {:mode :virtualtext}}
                                    :name :colorizer}
@@ -149,16 +162,14 @@
                                           :dependencies [:nvim-treesitter/nvim-treesitter
                                                          :winston0410/cmd-parser.nvim]}
        :kevinhwang91/nvim-bqf {:name :bqf :config true}
-       :akinsho/bufferline.nvim {:file :UI.Tabline
+       :akinsho/bufferline.nvim {:opts {:options {:hover {:enabled true}
+                                                  :diagnostics :nvim_lsp
+                                                  :offsets [{:filetype :NvimTree}]}}
                                  :dependencies :nvim-tree/nvim-web-devicons}
        :wakatime/vim-wakatime {}
        :andweeb/presence.nvim {:config #(: (require :presence) :setup)}
        :junegunn/limelight.vim {}
        :junegunn/goyo.vim {}})
-
-;;       :sudormrfbin/cheatsheet.nvim {:requires [:nvim-telescope/telescope.nvim
-;;                                                :nvim-lua/popup.nvim
-;;                                                :nvim-lua/plenary.nvim]}
 
 (require :Editing)
 
@@ -170,3 +181,21 @@
 (vim.api.nvim_create_autocmd [:BufRead :BufNewFile]
                              {:pattern :Cargo.toml
                               :callback #(require :Filetypes.cargo)})
+
+(fn ft-cmds []
+  (match vim.bo.filetype
+    :notify (do
+              (vim.keymap.set :n :q ":q<cr>" {:silent true :buffer true})
+              (vim.keymap.set :n :<esc> ":q<cr>" {:silent true :buffer true}))))
+
+(vim.api.nvim_create_autocmd [:BufWinEnter] {:pattern "*" :callback #(vim.schedule ft-cmds)})
+
+(vim.api.nvim_create_autocmd :RecordingEnter
+                             {:pattern "*"
+                              :callback #(vim.notify (.. "Recording Macro: ("
+                                                         (vim.fn.reg_recording)
+                                                         ")"))})
+
+(vim.api.nvim_create_autocmd :RecordingLeave
+                             {:pattern "*"
+                              :callback #(vim.notify "Finished recording Macro")})

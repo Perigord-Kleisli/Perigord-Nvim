@@ -1,29 +1,8 @@
-
 (vim.keymap.set :t :<Esc> "<C-\\><C-n>"
                 {:noremap true :silent true :desc "Exit terminal"})
 
 (vim.keymap.set :v :<C-c> "\"+y"
                 {:silent false :desc "Copy to system clipboard"})
-
-(vim.keymap.set :v :<DOWN> ":m '>+1<CR>gv=gv<CR>"
-                {:noremap true
-                 :silent true
-                 :desc "Move Selected Lines Downwards"})
-
-(vim.keymap.set :v :<A-j> ":m '>+1<CR>gv=gv<CR>"
-                {:noremap true
-                 :silent true
-                 :desc "Move Selected Lines Downwards"})
-
-(vim.keymap.set :v :<UP> ":m '<-2<CR>gv=gv<CR>"
-                {:noremap true
-                 :silent true
-                 :desc "Move Selected Lines Upwards"})
-
-(vim.keymap.set :v :<A-k> ":m '<-2<CR>gv=gv<CR>"
-                {:noremap true
-                 :silent true
-                 :desc "Move Selected Lines Upwards"})
 
 (vim.keymap.set :n :<C-Up> ":resize +3<CR>"
                 {:noremap true :silent true :desc "Vertical Resize+"})
@@ -37,20 +16,11 @@
 (vim.keymap.set :n :<C-Right> ":vertical resize -3<CR>"
                 {:noremap true :silent true :desc "Horizontal Resize-"})
 
-(vim.keymap.set :n :<A-j> ":m +1<CR>"
-                {:noremap true :silent true :desc "Move Line Upwards"})
-
-(vim.keymap.set :n :gh "^"
+(vim.keymap.set [:n :o :x :v] :gh "^"
                 {:noremap true :silent true :desc "Go to line start"})
 
-(vim.keymap.set :n :gl "$" {:noremap true :silent true :desc "Go to line end"})
-(vim.keymap.set :v :gh "^"
-                {:noremap true :silent true :desc "Go to line start"})
-
-(vim.keymap.set :v :gl "$" {:noremap true :silent true :desc "Go to line end"})
-
-(vim.keymap.set :n :<A-k> ":m -2<CR>"
-                {:noremap true :silent true :desc "Move Line Downwards"})
+(vim.keymap.set [:n :o :x :v] :gl "$"
+                {:noremap true :silent true :desc "Go to line end"})
 
 (vim.keymap.set :t :<leader>ot :<cmd>ToggleTerm<CR>
                 {:noremap true :silent true :desc "Toggle Terminal"})
@@ -60,9 +30,15 @@
 
 (vim.keymap.set :n :U :<cmd>UndotreeToggle<CR>
                 {:noremap true :silent true :desc "Toggle undotree"})
+
+(let [{: new} (require :nvim-possession)]
+  (vim.keymap.set [:n :x :o] :<C-s> new {:noremap true :desc "Make Session"}))
+
 (let [leap (require :leap)]
-  (vim.keymap.set [:n :x :o] :<A-f> #(leap.leap []) {:noremap true :silent true :desc "Leap forwards"})
-  (vim.keymap.set [:n :x :o] :<A-F> #(leap.leap {:backward true}) {:noremap true :silent true :desc "Leap backwards"}))
+  (vim.keymap.set [:n :x :o] :s #(leap.leap [])
+                  {:noremap true :silent true :desc "Leap forwards"})
+  (vim.keymap.set [:n :x :o] :S #(leap.leap {:backward true})
+                  {:noremap true :silent true :desc "Leap backwards"}))
 
 (local {:register wk} (require :which-key))
 (local telescope (require :telescope.builtin))
@@ -74,14 +50,13 @@
 (wk {:o {:name :Open
          :p [(cmd :NvimTreeToggle) :Sidebar]
          :t [(cmd :ToggleTerm) :Terminal]
+         :s [(. (require :nvim-possession) :list) :Session]
          :T [(cmd "ToggleTerm direction=float") "Floating Terminal"]
          :n [(cmd "Telescope notify") "Recent Notifications"]
          :b [#(btop:toggle) "Task Manager"]
          :r [telescope.oldfiles "Recent Files"]}
-     :f {:name :Find
-         :t [telescope.live_grep "Text"]}
-     :<leader> [telescope.find_files "Browse Files"]} 
-    {:prefix :<leader>})
+     :f {:name :Find :t [telescope.live_grep :Text]}
+     :<leader> [telescope.find_files "Browse Files"]} {:prefix :<leader>})
 
 (require :Mapping.Buffers)
 (require :Mapping.Lang)

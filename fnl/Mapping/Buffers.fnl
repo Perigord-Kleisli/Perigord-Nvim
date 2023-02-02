@@ -1,15 +1,4 @@
-(local hydra (require :hydra))
 (local {: cmd} (require :hydra.keymap-util))
-
-(hydra {:name :Buffer
-        :mode :n
-        :config {:invoke_on_body true}
-        :body :<leader>b
-        :heads [[:j (cmd :BufferLineCyclePrev) {:desc "Previous Buffer"}]
-                [:k (cmd :BufferLineCycleNext) {:desc "Next Buffer"}]
-                [:h (cmd :BufferLineMovePrev) {:desc "Move Buffer Left"}]
-                [:l (cmd :BufferLineMoveNext) {:desc "Move Buffer Right"}]
-                [:x (cmd "bdelete! %") {:desc "Close Buffer"}]]})
 
 (vim.keymap.set :n :<A-h> (cmd :BufferLineCyclePrev)
                 {:noremap true :silent true :desc "Previous Buffer"})

@@ -28,9 +28,14 @@
     (tset maps :heads heads)
     (tset maps :hint (auto-gen-hint heads (. maps :name)))
     (tset maps :config {:exit true :hint {:type :window :border :single}})
-    (wk {:l [#(: (hydra maps) :activate)
-             (.. "+" (if (= 0 (string.len ft)) :Lang ft))]}
-        {:prefix :<leader>})))
+    (local binds #(wk {:l [#(: (hydra maps) :activate)
+                           (.. "+" (if (= 0 (string.len ft)) :Lang ft))]}
+                      {:prefix :<leader>}))
+    (vim.api.nvim_create_autocmd [:BufEnter :BufNewFile]
+                                 {:pattern (?. maps :pattern)
+                                  :buffer (?. maps :buffer)
+                                  :callback binds})
+    (binds)))
 
 (wk {:D [vim.lsp.buf.declaration :Declaration]
      "]" [vim.diagnostic.goto_next "Next diagnostic"]
@@ -47,6 +52,6 @@
 (vim.keymap.set :n :<C-k> vim.lsp.buf.signature_help
                 {:noremap true :silent true :desc "signature help"})
 
-(lang-map {:name "Lang"
-           :heads []})
+(lang-map {:name :Lang :heads []})
+
 {: lang-map}
