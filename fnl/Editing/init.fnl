@@ -13,17 +13,6 @@
 
 (set vim.o.number true)
 (set vim.o.relativenumber true)
-(vim.api.nvim_create_autocmd [:InsertEnter]
-                             {:pattern "*" :command "set norelativenumber"})
-
-(vim.api.nvim_create_autocmd [:InsertLeave]
-                             {:pattern "*" :command "set relativenumber"})
-
-(vim.api.nvim_create_autocmd [:TextYankPost]
-                             {:pattern "*"
-                              :callback (fn []
-                                          (vim.highlight.on_yank {:higroup :visual
-                                                                  :timeout 180}))})
 
 (set vim.opt.scrolloff 8)
 (set vim.o.wrap false)

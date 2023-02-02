@@ -47,10 +47,40 @@
 (local {: Terminal} (require :toggleterm.terminal))
 (local btop (Terminal:new {:cmd :btop :direction :float}))
 
+(fn sessions [opts]
+  (let [pickers (require :telescope.pickers)
+        finders (require :telescope.finders)
+        actions (require :telescope.actions)
+        action-state (require :telescope.actions.state)
+        {: load} (require :nvim-possession)
+        session-dir (.. (vim.fn.stdpath :data) :/sessions)
+        {:values conf} (require :telescope.config)]
+    (local opts (or opts []))
+
+    (fn attach_mappings [prompt-buf# _map]
+      (actions.select_default:replace (fn []
+                                        (actions.close prompt-buf#)
+                                        (local selection
+                                               (action-state.get_selected_entry))
+                                        (load selection)))
+      true)
+
+    (local dir (vim.loop.fs_opendir session-dir))
+    (local results (icollect [_ {: name} (ipairs (vim.loop.fs_readdir dir))]
+                     name))
+    (dir:closedir)
+    (local color-picker
+           (pickers.new opts {:prompt_title :Sessions
+                              :finder (finders.new_table {: results})
+                              :sorter (conf.generic_sorter opts)
+                              : attach_mappings}))
+    (color-picker:find)))
+
 (wk {:o {:name :Open
          :p [(cmd :NvimTreeToggle) :Sidebar]
          :t [(cmd :ToggleTerm) :Terminal]
-         :s [(. (require :nvim-possession) :list) :Session]
+         :s [#(sessions ((. (require :telescope.themes) :get_dropdown)))
+             :Session]
          :T [(cmd "ToggleTerm direction=float") "Floating Terminal"]
          :n [(cmd "Telescope notify") "Recent Notifications"]
          :b [#(btop:toggle) "Task Manager"]
@@ -60,3 +90,5 @@
 
 (require :Mapping.Buffers)
 (require :Mapping.Lang)
+
+{: sessions}

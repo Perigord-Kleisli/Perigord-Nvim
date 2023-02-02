@@ -3,11 +3,6 @@
     (lua "return nil"))
   (vim.lsp.util.preview_location (. result 1)))
 
-(fn Peek-definition []
-  (let [params (vim.lsp.util.make_position_params)]
-    (vim.lsp.buf_request 0 :textDocument/definition params
-                         preview-location-callback)))
-
 (local {:register wk} (require :which-key))
 (local {: cmd} (require :hydra.keymap-util))
 (fn lang-map [maps]
@@ -20,7 +15,7 @@
                   [:r vim.lsp.buf.rename {:desc :Rename}]
                   [:t (cmd :TroubleToggle) {:desc "Toggle Diagnostic List"}]
                   [:i (cmd :LspInfo) {:desc "LSP Info"}]
-                  [:L lsp-lines.toggle {:desc "Toggle line diagnostics"}]]
+                  [:l lsp-lines.toggle {:desc "Toggle line diagnostics"}]]
         {: auto-gen-hint} (require :Utils)]
     (var heads (. maps :heads))
     (each [_ v (ipairs defaults)]
@@ -42,7 +37,6 @@
      "[" [vim.diagnostic.goto_next "Previous diagnostic"]
      :d [vim.lsp.buf.definition :Definition]
      :r [vim.lsp.buf.references :References]
-     :p [Peek-definition "Definition peek"]
      :i [vim.lsp.buf.implementation :Implementation]}
     {:prefix :g :name "Go to"})
 

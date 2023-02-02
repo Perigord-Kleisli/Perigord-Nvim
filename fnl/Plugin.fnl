@@ -30,15 +30,17 @@
        :folke/neodev.nvim {:ft [:lua :fennel]}
        ;; Treesitter and LSP
        :nvim-treesitter/nvim-treesitter {:file :Lang.Treesitter}
+       :nvim-treesitter/nvim-treesitter-textobjects {:dependencies [:nvim-treesitter/nvim-treesitter]}
        :neovim/nvim-lspconfig {:file :Lang.LSP
                                :dependencies [:hrsh7th/cmp-nvim-lsp]}
        :nvim-treesitter/playground {}
        :jose-elias-alvarez/null-ls.nvim {:file :Lang.Null-ls}
        ;; Editing
-       :matze/vim-move {}
+       :kylechui/nvim-surround {:config true}
        :gennaro-tedesco/nvim-possession {:opts {:autosave true
                                                 :autoload true
-                                                :sessions {:sessions_variable :loaded-session}}}
+                                                :sessions {:sessions_variable :loaded-session}}
+                                         :dependencies [:ibhagwan/fzf-lua]}
        :lewis6991/gitsigns.nvim {:file :Editing.Git}
        :ggandor/leap.nvim {:config true}
        :ggandor/flit.nvim {:config true :dependencies [:ggandor/leap.nvim]}
@@ -120,6 +122,8 @@
                                              :folke/neodev.nvim
                                              :nvim-neotest/neotest-python]}
        ;; UI
+       :glepnir/dashboard-nvim {:event :VimEnter}
+       :karb94/neoscroll.nvim {:config true}
        :nacro90/numb.nvim {:config true}
        :rcarriga/nvim-notify {:lazy false
                               :priority 1000
@@ -188,7 +192,8 @@
               (vim.keymap.set :n :q ":q<cr>" {:silent true :buffer true})
               (vim.keymap.set :n :<esc> ":q<cr>" {:silent true :buffer true}))))
 
-(vim.api.nvim_create_autocmd [:BufWinEnter] {:pattern "*" :callback #(vim.schedule ft-cmds)})
+(vim.api.nvim_create_autocmd [:BufWinEnter]
+                             {:pattern "*" :callback #(vim.schedule ft-cmds)})
 
 (vim.api.nvim_create_autocmd :RecordingEnter
                              {:pattern "*"
@@ -199,3 +204,4 @@
 (vim.api.nvim_create_autocmd :RecordingLeave
                              {:pattern "*"
                               :callback #(vim.notify "Finished recording Macro")})
+(require :UI.Startup)
