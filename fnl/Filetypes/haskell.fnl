@@ -9,7 +9,8 @@
        :pattern :*.hs
        :heads [[:R ht.repl.toggle {:desc "Toggle REPL"}]
                [:<C-r> ht.repl.reload {:desc "Reload REPL"}]
-               [:p (cmd :HsProjectFile) {:desc "Open Project File"}]
+               [:p (cmd :HsPackageCabal) {:desc "Open Cabal File"}]
+               [:P (cmd :HsProjectFile) {:desc "Open Project File"}]
                [:h (cmd "Telescope hoogle") {:desc "Hoogle search"}]]}))
 
 (ht.setup {:hls {: capabilities
