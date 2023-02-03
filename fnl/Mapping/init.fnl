@@ -47,10 +47,11 @@
 (local {: Terminal} (require :toggleterm.terminal))
 (local btop (Terminal:new {:cmd :btop :direction :float}))
 
-(fn sessions [opts]
+(fn sessions-telescope [opts]
   (let [pickers (require :telescope.pickers)
         finders (require :telescope.finders)
         actions (require :telescope.actions)
+        previewers (require :telescope.previewers)
         action-state (require :telescope.actions.state)
         {: load} (require :nvim-possession)
         session-dir (.. (vim.fn.stdpath :data) :/sessions)
@@ -65,6 +66,37 @@
                                         (load selection)))
       true)
 
+    (fn define_preview [self entry status]
+      (var display [:Files])
+      (var curdir "")
+      (var opened-buffers [])
+      (var currently-open "")
+      (each [line (io.lines (.. session-dir "/" entry.value))]
+        (match (string.match line "^cd%s*(.*)$")
+          nil nil
+          x (set curdir x))
+        (match (string.match line "^badd%s+[+]%d*%s+(.*)$")
+          nil nil
+          x (table.insert opened-buffers x))
+        (match (string.match line "^edit%s+(.*)$")
+          nil nil
+          x (set currently-open x)))
+      (local indent (string.rep " " vim.o.shiftwidth))
+      (var display ["Working directory: "
+                    (.. indent curdir)
+                    ""
+                    "Focused buffer: "
+                    (.. indent currently-open)
+                    ""
+                    "Open buffers: "])
+      (table.foreach opened-buffers
+                     #(table.insert display
+                                    (.. indent
+                                        (string.gsub $2 (.. curdir "/?") ""))))
+      (vim.api.nvim_buf_set_option self.state.bufnr :filetype :yaml)
+      (vim.api.nvim_buf_set_lines self.state.bufnr 0 -1 false display)
+      (set self.state.last_set_bufnr self.state.bufnr))
+
     (local dir (vim.loop.fs_opendir session-dir))
     (local results (icollect [_ {: name} (ipairs (vim.loop.fs_readdir dir))]
                      name))
@@ -73,14 +105,18 @@
            (pickers.new opts {:prompt_title :Sessions
                               :finder (finders.new_table {: results})
                               :sorter (conf.generic_sorter opts)
+                              :previewer (previewers.new_buffer_previewer {:title "Session Info"
+                                                                           : define_preview})
                               : attach_mappings}))
     (color-picker:find)))
+
+(local sessions #(sessions-telescope ((. (require :telescope.themes)
+                                         :get_dropdown))))
 
 (wk {:o {:name :Open
          :p [(cmd :NvimTreeToggle) :Sidebar]
          :t [(cmd :ToggleTerm) :Terminal]
-         :s [#(sessions ((. (require :telescope.themes) :get_dropdown)))
-             :Session]
+         :s [sessions :Session]
          :T [(cmd "ToggleTerm direction=float") "Floating Terminal"]
          :n [(cmd "Telescope notify") "Recent Notifications"]
          :b [#(btop:toggle) "Task Manager"]
