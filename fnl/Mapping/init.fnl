@@ -53,20 +53,28 @@
         actions (require :telescope.actions)
         previewers (require :telescope.previewers)
         action-state (require :telescope.actions.state)
-        {: load} (require :nvim-possession)
+        {: load : delete} (require :nvim-possession)
         session-dir (.. (vim.fn.stdpath :data) :/sessions)
         {:values conf} (require :telescope.config)]
     (local opts (or opts []))
 
-    (fn attach_mappings [prompt-buf# _map]
+    (fn attach_mappings [prompt-buf# map]
+      (map :n :d (fn []
+                   (local selection (action-state.get_selected_entry))
+                   (actions.close prompt-buf#)
+                   (delete selection)))
+      (map :i :<A-x> (fn []
+                       (local selection (action-state.get_selected_entry))
+                       (actions.close prompt-buf#)
+                       (delete selection)))
       (actions.select_default:replace (fn []
-                                        (actions.close prompt-buf#)
                                         (local selection
                                                (action-state.get_selected_entry))
+                                        (actions.close prompt-buf#)
                                         (load selection)))
       true)
 
-    (fn define_preview [self entry status]
+    (fn define_preview [self entry _status]
       (var display [:Files])
       (var curdir "")
       (var opened-buffers [])
@@ -98,8 +106,11 @@
       (set self.state.last_set_bufnr self.state.bufnr))
 
     (local dir (vim.loop.fs_opendir session-dir))
-    (local results (icollect [_ {: name} (ipairs (vim.loop.fs_readdir dir))]
-                     name))
+    (local results [])
+    (var readdir-cur (vim.loop.fs_readdir dir))
+    (while (not= nil readdir-cur)
+      (table.insert results (. readdir-cur 1 :name))
+      (set readdir-cur (vim.loop.fs_readdir dir)))
     (dir:closedir)
     (local color-picker
            (pickers.new opts {:prompt_title :Sessions
