@@ -161,10 +161,6 @@
        :lukas-reineke/indent-blankline.nvim {:file :UI.IndentLine}
        :Mofiqul/dracula.nvim {:lazy false :file :UI.Colors}
        :stevearc/dressing.nvim {:event :VeryLazy}
-       :winston0410/range-highlight.nvim {:name :range-highlight
-                                          :config true
-                                          :dependencies [:nvim-treesitter/nvim-treesitter
-                                                         :winston0410/cmd-parser.nvim]}
        :kevinhwang91/nvim-bqf {:name :bqf :config true}
        :akinsho/bufferline.nvim {:opts {:options {:hover {:enabled true}
                                                   :diagnostics :nvim_lsp
