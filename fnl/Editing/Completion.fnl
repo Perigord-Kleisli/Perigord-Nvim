@@ -1,7 +1,6 @@
 (local luasnip (require :luasnip))
 (local cmp (require :cmp))
 
-
 (local kind-icons {:Text ""
                    :Method :m
                    :Function ""

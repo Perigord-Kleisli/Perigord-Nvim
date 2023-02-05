@@ -29,7 +29,7 @@
   "haskell-tools.nvim": { "branch": "master", "commit": "2e63d6336822a3676fdd27b0aa49cb2da08d1b17" },
   "hotpot.nvim": { "branch": "master", "commit": "1002bcdea7af06c5a7bfce0536d96bc4b03ab42e" },
   "hydra.nvim": { "branch": "master", "commit": "d00274f05363c13f29ed1fa571026a066a634cce" },
-  "indent-blankline.nvim": { "branch": "master", "commit": "8299fe7703dfff4b1752aeed271c3b95281a952d" },
+  "indent_blankline": { "branch": "master", "commit": "8299fe7703dfff4b1752aeed271c3b95281a952d" },
   "lazy.nvim": { "branch": "main", "commit": "9b208696e139a404d159963b975a5b90af38439b" },
   "leap.nvim": { "branch": "main", "commit": "ff4c3663e5a0a0ecbb3fffbc8318825def35d2aa" },
   "lsp-lines.nvim": { "branch": "master", "commit": "99d4327172b060cde4a97c7cafe06bc4b5338ca9" },

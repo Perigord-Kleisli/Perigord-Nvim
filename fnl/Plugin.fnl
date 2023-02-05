@@ -125,7 +125,7 @@
                                              :folke/neodev.nvim
                                              :nvim-neotest/neotest-python]}
        ;; UI
-       :glepnir/dashboard-nvim {:event :VimEnter}
+       :glepnir/dashboard-nvim {:event :UIEnter :config #(require :UI.Startup)}
        :karb94/neoscroll.nvim {:config true}
        :nacro90/numb.nvim {:config true}
        :rcarriga/nvim-notify {:lazy false
@@ -163,7 +163,15 @@
                                    :name :colorizer}
        :stefanwatt/lsp-lines.nvim {:config true
                                    :dependencies [:neovim/nvim-lspconfig]}
-       :lukas-reineke/indent-blankline.nvim {:file :UI.IndentLine}
+       :lukas-reineke/indent-blankline.nvim {:name :indent_blankline
+                                             :opts {:show_end_of_line true
+                                                    :show_current_context true
+                                                    :show_current_context_start true}
+                                             :init #(do
+                                                      (set vim.opt.list true)
+                                                      (vim.opt.listchars:append "eol:↴")
+                                                      (set vim.g.indentLine_enabled
+                                                           1))}
        :Mofiqul/dracula.nvim {:lazy false :file :UI.Colors}
        :stevearc/dressing.nvim {:event :VeryLazy}
        :kevinhwang91/nvim-bqf {:name :bqf :config true}
@@ -175,37 +183,4 @@
        :andweeb/presence.nvim {:config #(: (require :presence) :setup)}})
 
 (require :Editing)
-
-(let [{: nvim_create_autocmd : nvim_create_augroup} vim.api
-      au-group (nvim_create_augroup :hotpot-ft {})
-      cb #(pcall require (.. :Filetypes. (vim.fn.expand :<amatch>)))]
-  (nvim_create_autocmd :FileType {:callback cb :group au-group}))
-
-(vim.api.nvim_create_autocmd [:BufRead :BufNewFile]
-                             {:pattern :Cargo.toml
-                              :callback #(require :Filetypes.cargo)})
-
-(fn ft-cmds []
-  (match vim.bo.filetype
-    :notify (do
-              (vim.defer_fn #(do
-                               (set vim.o.number false)
-                               (set vim.o.relativenumber false))
-                            15)
-              (vim.keymap.set :n :q ":q<cr>" {:silent true :buffer true})
-              (vim.keymap.set :n :<esc> ":q<cr>" {:silent true :buffer true}))))
-
-(vim.api.nvim_create_autocmd [:BufWinEnter]
-                             {:pattern "*" :callback #(vim.schedule ft-cmds)})
-
-(vim.api.nvim_create_autocmd :RecordingEnter
-                             {:pattern "*"
-                              :callback #(vim.notify (.. "Recording Macro: ("
-                                                         (vim.fn.reg_recording)
-                                                         ")"))})
-
-(vim.api.nvim_create_autocmd :RecordingLeave
-                             {:pattern "*"
-                              :callback #(vim.notify "Finished recording Macro")})
-
-(require :UI.Startup)
+(require :Filetypes)

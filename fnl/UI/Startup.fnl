@@ -1,9 +1,3 @@
-(vim.api.nvim_set_hl 0 :DashboardHeader {:fg "#8AFF80"})
-(vim.api.nvim_set_hl 0 :DashboardKey {:fg "#FF9580"})
-(vim.api.nvim_set_hl 0 :DashboardDesc {:fg "#87FEF8"})
-(vim.api.nvim_set_hl 0 :DashboardIcon {:fg "#FCFC7F" :bold true})
-(vim.api.nvim_set_hl 0 :DashboardFooter {:fg "#5D5D65"})
-
 (let [header ["                                                                                                "
               "                                                                                                "
               "                                                                                                "
@@ -67,6 +61,5 @@
                          ""
                          (.. "Loaded " (tostring (. (lazy.stats) :loaded))
                              " plugins in "
-                             (tostring (math.floor (. (lazy.stats) :times
-                                                      :LazyDone)))
+                             (tostring (math.floor (. (lazy.stats) :startuptime)))
                              :ms)]}}))
