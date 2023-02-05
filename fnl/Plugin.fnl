@@ -29,7 +29,6 @@
     (if (= "" recording) "" (.. "recording macro: (" recording ")"))))
 
 (lazy {:rktjmp/hotpot.nvim {:lazy false}
-       :folke/neodev.nvim {:ft [:lua :fennel]}
        ;; Treesitter and LSP
        :nvim-treesitter/nvim-treesitter {:file :Lang.Treesitter}
        :nvim-treesitter/nvim-treesitter-textobjects {:dependencies [:nvim-treesitter/nvim-treesitter]}
@@ -44,7 +43,9 @@
                                           :autoswitch {:enable true}}
                                    :init (telescope-extension :sesh)
                                    :dependencies [:nvim-telescope/telescope.nvim]}
-       :lewis6991/gitsigns.nvim {:file :Editing.Git}
+       :lewis6991/gitsigns.nvim {}
+       :anuvyklack/vim-smartword {}
+       :TimUntersberger/neogit {:config true}
        :ggandor/leap.nvim {:config true}
        :ggandor/flit.nvim {:config true :dependencies [:ggandor/leap.nvim]}
        :numToStr/Comment.nvim {:opts {:toggler {:line :<leader>c<leader>
@@ -63,6 +64,7 @@
        :anuvyklack/hydra.nvim {}
        :nvim-colortils/colortils.nvim {:opts {:mappings {:replace_default_format :<cr>}}
                                        :cmd :Colortils}
+       ;; Completions
        :hrsh7th/nvim-cmp {:file :Editing.Completion
                           :dependencies [:neovim/nvim-lspconfig]}
        :hrsh7th/cmp-buffer {:dependencies [:hrsh7th/nvim-cmp]}
@@ -93,6 +95,8 @@
        :nvim-telescope/telescope.nvim {:file :Editing.Telescope
                                        :dependencies [:nvim-lua/plenary.nvim
                                                       :rcarriga/nvim-notify]}
+       ;; Neovim
+       :folke/neodev.nvim {:ft [:lua :fennel]}
        ;; Markdown
        :iamcco/markdown-preview.nvim {:build "cd app && npm install"
                                       :ft [:markdown]}
@@ -125,6 +129,7 @@
                                              :folke/neodev.nvim
                                              :nvim-neotest/neotest-python]}
        ;; UI
+       :simrat39/symbols-outline.nvim {:opts {:width 15}}
        :glepnir/dashboard-nvim {:event :UIEnter :config #(require :UI.Startup)}
        :karb94/neoscroll.nvim {:config true}
        :nacro90/numb.nvim {:config true}

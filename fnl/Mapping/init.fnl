@@ -31,6 +31,9 @@
 (vim.keymap.set :n :U :<cmd>UndotreeToggle<CR>
                 {:noremap true :silent true :desc "Toggle undotree"})
 
+(vim.keymap.set :n :w "<Plug>(smartword-w)"
+                {:noremap true :silent true :desc "Next Word"})
+
 (let [{: save} (require :sesh)]
   (vim.keymap.set [:n :x :o] :<C-s> save {:noremap true :desc "Save session"}))
 
@@ -48,6 +51,7 @@
 (local {: Terminal} (require :toggleterm.terminal))
 (local btop (Terminal:new {:cmd :btop :direction :float}))
 
+(require :Mapping.Git)
 (wk {:o {:name :Open
          :p [(cmd :NvimTreeToggle) :Sidebar]
          :t [(cmd :ToggleTerm) :Terminal]
@@ -56,6 +60,7 @@
          :n [(cmd "Telescope notify") "Recent Notifications"]
          :b [#(btop:toggle) "Task Manager"]
          :r [telescope.oldfiles "Recent Files"]}
+     :g [nil :+Git]
      :f {:name :Find :t [telescope.live_grep :Text]}
      :<leader> [telescope.find_files "Browse Files"]} {:prefix :<leader>})
 

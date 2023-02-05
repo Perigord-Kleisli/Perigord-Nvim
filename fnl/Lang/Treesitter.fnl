@@ -10,4 +10,5 @@
                              :html]
           :highlight {:enable true :disable [:markdown]}
           :autotag {:enable true}
-          :rainbow {:enable true}}))
+          :rainbow {:enable true}
+          :textobjects {:swap {:enable true}}}))
