@@ -188,6 +188,10 @@
 (fn ft-cmds []
   (match vim.bo.filetype
     :notify (do
+              (vim.defer_fn #(do
+                               (set vim.o.number false)
+                               (set vim.o.relativenumber false))
+                            15)
               (vim.keymap.set :n :q ":q<cr>" {:silent true :buffer true})
               (vim.keymap.set :n :<esc> ":q<cr>" {:silent true :buffer true}))))
 
