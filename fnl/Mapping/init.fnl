@@ -34,6 +34,18 @@
 (vim.keymap.set :n :w "<Plug>(smartword-w)"
                 {:noremap true :silent true :desc "Next Word"})
 
+(vim.keymap.set :n :<A-k> :<Plug>GoNSMUp
+                {:noremap true :silent true :desc "Move up"})
+
+(vim.keymap.set :n :<A-j> :<Plug>GoNSMDown
+                {:noremap true :silent true :desc "Move down"})
+
+(vim.keymap.set :x :<A-k> :<Plug>GoVSMUp
+                {:noremap true :silent true :desc "Move up"})
+
+(vim.keymap.set :x :<A-j> :<Plug>GoVSMDown
+                {:noremap true :silent true :desc "Move down"})
+
 (let [{: save} (require :sesh)]
   (vim.keymap.set [:n :x :o] :<C-s> save {:noremap true :desc "Save session"}))
 

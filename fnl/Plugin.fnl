@@ -37,6 +37,7 @@
        :nvim-treesitter/playground {}
        :jose-elias-alvarez/null-ls.nvim {:file :Lang.Null-ls}
        ;; Editing
+       :booperlv/nvim-gomove {:opts {:map_default false}}
        :kylechui/nvim-surround {:config true}
        :Trouble-Truffle/sesh.nvim {:opts {:autosave {:enable true :autocmds []}
                                           :autoload {:enable true}
