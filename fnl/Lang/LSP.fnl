@@ -3,6 +3,8 @@
 (local capabilities (-> (vim.lsp.protocol.make_client_capabilities)
                         cmp-lsp.default_capabilities))
 
+(tset capabilities :textDocument :foldingRange
+      {:dynamicRegistration false :linefoldingOnly true})
 ;; (lspconfig.nil_ls.setup {: capabilities})
 ;; (lspconfig.ccls.setup {: capabilities})
 ;; (lspconfig.pyright.setup {: capabilities})
@@ -26,12 +28,11 @@
         (let [client (vim.lsp.get_client_by_id ctx.client_id)
               lvl (. [:ERROR :WARN :INFO :DEBUG] result.type)]
           (vim.notify result.message lvl
-                  {:title (.. "LSP | " client.name)
-                   :timeout 10000
-                   :keep (fn []
-                           (or (= lvl :ERROR) (= lvl :WARN)))}))))
+                      {:title (.. "LSP | " client.name)
+                       :timeout 10000
+                       :keep (fn []
+                               (or (= lvl :ERROR) (= lvl :WARN)))}))))
 
 (vim.diagnostic.config {:virtual_text false})
 
 {: capabilities}
-

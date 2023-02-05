@@ -65,6 +65,7 @@
        :anuvyklack/hydra.nvim {}
        :nvim-colortils/colortils.nvim {:opts {:mappings {:replace_default_format :<cr>}}
                                        :cmd :Colortils}
+       :kevinhwang91/nvim-ufo {:config true :dependencies [:kevinhwang91/promise-async]}
        ;; Completions
        :hrsh7th/nvim-cmp {:file :Editing.Completion
                           :dependencies [:neovim/nvim-lspconfig]}

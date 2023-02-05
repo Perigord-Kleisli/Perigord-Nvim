@@ -63,6 +63,14 @@
 (local {: Terminal} (require :toggleterm.terminal))
 (local btop (Terminal:new {:cmd :btop :direction :float}))
 
+(let [ufo (require :ufo)]
+  (set vim.o.foldcolumn :1)
+  (set vim.o.foldlevel 99)
+  (set vim.o.foldlevelstart 99)
+  (set vim.o.foldenable true)
+  (vim.keymap.set :n :zR ufo.openAllFolds {:noremap true :silent true :desc "Open all folds"})
+  (vim.keymap.set :n :zM ufo.closeAllFolds {:noremap true :silent true :desc "Close all folds"}))
+
 (require :Mapping.Git)
 (wk {:o {:name :Open
          :p [(cmd :NvimTreeToggle) :Sidebar]
