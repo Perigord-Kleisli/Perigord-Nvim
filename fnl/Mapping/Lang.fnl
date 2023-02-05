@@ -1,8 +1,3 @@
-(fn preview-location-callback [_ result]
-  (when (or (= result nil) (vim.tbl_isempty result))
-    (lua "return nil"))
-  (vim.lsp.util.preview_location (. result 1)))
-
 (local {:register wk} (require :which-key))
 (local {: cmd} (require :hydra.keymap-util))
 (fn lang-map [maps]

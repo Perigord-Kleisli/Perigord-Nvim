@@ -24,7 +24,7 @@
                                 : buffer})
   (vim.schedule vim.lsp.codelens.refresh)
   (local {:lang-map wk} (require :Mapping.Lang))
-  (wk {:name :Rust
+  (wk {:name " Rust"
        : buffer
        :config {:exit true}
        :heads [[:h

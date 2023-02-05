@@ -1,17 +1,3 @@
-(fn button [bind label]
-  {:type :button
-   :val label
-   :on_press (-> bind
-                 (vim.api.nvim_replace_termcodes true false true)
-                 (vim.api.nvim_feedkeys :t false))
-   :opts {:position :center
-          :shortcut bind
-          :align_shortcut :right
-          :hl :Conditional
-          :hl_shortcut :Keyword
-          :cursor 2
-          :width 50}})
-
 (vim.api.nvim_set_hl 0 :DashboardHeader {:fg "#8AFF80"})
 (vim.api.nvim_set_hl 0 :DashboardKey {:fg "#FF9580"})
 (vim.api.nvim_set_hl 0 :DashboardDesc {:fg "#87FEF8"})
@@ -50,7 +36,7 @@
                 :center [{:icon "  "
                           :desc :Sessions
                           :key :s
-                          :action (. (require :Mapping) :sessions)}
+                          :action #((. (require :telescope) :extensions :sesh :sesh))}
                          {:icon "  "
                           :desc "Recent files"
                           :key :r

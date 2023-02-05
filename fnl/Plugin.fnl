@@ -16,7 +16,9 @@
                              (vim.opt.rtp:append (.. plugin.dir (. v- :rtp))))))
                    (when (and (not= nil (?. v- :file)) (= nil (?. v- :config)))
                      (tset v- :config (import v.file)))
-                   (tset v- 1 k)
+                   (if (string.find k "^~/")
+                       (tset v- :dir k)
+                       (tset v- 1 k))
                    v-))))
 
 (fn telescope-extension [name]
@@ -37,10 +39,11 @@
        :jose-elias-alvarez/null-ls.nvim {:file :Lang.Null-ls}
        ;; Editing
        :kylechui/nvim-surround {:config true}
-       :gennaro-tedesco/nvim-possession {:opts {:autosave true
-                                                :autoload true
-                                                :sessions {:sessions_variable :loaded-session}}
-                                         :dependencies [:ibhagwan/fzf-lua]}
+       :Trouble-Truffle/sesh.nvim {:opts {:autosave {:enable true :autocmds []}
+                                          :autoload {:enable true}
+                                          :autoswitch {:enable true}}
+                                   :init (telescope-extension :sesh)
+                                   :dependencies [:nvim-telescope/telescope.nvim]}
        :lewis6991/gitsigns.nvim {:file :Editing.Git}
        :ggandor/leap.nvim {:config true}
        :ggandor/flit.nvim {:config true :dependencies [:ggandor/leap.nvim]}
@@ -134,6 +137,8 @@
        :folke/noice.nvim {:opts {:notify {:enabled false}
                                  :views {:cmdline_popup {:position {:row "95%"
                                                                     :col "50%"}}}}
+                          :lazy false
+                          :priority 1000
                           :dependencies [:MunifTanjim/nui.nvim]}
        :nvim-lualine/lualine.nvim {:opts {:sections {:lualine_a [:mode]
                                                      :lualine_b [:filetype
@@ -167,9 +172,7 @@
                                                   :offsets [{:filetype :NvimTree}]}}
                                  :dependencies :nvim-tree/nvim-web-devicons}
        :wakatime/vim-wakatime {}
-       :andweeb/presence.nvim {:config #(: (require :presence) :setup)}
-       :junegunn/limelight.vim {}
-       :junegunn/goyo.vim {}})
+       :andweeb/presence.nvim {:config #(: (require :presence) :setup)}})
 
 (require :Editing)
 
@@ -200,4 +203,5 @@
 (vim.api.nvim_create_autocmd :RecordingLeave
                              {:pattern "*"
                               :callback #(vim.notify "Finished recording Macro")})
+
 (require :UI.Startup)

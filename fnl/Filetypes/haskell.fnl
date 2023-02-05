@@ -5,7 +5,7 @@
 (fn on_attach [client bufnr]
   (vim.lsp.codelens.display nil bufnr client)
   (local {:lang-map wk} (require :Mapping.Lang))
-  (wk {:name "Haskell"
+  (wk {:name " Haskell"
        :pattern :*.hs
        :heads [[:R ht.repl.toggle {:desc "Toggle REPL"}]
                [:<C-r> ht.repl.reload {:desc "Reload REPL"}]

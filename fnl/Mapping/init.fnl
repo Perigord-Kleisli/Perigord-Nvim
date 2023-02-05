@@ -31,8 +31,8 @@
 (vim.keymap.set :n :U :<cmd>UndotreeToggle<CR>
                 {:noremap true :silent true :desc "Toggle undotree"})
 
-(let [{: new} (require :nvim-possession)]
-  (vim.keymap.set [:n :x :o] :<C-s> new {:noremap true :desc "Make Session"}))
+(let [{: save} (require :sesh)]
+  (vim.keymap.set [:n :x :o] :<C-s> save {:noremap true :desc "Save session"}))
 
 (let [leap (require :leap)]
   (vim.keymap.set [:n :x :o] :s #(leap.leap [])
@@ -42,92 +42,16 @@
 
 (local {:register wk} (require :which-key))
 (local telescope (require :telescope.builtin))
+(local {:extensions telescope-extension} (require :telescope))
 
 (local {: cmd} (require :hydra.keymap-util))
 (local {: Terminal} (require :toggleterm.terminal))
 (local btop (Terminal:new {:cmd :btop :direction :float}))
 
-(fn sessions-telescope [opts]
-  (let [pickers (require :telescope.pickers)
-        finders (require :telescope.finders)
-        actions (require :telescope.actions)
-        previewers (require :telescope.previewers)
-        action-state (require :telescope.actions.state)
-        {: load : delete} (require :nvim-possession)
-        session-dir (.. (vim.fn.stdpath :data) :/sessions)
-        {:values conf} (require :telescope.config)]
-    (local opts (or opts []))
-
-    (fn attach_mappings [prompt-buf# map]
-      (map :n :d (fn []
-                   (local selection (action-state.get_selected_entry))
-                   (actions.close prompt-buf#)
-                   (delete selection)))
-      (map :i :<A-x> (fn []
-                       (local selection (action-state.get_selected_entry))
-                       (actions.close prompt-buf#)
-                       (delete selection)))
-      (actions.select_default:replace (fn []
-                                        (local selection
-                                               (action-state.get_selected_entry))
-                                        (actions.close prompt-buf#)
-                                        (load selection)))
-      true)
-
-    (fn define_preview [self entry _status]
-      (var display [:Files])
-      (var curdir "")
-      (var opened-buffers [])
-      (var currently-open "")
-      (each [line (io.lines (.. session-dir "/" entry.value))]
-        (match (string.match line "^cd%s*(.*)$")
-          nil nil
-          x (set curdir x))
-        (match (string.match line "^badd%s+[+]%d*%s+(.*)$")
-          nil nil
-          x (table.insert opened-buffers x))
-        (match (string.match line "^edit%s+(.*)$")
-          nil nil
-          x (set currently-open x)))
-      (local indent (string.rep " " vim.o.shiftwidth))
-      (var display ["Working directory: "
-                    (.. indent curdir)
-                    ""
-                    "Focused buffer: "
-                    (.. indent currently-open)
-                    ""
-                    "Open buffers: "])
-      (table.foreach opened-buffers
-                     #(table.insert display
-                                    (.. indent
-                                        (string.gsub $2 (.. curdir "/?") ""))))
-      (vim.api.nvim_buf_set_option self.state.bufnr :filetype :yaml)
-      (vim.api.nvim_buf_set_lines self.state.bufnr 0 -1 false display)
-      (set self.state.last_set_bufnr self.state.bufnr))
-
-    (local dir (vim.loop.fs_opendir session-dir))
-    (local results [])
-    (var readdir-cur (vim.loop.fs_readdir dir))
-    (while (not= nil readdir-cur)
-      (table.insert results (. readdir-cur 1 :name))
-      (set readdir-cur (vim.loop.fs_readdir dir)))
-    (dir:closedir)
-    (local color-picker
-           (pickers.new opts {:prompt_title :Sessions
-                              :finder (finders.new_table {: results})
-                              :sorter (conf.generic_sorter opts)
-                              :previewer (previewers.new_buffer_previewer {:title "Session Info"
-                                                                           : define_preview})
-                              : attach_mappings}))
-    (color-picker:find)))
-
-(local sessions #(sessions-telescope ((. (require :telescope.themes)
-                                         :get_dropdown))))
-
 (wk {:o {:name :Open
          :p [(cmd :NvimTreeToggle) :Sidebar]
          :t [(cmd :ToggleTerm) :Terminal]
-         :s [sessions :Session]
+         :s [telescope-extension.sesh.sesh :Session]
          :T [(cmd "ToggleTerm direction=float") "Floating Terminal"]
          :n [(cmd "Telescope notify") "Recent Notifications"]
          :b [#(btop:toggle) "Task Manager"]
@@ -137,5 +61,3 @@
 
 (require :Mapping.Buffers)
 (require :Mapping.Lang)
-
-{: sessions}

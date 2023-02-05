@@ -5,7 +5,6 @@
 
 ;; (lspconfig.nil_ls.setup {: capabilities})
 ;; (lspconfig.ccls.setup {: capabilities})
-;; (lspconfig.marksman.setup {: capabilities})
 ;; (lspconfig.pyright.setup {: capabilities})
 
 (local signs {:DiagnosticSignError ""

@@ -29,7 +29,6 @@ vim.opt.termguicolors = true
 vim.g.mapleader = " "
 
 if bootstrap then
-  vim.loop.fs_mkdir(vim.fn.stdpath 'data' .. '/session', 16877)
   vim.ui.input({ prompt = "Bootstrap complete, close and open Neovim to ensure proper running" }, function(_)
     vim.cmd "q"
   end)

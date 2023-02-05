@@ -96,15 +96,9 @@
 - [cspell](https://github.com/streetsidesoftware/cspell) - Spellchecker
 - [jq](https://github.com/stedolan/jq) - Json processor
 
-## Keymap
-
-### Normal
-
-| Key | Desc             |
-| --- | ---------------- |
-| s   | Motion Forward   |
-| S   | Motion Backwards |
+## Some Bugs
+- `cd app && npm install` sometimes may not run for `markdown-preview.nvim`. Manually run `npm install` on that directory. Most commonly: `~/.local/share/nvim/lazy/markdown-preview.nvim/app`.
+- `vim.ui.select` on the startup menu causes the number columns to show up.
 
 ## Modules
-
 - Utils
