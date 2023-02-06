@@ -11,9 +11,6 @@
 (set vim.o.undofile true)
 (set vim.o.undodir :/tmp/nvim-undos)
 
-(set vim.o.number true)
-(set vim.o.relativenumber true)
-
 (set vim.opt.scrolloff 8)
 (set vim.o.wrap false)
 (set vim.o.splitbelow true)

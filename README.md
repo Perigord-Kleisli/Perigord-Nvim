@@ -24,7 +24,7 @@
 
 ### Required
 
-- Neovim >=0.8
+- Neovim >=0.9
 - [npm](https://www.npmjs.com/)
 - [fennel](https://fennel-lang.org/)
 - [git](https://git-scm.com/)

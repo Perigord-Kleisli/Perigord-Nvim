@@ -41,7 +41,8 @@
        :kylechui/nvim-surround {:config true}
        :Trouble-Truffle/sesh.nvim {:opts {:autosave {:enable true :autocmds []}
                                           :autoload {:enable true}
-                                          :autoswitch {:enable true}}
+                                          :autoswitch {:enable true
+                                                       :exclude_ft [:lazy]}}
                                    :init (telescope-extension :sesh)
                                    :dependencies [:nvim-telescope/telescope.nvim]}
        :lewis6991/gitsigns.nvim {}
@@ -61,11 +62,13 @@
        :folke/which-key.nvim {:opts {:ignore_missing false
                                      :layout {:align :center
                                               :height {:min 2}
-                                              :spacing 2}}}
+                                              :spacing 3}}}
        :anuvyklack/hydra.nvim {}
        :nvim-colortils/colortils.nvim {:opts {:mappings {:replace_default_format :<cr>}}
                                        :cmd :Colortils}
-       :kevinhwang91/nvim-ufo {:config true :dependencies [:kevinhwang91/promise-async]}
+       :luukvbaal/statuscol.nvim {:opts {:foldfunc :builtin :setopt true}}
+       :kevinhwang91/nvim-ufo {:file :UI.Column
+                               :dependencies [:kevinhwang91/promise-async]}
        ;; Completions
        :hrsh7th/nvim-cmp {:file :Editing.Completion
                           :dependencies [:neovim/nvim-lspconfig]}

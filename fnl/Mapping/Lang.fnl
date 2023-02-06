@@ -36,9 +36,6 @@
      :i [vim.lsp.buf.implementation :Implementation]}
     {:prefix :g :name "Go to"})
 
-(vim.keymap.set :n :K vim.lsp.buf.hover
-                {:noremap true :silent true :desc :hover})
-
 (vim.keymap.set :n :<C-k> vim.lsp.buf.signature_help
                 {:noremap true :silent true :desc "signature help"})
 

@@ -20,7 +20,8 @@
                             :DashboardKey {:fg "#FF9580"}
                             :DashboardDesc {:fg "#87FEF8"}
                             :DashboardIcon {:fg "#FCFC7F" :bold true}
-                            :DashboardFooter {:fg "#5D5D65"}}})
+                            :DashboardFooter {:fg "#5D5D65"}
+                            :UfoFoldedBg {:link "Visual"}}})
 
 (vim.api.nvim_command "colorscheme dracula")
 
