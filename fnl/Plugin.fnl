@@ -159,16 +159,18 @@
                                                      :lualine_y [:encoding
                                                                  :location
                                                                  :progress]
-                                                     :lualine_z ["os.date('%I:%M %p')"]}}
+                                                     :lualine_z ["os.date('%I:%M %p')"]}
+                                          :options {:theme :catppuccin}}
                                    :init #(set vim.o.laststatus 3)
                                    :dependencies [:nvim-tree/nvim-web-devicons]}
-       :utilyre/barbecue.nvim {:config true
+       :mfussenegger/nvim-dap {}
+       :utilyre/barbecue.nvim {:opts {:theme :catppuccin}
                                :dependencies [:neovim/nvim-lspconfig
                                               :SmiteshP/nvim-navic
                                               :nvim-tree/nvim-web-devicons]}
        :folke/trouble.nvim {:config true
                             :dependencies [:nvim-tree/nvim-web-devicons]}
-       :HiPhish/nvim-ts-rainbow2 {:requires :nvim-treesitter}
+       :p00f/nvim-ts-rainbow {:dependencies [:nvim-treesitter/nvim-treesitter]}
        :NvChad/nvim-colorizer.lua {:opts {:user_default_options {:mode :virtualtext}}
                                    :name :colorizer}
        :stefanwatt/lsp-lines.nvim {:config true
@@ -182,7 +184,7 @@
                                                       (vim.opt.listchars:append "eol:↴")
                                                       (set vim.g.indentLine_enabled
                                                            1))}
-       :Mofiqul/dracula.nvim {:lazy false :file :UI.Colors}
+       :catppuccin/nvim {:file :UI.Colors :lazy false :name :catppuccin}
        :stevearc/dressing.nvim {:event :VeryLazy}
        :kevinhwang91/nvim-bqf {:name :bqf :config true}
        :akinsho/bufferline.nvim {:opts {:options {:hover {:enabled true}
