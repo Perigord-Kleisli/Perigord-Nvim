@@ -7,7 +7,6 @@
                                  :gitsigns true
                                  :telescope true
                                  :which_key true
-                                 :noice true
                                  :ts_rainbow true
                                  :notify true
                                  :nvimtree true

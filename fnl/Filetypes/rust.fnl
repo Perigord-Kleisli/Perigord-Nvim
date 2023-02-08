@@ -44,9 +44,6 @@
             :remove [:n]
             :config {:on_enter #(do
                                   (dapui.open)
-                                  (vim.cmd :mkview)
-                                  (vim.cmd "silent! %foldopen!")
-                                  (set vim.bo.modifiable false)
                                   (vim.defer_fn #(rt.inlay_hints.disable) 100))
                      :on_exit #(do
                                  (dapui.close)

@@ -146,6 +146,7 @@
                                              :folke/neodev.nvim
                                              :nvim-neotest/neotest-python]}
        ;; UI
+       :j-hui/fidget.nvim {:config true}
        :simrat39/symbols-outline.nvim {:opts {:width 15}}
        :glepnir/dashboard-nvim {:event :UIEnter :config #(require :UI.Startup)}
        :karb94/neoscroll.nvim {:config true}
@@ -156,12 +157,12 @@
                               :opts {:background_colour "#000000"
                                      :max_width 100}
                               :init #(set vim.notify (require :notify))}
-       :folke/noice.nvim {:opts {:notify {:enabled false}
-                                 :views {:cmdline_popup {:position {:row "95%"
-                                                                    :col "50%"}}}}
-                          :lazy false
-                          :priority 1000
-                          :dependencies [:MunifTanjim/nui.nvim]}
+       ;; :folke/noice.nvim {:opts {:notify {:enabled false}
+       ;;                           :views {:cmdline_popup {:position {:row "95%"
+       ;;                                                              :col "50%"}}}}
+       ;;                    :lazy false
+       ;;                    :priority 1000
+       ;;                    :dependencies [:MunifTanjim/nui.nvim]}
        :nvim-lualine/lualine.nvim {:opts {:sections {:lualine_a [:mode]
                                                      :lualine_b [:filetype
                                                                  :filename

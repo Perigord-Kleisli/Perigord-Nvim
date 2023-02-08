@@ -33,11 +33,12 @@
 ### Optional
 
 #### General usage
-- [huggingface-hub](https://huggingface.co/welcome) (_store token in 'secrets.json' as "huggingface-token"_)
 - [fontconfig](https://www.freedesktop.org/wiki/Software/fontconfig/)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [wakatime](https://wakatime.com)
 - [btop](https://github.com/aristocratos/btop)
+- [neovide](https://neovide.dev)
+- [JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads)
 
 #### Haskell
 

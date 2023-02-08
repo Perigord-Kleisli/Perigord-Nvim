@@ -51,7 +51,7 @@
 (vim.keymap.set :n :<C-k> vim.lsp.buf.signature_help
                 {:noremap true :silent true :desc "signature help"})
 
-;; (lang-map {:name :Lang :heads []})
+(lang-map {:name :Lang :heads []})
 
 (vim.api.nvim_create_autocmd :LspAttach
                              {:callback #(vim.cmd :SymbolsOutlineOpen)})

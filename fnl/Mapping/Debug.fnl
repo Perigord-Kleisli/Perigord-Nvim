@@ -81,9 +81,6 @@
           :hint {:type :window :border :single :position :middle-right}
           :on_enter (or (?. maps.config :on_enter)
                         #(do
-                           (vim.cmd :mkview)
-                           (vim.cmd "silent! %foldopen!")
-                           (set vim.bo.modifiable false)
                            (dapui.open)))
           :on_exit (or (?. maps.config :on_exit) #(dapui.close))})
     (local binds #(wk {:d [#(: (hydra maps) :activate)
