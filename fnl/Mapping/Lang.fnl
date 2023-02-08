@@ -13,11 +13,23 @@
                   [:i (cmd :LspInfo) {:desc "LSP Info"}]
                   [:l lsp-lines.toggle {:desc "Toggle line diagnostics"}]]
         {: auto-gen-hint} (require :Utils)]
-    (var heads (. maps :heads))
     (each [_ v (ipairs defaults)]
-      (table.insert heads v))
-    (tset maps :heads heads)
-    (tset maps :hint (auto-gen-hint heads (. maps :name)))
+      (local intersecting? (do
+                             (var x false)
+                             (each [_ head (ipairs maps.heads)]
+                               (when (= (. head 1) (. v 1))
+                                 (set x true)
+                                 (lua :break)))
+                             (match maps.remove
+                               removed (when (not x)
+                                         (each [_ ignore (ipairs removed)]
+                                           (when (= (. v 1) ignore)
+                                             (set x true)
+                                             (lua :break)))))
+                             x))
+      (when (not intersecting?)
+        (table.insert maps.heads v)))
+    (tset maps :hint (auto-gen-hint maps.heads ft))
     (tset maps :config {:exit true :hint {:type :window :border :single}})
     (local binds #(wk {:l [#(: (hydra maps) :activate)
                            (.. "+" (if (= 0 (string.len ft)) :Lang ft))]}
@@ -39,9 +51,9 @@
 (vim.keymap.set :n :<C-k> vim.lsp.buf.signature_help
                 {:noremap true :silent true :desc "signature help"})
 
-(lang-map {:name :Lang :heads []})
+;; (lang-map {:name :Lang :heads []})
 
 (vim.api.nvim_create_autocmd :LspAttach
-  {:callback #(vim.cmd :SymbolsOutlineOpen)})
+                             {:callback #(vim.cmd :SymbolsOutlineOpen)})
 
 {: lang-map}

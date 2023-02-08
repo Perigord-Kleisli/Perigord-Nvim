@@ -31,6 +31,25 @@
 (lazy {:rktjmp/hotpot.nvim {:lazy false}
        ;; Treesitter and LSP
        :nvim-treesitter/nvim-treesitter {:file :Lang.Treesitter}
+       :Trouble-Truffle/sesh.nvim {:opts {:autosave {:enable true :autocmds []}
+                                          :autoload {:enable true}
+                                          :autoswitch {:enable true
+                                                       :exclude_ft [:lazy]}
+                                          :exclude_name [:NvimTree_1 :OUTLINE]
+                                          :post_load_hook #(do
+                                                             (each [_ buf (ipairs (vim.api.nvim_list_bufs))]
+                                                               (if (= ""
+                                                                      (vim.api.nvim_buf_get_option buf
+                                                                                                   :filetype))
+                                                                   (vim.api.nvim_buf_delete buf
+                                                                                            {})))
+                                                             (vim.defer_fn #(pcall require
+                                                                                   (.. :Filetypes.
+                                                                                       vim.bo.filetype))
+                                                                           0))}
+                                   :lazy true
+                                   :init (telescope-extension :sesh)
+                                   :dependencies [:nvim-telescope/telescope.nvim]}
        :nvim-treesitter/nvim-treesitter-textobjects {:dependencies [:nvim-treesitter/nvim-treesitter]}
        :neovim/nvim-lspconfig {:file :Lang.LSP
                                :dependencies [:hrsh7th/cmp-nvim-lsp]}
@@ -39,12 +58,6 @@
        ;; Editing
        :booperlv/nvim-gomove {:opts {:map_default false}}
        :kylechui/nvim-surround {:config true}
-       :Trouble-Truffle/sesh.nvim {:opts {:autosave {:enable true :autocmds []}
-                                          :autoload {:enable true}
-                                          :autoswitch {:enable true
-                                                       :exclude_ft [:lazy]}}
-                                   :init (telescope-extension :sesh)
-                                   :dependencies [:nvim-telescope/telescope.nvim]}
        :lewis6991/gitsigns.nvim {}
        :anuvyklack/vim-smartword {}
        :TimUntersberger/neogit {:config true}
@@ -127,8 +140,7 @@
                                    :fennel
                                    :dune]}
        ;; Testing
-       :nvim-neotest/neotest {:file :Lang.Debug
-                              :keys [:<leader>d]
+       :nvim-neotest/neotest {:keys [:<leader>d]
                               :dependencies [:MrcJkb/neotest-haskell
                                              :rouge8/neotest-rust
                                              :folke/neodev.nvim
@@ -164,6 +176,13 @@
                                    :init #(set vim.o.laststatus 3)
                                    :dependencies [:nvim-tree/nvim-web-devicons]}
        :mfussenegger/nvim-dap {}
+       :rcarriga/nvim-dap-ui {:name :dapui
+                              :config true
+                              :dependencies [:mfussenegger/nvim-dap]}
+       :theHamsta/nvim-dap-virtual-text {:opts {:commented true}
+                                         :dependencies [:mfussenegger/nvim-dap]}
+       :nvim-telescope/telescope-dap.nvim {:init (telescope-extension :dap)
+                                           :dependencies [:nvim-telescope/telescope.nvim]}
        :utilyre/barbecue.nvim {:opts {:theme :catppuccin}
                                :dependencies [:neovim/nvim-lspconfig
                                               :SmiteshP/nvim-navic
@@ -195,4 +214,5 @@
        :andweeb/presence.nvim {:config #(: (require :presence) :setup)}})
 
 (require :Editing)
+(require :Lang.Debug)
 (require :Filetypes)

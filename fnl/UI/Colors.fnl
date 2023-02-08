@@ -15,13 +15,6 @@
                   :custom_highlights #{:LspCodeLens {:fg "#6272A4"}
                                        :LspCodeLensSeparator {:fg "#7F8CB5"}
                                        :IndentBlanklineChar {:fg "#0D0E19"}
-                                       ;; :TSRainbowRed {:fg "#cc241d"}
-                                       ;; :TSRainbowOrange {:fg "#d65d0e"}
-                                       ;; :TSRainbowYellow {:fg "#d79921"}
-                                       ;; :TSRainbowGreen {:fg "#689d6a"}
-                                       ;; :TSRainbowCyan {:fg "#a89984"}
-                                       ;; :TSRainbowBlue {:fg "#458588"}
-                                       ;; :TSRainbowViolet {:fg "#b16286"}
                                        :DashboardHeader {:fg "#8AFF80"}
                                        :DashboardKey {:fg "#FF9580"}
                                        :DashboardDesc {:fg "#87FEF8"}

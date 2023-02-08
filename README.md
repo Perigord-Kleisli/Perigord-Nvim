@@ -51,6 +51,7 @@
 - [clippy](https://github.com/rust-lang/rust-clippy)
 - [nextest](https://github.com/nextest-rs/nextest)
 - [evcxr](https://github.com/google/evcxr)
+- [lldb](https://lldb.llvm.org/)
 
 #### C++
 
