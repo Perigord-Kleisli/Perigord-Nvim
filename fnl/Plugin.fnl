@@ -56,6 +56,7 @@
        :nvim-treesitter/playground {}
        :jose-elias-alvarez/null-ls.nvim {:file :Lang.Null-ls}
        ;; Editing
+       :xiyaowong/link-visitor.nvim {:config true}
        :booperlv/nvim-gomove {:opts {:map_default false}}
        :kylechui/nvim-surround {:config true}
        :lewis6991/gitsigns.nvim {}

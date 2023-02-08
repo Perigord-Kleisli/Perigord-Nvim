@@ -50,7 +50,8 @@
 
 (local telescope (require :telescope.builtin))
 (let [neotest (require :neotest)]
-  (neotest.setup {:adapters [(require :neotest-rust) (require :neotest-haskell)]})
+  (neotest.setup {:adapters [(require :neotest-rust)
+                             (require :neotest-haskell)]})
   (wk {:r [neotest.run.run "Run test"]
        :d [#(neotest.run.run {:strategy :dap}) "Debug Test"]
        :s [neotest.run.stop "Stop Test"]
@@ -65,6 +66,7 @@
      :d [vim.lsp.buf.definition :Definition]
      :r [vim.lsp.buf.references :References]
      :i [vim.lsp.buf.implementation :Implementation]
+     :/ [(. (require :link-visitor) :links_in_buffer) :Link]
      :t [telescope.live_grep :Text]} {:prefix :g :name "Go to"})
 
 (vim.keymap.set :n :<C-k> vim.lsp.buf.signature_help
