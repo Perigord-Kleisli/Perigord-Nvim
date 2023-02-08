@@ -40,12 +40,15 @@
                                   :callback binds})
     (binds)))
 
+(local telescope (require :telescope.builtin))
+
 (wk {:D [vim.lsp.buf.declaration :Declaration]
      "]" [vim.diagnostic.goto_next "Next diagnostic"]
      "[" [vim.diagnostic.goto_next "Previous diagnostic"]
      :d [vim.lsp.buf.definition :Definition]
      :r [vim.lsp.buf.references :References]
-     :i [vim.lsp.buf.implementation :Implementation]}
+     :i [vim.lsp.buf.implementation :Implementation]
+     :t [telescope.live_grep :Text]}
     {:prefix :g :name "Go to"})
 
 (vim.keymap.set :n :<C-k> vim.lsp.buf.signature_help

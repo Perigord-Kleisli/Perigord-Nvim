@@ -87,7 +87,6 @@
          :r [telescope.oldfiles "Recent Files"]}
      :g [nil :+Git]
      :d [nil :+Debug]
-     :f {:name :Find :t [telescope.live_grep :Text]}
      :<leader> [telescope.find_files "Browse Files"]} {:prefix :<leader>})
 
 (require :Mapping.Buffers)
