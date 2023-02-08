@@ -62,7 +62,7 @@
 
 (wk {:D [vim.lsp.buf.declaration :Declaration]
      "]" [vim.diagnostic.goto_next "Next diagnostic"]
-     "[" [vim.diagnostic.goto_next "Previous diagnostic"]
+     "[" [vim.diagnostic.goto_prev "Previous diagnostic"]
      :d [vim.lsp.buf.definition :Definition]
      :r [vim.lsp.buf.references :References]
      :i [vim.lsp.buf.implementation :Implementation]
