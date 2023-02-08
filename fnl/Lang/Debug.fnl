@@ -1,8 +1,3 @@
-(local neotest (require :neotest))
-(neotest.setup {:adapters [(require :neotest-haskell)
-                           (require :neotest-rust)
-                           (require :neotest-python)]})
-
 (local dap (require :dap))
 (local dapui (require :dapui))
 (dapui.setup)

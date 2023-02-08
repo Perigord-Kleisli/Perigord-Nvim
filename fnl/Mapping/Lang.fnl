@@ -4,14 +4,22 @@
   (let [ft (. maps :name)
         hydra (require :hydra)
         lsp-lines (require :lsp_lines)
-        defaults [[:f #(vim.lsp.buf.format {:async true}) {:desc :Format}]
-                  [:a vim.lsp.buf.code_action {:desc "Code Action"}]
-                  [:e vim.lsp.codelens.run {:desc "Code lens"}]
-                  [:r vim.lsp.buf.rename {:desc :Rename}]
-                  [:t (cmd :TroubleToggle) {:desc "Toggle Diagnostic List"}]
-                  [:s (cmd :SymbolsOutline) {:desc "Toggle Symboltree"}]
-                  [:i (cmd :LspInfo) {:desc "LSP Info"}]
-                  [:l lsp-lines.toggle {:desc "Toggle line diagnostics"}]]
+        defaults [[:f
+                   #(vim.lsp.buf.format {:async true})
+                   {:desc :Format :exit true}]
+                  [:a vim.lsp.buf.code_action {:desc "Code Action" :exit true}]
+                  [:e vim.lsp.codelens.run {:desc "Code lens" :exit true}]
+                  [:r vim.lsp.buf.rename {:desc :Rename :exit true}]
+                  [:t
+                   (cmd :TroubleToggle)
+                   {:desc "Toggle Diagnostic List" :exit true}]
+                  [:s
+                   (cmd :SymbolsOutline)
+                   {:desc "Toggle Symboltree" :exit true}]
+                  [:i (cmd :LspInfo) {:desc "LSP Info" :exit true}]
+                  [:l
+                   lsp-lines.toggle
+                   {:desc "Toggle line diagnostics" :exit true}]]
         {: auto-gen-hint} (require :Utils)]
     (each [_ v (ipairs defaults)]
       (local intersecting? (do
@@ -41,6 +49,15 @@
     (binds)))
 
 (local telescope (require :telescope.builtin))
+(let [neotest (require :neotest)]
+  (neotest.setup {:adapters [(require :neotest-rust) (require :neotest-haskell)]})
+  (wk {:r [neotest.run.run "Run test"]
+       :d [#(neotest.run.run {:strategy :dap}) "Debug Test"]
+       :s [neotest.run.stop "Stop Test"]
+       :R [#(neotest.run.run (vim.fn.expand "%")) "Run All tests in buffer"]
+       :o [neotest.output.open "View output"]
+       :<enter> [neotest.summary.toggle "View Summary"]}
+      {:prefix :<leader>s :name :Test}))
 
 (wk {:D [vim.lsp.buf.declaration :Declaration]
      "]" [vim.diagnostic.goto_next "Next diagnostic"]
@@ -48,8 +65,7 @@
      :d [vim.lsp.buf.definition :Definition]
      :r [vim.lsp.buf.references :References]
      :i [vim.lsp.buf.implementation :Implementation]
-     :t [telescope.live_grep :Text]}
-    {:prefix :g :name "Go to"})
+     :t [telescope.live_grep :Text]} {:prefix :g :name "Go to"})
 
 (vim.keymap.set :n :<C-k> vim.lsp.buf.signature_help
                 {:noremap true :silent true :desc "signature help"})

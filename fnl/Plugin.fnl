@@ -140,8 +140,7 @@
                                    :fennel
                                    :dune]}
        ;; Testing
-       :nvim-neotest/neotest {:keys [:<leader>d]
-                              :dependencies [:MrcJkb/neotest-haskell
+       :nvim-neotest/neotest {:dependencies [:MrcJkb/neotest-haskell
                                              :rouge8/neotest-rust
                                              :folke/neodev.nvim
                                              :nvim-neotest/neotest-python]}
