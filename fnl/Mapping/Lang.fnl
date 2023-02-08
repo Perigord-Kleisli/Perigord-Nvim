@@ -30,7 +30,7 @@
       (when (not intersecting?)
         (table.insert maps.heads v)))
     (tset maps :hint (auto-gen-hint maps.heads ft))
-    (tset maps :config {:exit true :hint {:type :window :border :single}})
+    (tset maps :config {:hint {:type :window :border :single}})
     (local binds #(wk {:l [#(: (hydra maps) :activate)
                            (.. "+" (if (= 0 (string.len ft)) :Lang ft))]}
                       {:prefix :<leader>}))

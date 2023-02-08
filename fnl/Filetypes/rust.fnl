@@ -27,16 +27,18 @@
   (lang {:name " Rust"
          : buffer
          :config {:exit true}
-         :heads [[:h toggle-inlay-hints {:desc "Toggle inlay hints"}]
+         :heads [[:h
+                  toggle-inlay-hints
+                  {:desc "Toggle inlay hints" :exit true}]
                  [:P
                   rt.open_cargo_toml.open_cargo_toml
-                  {:desc "Open Cargo File"}]
+                  {:desc "Open Cargo File" :exit true}]
                  [:a
                   #(rt.code_action_group.code_action_group)
-                  {:desc "Rust Code Action"}]
+                  {:desc "Rust Code Action" :exit true}]
                  [:m
                   rt.expand_macro.expand_macro
-                  {:desc "View Macro Expansion"}]]})
+                  {:desc "View Macro Expansion" :exit true}]]})
   (local {:debug-map dbg-map} (require :Mapping.Debug))
   (local dapui (require :dapui))
   (dbg-map {:name " Debug"
