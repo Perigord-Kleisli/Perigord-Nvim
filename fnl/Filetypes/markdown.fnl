@@ -2,6 +2,7 @@
 (local {:lang-map wk} (require :Mapping.Lang))
 (wk {:name "  Markdown"
      :pattern :*.md
+     :with-default-heads true
      :heads [[:m (cmd :MarkdownPreview) {:desc "Preview Markdown"}]]})
 
 (let [lspconfig (require :lspconfig)]

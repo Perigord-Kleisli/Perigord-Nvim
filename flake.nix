@@ -1,5 +1,5 @@
 {
-  description = "A devShell example";
+  description = "Devshell for developing and building this config";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
