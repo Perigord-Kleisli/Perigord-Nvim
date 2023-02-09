@@ -68,9 +68,10 @@
   (let [peek #(let [winid (ufo.peekFoldedLinesUnderCursor)]
                 (if winid
                     (set peek? true)
-                    (vim.lsp.buffer)))]
+                    (vim.lsp.buf.hover)))]
     (vim.keymap.set :n :K #(if peek? (set peek? false) (peek))
-                    {:noremap true :silent true :desc "Open all folds"}))
+                    {:noremap true :silent true :desc "Hover"}))
+
   (vim.keymap.set :n :zR ufo.openAllFolds
                   {:noremap true :silent true :desc "Open all folds"})
   (vim.keymap.set :n :zM ufo.closeAllFolds
