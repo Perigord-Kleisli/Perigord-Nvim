@@ -33,7 +33,7 @@
          :ghciCmd "stack ghci --test --no-load --no-build --main-is TARGET --ghci-options -fprint-evld-with-show"}]))
 
 (ht.setup {:hls {: capabilities
-                 :settings {:haskell {:formattingProvider :fourmolu
+                 :settings {:haskell {:formattingProvider :floskell
                                       :plugin {:rename {:config {:diff true}}}}}
                  :cmd [:haskell-language-server :--lsp]
                  : on_attach}

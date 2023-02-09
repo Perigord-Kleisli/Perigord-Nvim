@@ -57,7 +57,10 @@
 
 - [cmake-format](https://github.com/cheshirekow/cmake_format)
 - [cppcheck](https://cppcheck.sourceforge.io/)
-- [ccls](https://github.com/MaskRay/ccls)
+- [clangd](https://clangd.llvm.org/)
+
+#### Cmake
+- [cmake-language-server](https://github.com/regen100/cmake-language-server)
 
 #### Fennel
 

@@ -126,6 +126,11 @@
        :luc-tielen/telescope_hoogle {:config (telescope-extension :hoogle)
                                      :ft [:haskell]
                                      :dependencies [:nvim-telescope/telescope.nvim]}
+       ;; C++ 
+       :p00f/clangd_extensions.nvim {:ft [:cpp]}
+       :madskjeldgaard/cppman.nvim {:ft [:cpp]}
+       :PatWie/include-guard.nvim {:ft [:cpp]}
+       :Civitasv/cmake-tools.nvim {:ft [:cmake]}
        ;; Rust
        :Saecki/crates.nvim {:opts {:null_ls {:enabled true :name :Crates}}}
        :simrat39/rust-tools.nvim {:ft [:rust]}

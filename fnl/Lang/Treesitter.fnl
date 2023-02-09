@@ -1,6 +1,8 @@
 (let [{: setup} (require :nvim-treesitter.configs)]
   (setup {:ensure_installed [:fennel
                              :haskell
+                             :cpp 
+                             :cmake
                              :nix
                              :lua
                              :rust
