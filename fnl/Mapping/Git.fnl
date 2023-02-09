@@ -12,6 +12,7 @@
           : hint
           :config {:buffer bufnr
                    :color :pink
+                   :exit true
                    :invoke_on_body true
                    :hint {:border :rounded}
                    :on_enter (fn []

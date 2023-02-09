@@ -1,50 +1,41 @@
 (local {:register wk} (require :which-key))
 (local {: cmd} (require :hydra.keymap-util))
-(fn lang-map [maps]
-  (let [ft (. maps :name)
-        hydra (require :hydra)
-        lsp-lines (require :lsp_lines)
-        defaults [[:f
-                   #(vim.lsp.buf.format {:async true})
-                   {:desc :Format :exit true}]
-                  [:a vim.lsp.buf.code_action {:desc "Code Action" :exit true}]
-                  [:e vim.lsp.codelens.run {:desc "Code lens" :exit true}]
-                  [:r vim.lsp.buf.rename {:desc :Rename :exit true}]
-                  [:t
-                   (cmd :TroubleToggle)
-                   {:desc "Toggle Diagnostic List" :exit true}]
-                  [:s
-                   (cmd :SymbolsOutline)
-                   {:desc "Toggle Symboltree" :exit true}]
-                  [:i (cmd :LspInfo) {:desc "LSP Info" :exit true}]
-                  [:l
-                   lsp-lines.toggle
-                   {:desc "Toggle line diagnostics" :exit true}]]
+
+(local default-maps
+       (let [lsp-lines (require :lsp_lines)]
+         [[:f #(vim.lsp.buf.format {:async true}) {:desc :Format}]
+          [:a vim.lsp.buf.code_action {:desc "Code Action"}]
+          [:e vim.lsp.codelens.run {:desc "Code lens"}]
+          [:r vim.lsp.buf.rename {:desc :Rename}]
+          [:t (cmd :TroubleToggle) {:desc "Toggle Diagnostic List"}]
+          [:s (cmd :SymbolsOutline) {:desc "Toggle Symboltree"}]
+          [:i (cmd :LspInfo) {:desc "LSP Info"}]
+          [:l lsp-lines.toggle {:desc "Toggle line diagnostics"}]]))
+
+(fn with-default-maps [maps]
+  (each [_ v (ipairs default-maps)]
+    (table.insert maps v))
+  maps)
+
+(fn lang-map [hydra-opts]
+  (var hydra-opts hydra-opts)
+  (let [hydra (require :hydra)
         {: auto-gen-hint} (require :Utils)]
-    (each [_ v (ipairs defaults)]
-      (local intersecting? (do
-                             (var x false)
-                             (each [_ head (ipairs maps.heads)]
-                               (when (= (. head 1) (. v 1))
-                                 (set x true)
-                                 (lua :break)))
-                             (match maps.remove
-                               removed (when (not x)
-                                         (each [_ ignore (ipairs removed)]
-                                           (when (= (. v 1) ignore)
-                                             (set x true)
-                                             (lua :break)))))
-                             x))
-      (when (not intersecting?)
-        (table.insert maps.heads v)))
-    (tset maps :hint (auto-gen-hint maps.heads ft))
-    (tset maps :config {:hint {:type :window :border :single}})
-    (local binds #(wk {:l [#(: (hydra maps) :activate)
-                           (.. "+" (if (= 0 (string.len ft)) :Lang ft))]}
+    (match (?. hydra-opts :with-default-heads)
+      true (tset hydra-opts :heads (with-default-maps hydra-opts.heads)))
+    (set hydra-opts
+         (vim.tbl_deep_extend :keep hydra-opts
+                              {:name :Lang
+                               :hint (auto-gen-hint hydra-opts.heads
+                                                    (or (?. hydra-opts :name)
+                                                        :Lang))
+                               :config {:foreign_keys :run :color :blue :hint {:border :rounded}}}))
+    (local binds #(wk {:l [#(: (hydra hydra-opts) :activate)
+                           (.. "+" hydra-opts.name)]}
                       {:prefix :<leader>}))
     (vim.api.nvim_create_autocmd [:BufEnter :BufNewFile]
-                                 {:pattern (?. maps :pattern)
-                                  :buffer (?. maps :buffer)
+                                 {:pattern (?. hydra-opts :pattern)
+                                  :buffer (?. hydra-opts :buffer)
                                   :callback binds})
     (binds)))
 
@@ -72,9 +63,9 @@
 (vim.keymap.set :n :<C-k> vim.lsp.buf.signature_help
                 {:noremap true :silent true :desc "signature help"})
 
-(lang-map {:name :Lang :heads []})
+(lang-map {:name :Lang :heads default-maps :config {:exit true}})
 
 (vim.api.nvim_create_autocmd :LspAttach
                              {:callback #(vim.cmd :SymbolsOutlineOpen)})
 
-{: lang-map}
+{: lang-map : default-maps}

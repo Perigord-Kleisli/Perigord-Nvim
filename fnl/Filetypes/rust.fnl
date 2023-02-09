@@ -26,24 +26,23 @@
   (local {:lang-map lang} (require :Mapping.Lang))
   (lang {:name " Rust"
          : buffer
-         :config {:exit true}
-         :heads [[:h
-                  toggle-inlay-hints
-                  {:desc "Toggle inlay hints" :exit true}]
+         :with-default-heads true
+         :heads [[:h toggle-inlay-hints {:desc "Toggle inlay hints"}]
                  [:P
                   rt.open_cargo_toml.open_cargo_toml
-                  {:desc "Open Cargo File" :exit true}]
+                  {:desc "Open Cargo File"}]
                  [:a
                   #(rt.code_action_group.code_action_group)
-                  {:desc "Rust Code Action" :exit true}]
+                  {:desc "Rust Code Action"}]
                  [:m
                   rt.expand_macro.expand_macro
-                  {:desc "View Macro Expansion" :exit true}]]})
+                  {:desc "View Macro Expansion"}]]})
   (local {:debug-map dbg-map} (require :Mapping.Debug))
   (local dapui (require :dapui))
   (dbg-map {:name " Debug"
             : buffer
-            :remove [:n]
+            :with-default-heads true
+            :remove [:n :<CR>]
             :config {:on_enter #(do
                                   (dapui.open)
                                   (vim.defer_fn #(rt.inlay_hints.disable) 100))
@@ -52,7 +51,7 @@
                                  (rt.inlay_hints.enable))}
             :heads [[:<CR>
                      rt.debuggables.debuggables
-                     {:desc "Start Debugging"}]]})
+                     {:desc "Rust Start Debugging"}]]})
   (vim.keymap.set :n :<A-k> #(rt.move_item.move_item true)
                   {:noremap true :silent true :desc "Move Up" : buffer})
   (vim.keymap.set :n :<A-j> #(rt.move_item.move_item false)

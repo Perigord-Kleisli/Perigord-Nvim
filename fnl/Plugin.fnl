@@ -157,12 +157,6 @@
                               :opts {:background_colour "#000000"
                                      :max_width 100}
                               :init #(set vim.notify (require :notify))}
-       ;; :folke/noice.nvim {:opts {:notify {:enabled false}
-       ;;                           :views {:cmdline_popup {:position {:row "95%"
-       ;;                                                              :col "50%"}}}}
-       ;;                    :lazy false
-       ;;                    :priority 1000
-       ;;                    :dependencies [:MunifTanjim/nui.nvim]}
        :nvim-lualine/lualine.nvim {:opts {:sections {:lualine_a [:mode]
                                                      :lualine_b [:filetype
                                                                  :filename
@@ -193,8 +187,9 @@
        :p00f/nvim-ts-rainbow {:dependencies [:nvim-treesitter/nvim-treesitter]}
        :NvChad/nvim-colorizer.lua {:opts {:user_default_options {:mode :virtualtext}}
                                    :name :colorizer}
-       :stefanwatt/lsp-lines.nvim {:config true
-                                   :dependencies [:neovim/nvim-lspconfig]}
+       "https://git.sr.ht/~whynothugo/lsp_lines.nvim" {:config true
+                                                       :name "lsp_lines"
+                                                       :dependencies [:neovim/nvim-lspconfig]}
        :lukas-reineke/indent-blankline.nvim {:name :indent_blankline
                                              :opts {:show_end_of_line true
                                                     :show_current_context true

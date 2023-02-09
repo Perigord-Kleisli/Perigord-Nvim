@@ -85,7 +85,6 @@
          :n [(cmd "Telescope notify") "Recent Notifications"]
          :b [#(btop:toggle) "Task Manager"]
          :r [telescope.oldfiles "Recent Files"]}
-     :g [nil :+Git]
      :d [nil :+Debug]
      :<leader> [telescope.find_files "Browse Files"]} {:prefix :<leader>})
 
