@@ -34,6 +34,7 @@
                  [:a
                   #(rt.code_action_group.code_action_group)
                   {:desc "Rust Code Action"}]
+                 [:<CR> #(rt.runnables.runnables) {:desc "Run"}]
                  [:m
                   rt.expand_macro.expand_macro
                   {:desc "View Macro Expansion"}]]})
