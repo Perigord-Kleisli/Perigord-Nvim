@@ -10,26 +10,33 @@
           [:t (cmd :TroubleToggle) {:desc "Toggle Diagnostic List"}]
           [:s (cmd :SymbolsOutline) {:desc "Toggle Symboltree"}]
           [:i (cmd :LspInfo) {:desc "LSP Info"}]
+          [:LL
+           #(require (.. :Filetypes. vim.bo.filetype))
+           {:desc "Force load lang"}]
           [:l lsp-lines.toggle {:desc "Toggle line diagnostics"}]]))
 
-(fn with-default-maps [maps]
+(fn with-default-maps [maps remove-load?]
   (each [_ v (ipairs default-maps)]
-    (table.insert maps v))
+    (when (not (and (= nil remove-load?) (= (. v 1) :LL)))
+      (table.insert maps v)))
   maps)
 
-(fn lang-map [hydra-opts]
+(fn lang-map [hydra-opts remove-load]
   (var hydra-opts hydra-opts)
   (let [hydra (require :hydra)
         {: auto-gen-hint} (require :Utils)]
     (match (?. hydra-opts :with-default-heads)
-      true (tset hydra-opts :heads (with-default-maps hydra-opts.heads)))
+      true (tset hydra-opts :heads
+                 (with-default-maps hydra-opts.heads remove-load)))
     (set hydra-opts
          (vim.tbl_deep_extend :keep hydra-opts
                               {:name :Lang
                                :hint (auto-gen-hint hydra-opts.heads
                                                     (or (?. hydra-opts :name)
                                                         :Lang))
-                               :config {:foreign_keys :run :color :blue :hint {:border :rounded}}}))
+                               :config {:foreign_keys :run
+                                        :color :blue
+                                        :hint {:border :rounded}}}))
     (local binds #(wk {:l [#(: (hydra hydra-opts) :activate)
                            (.. "+" hydra-opts.name)]}
                       {:prefix :<leader>}))
@@ -63,7 +70,7 @@
 (vim.keymap.set :n :<C-k> vim.lsp.buf.signature_help
                 {:noremap true :silent true :desc "signature help"})
 
-(lang-map {:name :Lang :heads default-maps :config {:exit true}})
+(lang-map {:name :Lang :heads default-maps :config {:exit true}} false)
 
 (vim.api.nvim_create_autocmd :LspAttach
                              {:callback #(vim.cmd :SymbolsOutlineOpen)})
