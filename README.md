@@ -24,6 +24,7 @@
 ### Required
 
 - Neovim >=0.9
+- A font supporting [nerd-font](https://www.nerdfonts.com/) icons
 - [npm](https://www.npmjs.com/)
 - [fennel](https://fennel-lang.org/)
 - [git](https://git-scm.com/)
