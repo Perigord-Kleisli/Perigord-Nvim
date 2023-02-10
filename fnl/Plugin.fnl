@@ -116,6 +116,8 @@
                                                       :rcarriga/nvim-notify]}
        ;; Neovim
        :folke/neodev.nvim {:ft [:lua :fennel]}
+
+
        ;; Markdown
        :iamcco/markdown-preview.nvim {:build "cd app && npm install"
                                       :ft [:markdown]}
@@ -212,7 +214,8 @@
                                                   :offsets [{:filetype :NvimTree}]}}
                                  :dependencies :nvim-tree/nvim-web-devicons}
        :wakatime/vim-wakatime {}
-       :andweeb/presence.nvim {:config #(: (require :presence) :setup)}})
+       :andweeb/presence.nvim {:config #(: (require :presence) :setup)}
+       :nathom/filetype.nvim {}})
 
 (require :Editing)
 (require :Lang.Debug)
