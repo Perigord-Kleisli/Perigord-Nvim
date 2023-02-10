@@ -38,10 +38,10 @@
         :bqn (basic-module :bqn)})
 
 (local function_literal {:CMakeLists.txt (basic-lsp :cmake :cmake)
+                         :Cargo.toml (basic-module :cargo)
                          :notify #(vim.notify :asdasd)})
 
 (let [ft (require :filetype)]
   (ft.setup {:overrides {:extensions {:lalrpop :lalrpop}
-                         :literal {:Cargo.toml :cargo}
                          : function_extensions
                          : function_literal}}))

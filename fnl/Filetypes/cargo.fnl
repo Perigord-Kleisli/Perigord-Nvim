@@ -1,3 +1,5 @@
+(set vim.bo.filetype :toml)
+
 (local crates (require :crates))
 (local {:lang-map wk} (require :Mapping.Lang))
 (vim.keymap.set :n :K crates.show_crate_popup {:noremap true :silent true})
