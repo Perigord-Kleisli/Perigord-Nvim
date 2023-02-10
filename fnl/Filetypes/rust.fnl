@@ -24,6 +24,7 @@
                                 : buffer})
   (vim.schedule vim.lsp.codelens.refresh)
   (local {:lang-map lang} (require :Mapping.Lang))
+  (local {:rust rust-repl} (require :Lang.Repl))
   (lang {:name " Rust"
          : buffer
          :with-default-heads true
@@ -34,6 +35,7 @@
                  [:a
                   #(rt.code_action_group.code_action_group)
                   {:desc "Rust Code Action"}]
+                 [:R #(rust-repl:toggle) {:desc "Toggle REPL"}]
                  [:<CR> #(rt.runnables.runnables) {:desc "Run"}]
                  [:m
                   rt.expand_macro.expand_macro
