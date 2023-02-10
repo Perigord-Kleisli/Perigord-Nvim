@@ -33,6 +33,7 @@
   "friendly-snippets": { "branch": "main", "commit": "a6f7a1609addb4e57daa6bedc300f77f8d225ab7" },
   "gitsigns.nvim": { "branch": "main", "commit": "ec4742a7eebf68bec663041d359b95637242b5c3" },
   "haskell-tools.nvim": { "branch": "master", "commit": "d4339e56a08986be3f6367a0fd081ee33412cc14" },
+  "hologram.nvim": { "branch": "main", "commit": "f5194f71ec1578d91b2e3119ff08e574e2eab542" },
   "hotpot.nvim": { "branch": "master", "commit": "1002bcdea7af06c5a7bfce0536d96bc4b03ab42e" },
   "hydra.nvim": { "branch": "master", "commit": "d00274f05363c13f29ed1fa571026a066a634cce" },
   "include-guard.nvim": { "branch": "main", "commit": "fbcb2bfabf52b528d606d492299fba00c7ba817b" },

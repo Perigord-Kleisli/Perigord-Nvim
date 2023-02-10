@@ -215,6 +215,7 @@
                                  :dependencies :nvim-tree/nvim-web-devicons}
        :wakatime/vim-wakatime {}
        :andweeb/presence.nvim {:config #(: (require :presence) :setup)}
+       :edluffy/hologram.nvim {:config true}
        :nathom/filetype.nvim {}})
 
 (require :Editing)
