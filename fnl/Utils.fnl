@@ -1,4 +1,12 @@
-(local strlen (. (require :plenary.strings) :strdisplaywidth))
+(local secrets
+       (let [filepath (.. (vim.fn.stdpath :config) :/secrets.json)]
+         (let [f (io.open filepath :r)]
+          (when (= f nil)
+            (with-open [file (io.open filepath :w+)]
+              (var M {})
+              (tset M :openai-api-key (vim.fn.input "OpenAI api key: "))
+              (file:write (vim.fn.json_encode M)))))
+         (vim.fn.json_decode (vim.fn.readfile filepath))))
 
 (fn assoc [t k v]
   (tset t k v)
@@ -11,7 +19,7 @@
     x))
 
 (fn respace-str [str size]
-  (let [space (string.rep " " (- size (strlen str)))]
+  (let [space (string.rep " " (- size (length str)))]
     (.. str space)))
 
 (fn chunks [arr size]
@@ -36,7 +44,7 @@
                          (. v 1)
                          (. v 3 :desc))
         max-strlen (accumulate [max 0 k v (pairs binds-and-desc)]
-                     (math.max max (strlen (.. k v))))
+                     (math.max max (length (.. k v))))
         spaced-strs (icollect [k v (pairs binds-and-desc)]
                       (respace-str (.. "_" k "_: " v) (+ 7 max-strlen)))
         name (or name "")]
@@ -45,4 +53,4 @@
                               (.. "    " (table.concat v)))
                             (table.concat "\n")))))
 
-{: strlen : assoc : rename-key : chunks : auto-gen-hint}
+{ : assoc : rename-key : chunks : auto-gen-hint : secrets}

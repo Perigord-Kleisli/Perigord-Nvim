@@ -33,6 +33,7 @@
                        :keep (fn []
                                (or (= lvl :ERROR) (= lvl :WARN)))}))))
 
-(vim.diagnostic.config {:virtual_text false})
+(vim.diagnostic.config {:virtual_text false :virtual_lines true})
+(vim.diagnostic.config {:virtual_text false :virtual_lines true} (. (vim.api.nvim_get_namespaces) :neotest))
 
 {: capabilities}

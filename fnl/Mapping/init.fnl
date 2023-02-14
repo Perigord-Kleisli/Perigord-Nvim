@@ -43,6 +43,9 @@
 (vim.keymap.set :x :<A-k> :<Plug>GoVSMUp
                 {:noremap true :silent true :desc "Move up"})
 
+(let [{: prompt} (require :neural)]
+  (vim.keymap.set :n :<A-P> prompt {:noremap true :silent true :desc "Call OpenAI"}))
+
 (vim.keymap.set :x :<A-j> :<Plug>GoVSMDown
                 {:noremap true :silent true :desc "Move down"})
 

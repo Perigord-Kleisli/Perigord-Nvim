@@ -1,4 +1,5 @@
 (local lazym (require :lazy))
+(local utils (require :Utils))
 (fn import [path]
   (fn []
     (if path
@@ -116,8 +117,6 @@
                                                       :rcarriga/nvim-notify]}
        ;; Neovim
        :folke/neodev.nvim {:ft [:lua :fennel]}
-
-
        ;; Markdown
        :iamcco/markdown-preview.nvim {:build "cd app && npm install"
                                       :ft [:markdown]}
@@ -128,7 +127,7 @@
        :luc-tielen/telescope_hoogle {:config (telescope-extension :hoogle)
                                      :ft [:haskell]
                                      :dependencies [:nvim-telescope/telescope.nvim]}
-       ;; C++ 
+       ;; C++
        :p00f/clangd_extensions.nvim {:ft [:cpp]}
        :madskjeldgaard/cppman.nvim {:ft [:cpp]}
        :PatWie/include-guard.nvim {:ft [:cpp]}
@@ -195,7 +194,7 @@
        :NvChad/nvim-colorizer.lua {:opts {:user_default_options {:mode :virtualtext}}
                                    :name :colorizer}
        "https://git.sr.ht/~whynothugo/lsp_lines.nvim" {:config true
-                                                       :name "lsp_lines"
+                                                       :name :lsp_lines
                                                        :dependencies [:neovim/nvim-lspconfig]}
        :lukas-reineke/indent-blankline.nvim {:name :indent_blankline
                                              :opts {:show_end_of_line true
@@ -214,6 +213,12 @@
                                                   :offsets [{:filetype :NvimTree}]}}
                                  :dependencies :nvim-tree/nvim-web-devicons}
        :wakatime/vim-wakatime {}
+       :dense-analysis/neural {:opts {:source {:openai {:api_key utils.secrets.openai-api-key}}
+                                      :ui {:prompt_enabled true
+                                           :animated_sign_enabled true
+                                           :prompt_icon ""}}
+                               :dependencies [:elpiloto/significant.nvim
+                                              :MunifTanjim/nui.nvim]}
        :andweeb/presence.nvim {:config #(: (require :presence) :setup)}
        :edluffy/hologram.nvim {:config true}
        :nathom/filetype.nvim {}})

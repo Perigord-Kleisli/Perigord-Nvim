@@ -34,6 +34,7 @@
 
 #### General usage
 - [fontconfig](https://www.freedesktop.org/wiki/Software/fontconfig/)
+- [python (3.7+)](https://www.python.org/)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [wakatime](https://wakatime.com)
 - [btop](https://github.com/aristocratos/btop)
@@ -105,7 +106,8 @@
 - `cd app && npm install` sometimes may not run for `markdown-preview.nvim`. Manually run `npm install` on that directory. Most commonly: `~/.local/share/nvim/lazy/markdown-preview.nvim/app`.
 - `vim.ui.select` on the startup menu causes the number columns to show up.
 - Launching on small screens causes the startup text to become wobbly
-- `nvim-cmp` suddenly stops working on Rust and Haskell after a duration.
+- `nvim-cmp` suddenly stops working on Haskell after a duration.
+- Markdown mode has issues when entering from an existing buffer.
 
 ## Modules
 - Utils
