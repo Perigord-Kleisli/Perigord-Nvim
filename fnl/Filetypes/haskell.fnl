@@ -3,7 +3,6 @@
 (local {: cmd} (require :hydra.keymap-util))
 
 (fn on_attach [client bufnr]
-  (vim.lsp.codelens.display nil bufnr client)
   (local {:lang-map wk} (require :Mapping.Lang))
   (wk {:name " Haskell"
        :with-default-heads true
@@ -32,11 +31,10 @@
          :ghciInitialPrompt "λ: "
          :ghciCmd "stack ghci --test --no-load --no-build --main-is TARGET --ghci-options -fprint-evld-with-show"}]))
 
-(ht.setup {:hls {: capabilities
+(ht.start_or_attach 
+          {:hls {: capabilities
                  :settings {:haskell {:formattingProvider :floskell
                                       :plugin {:rename {:config {:diff true}}}}}
                  :cmd [:haskell-language-server :--lsp]
                  : on_attach}
            :tools {:repl {:handler :toggleterm :auto_focus true}}})
-
-(ht.lsp.start)

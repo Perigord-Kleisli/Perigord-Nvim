@@ -12,7 +12,7 @@
                                  (set lib.enabled true)
                                  (set lib.plugins true)))})
 
-  (lspconfig.sumneko_lua.setup {: capabilities
+  (lspconfig.lua_ls.setup {: capabilities
                                 :settings {:Lua {:runtime {:version :LuaJIT
                                                            :path runtime-path}
                                                  :diagnostics {:globals [:vim]}
@@ -20,4 +20,4 @@
                                                                                                      true)}
                                                  :telemetry {:enable false}}}}))
 
-(vim.cmd "LspStart sumneko_lua")
+(vim.cmd "LspStart lua_ls")
