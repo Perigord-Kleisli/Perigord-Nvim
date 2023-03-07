@@ -8,7 +8,7 @@
        :with-default-heads true
        :pattern :*.hs
        :heads [[:R ht.repl.toggle {:desc "Toggle REPL"}]
-               [:<C-r> ht.repl.reload {:desc "Reload REPL"}]
+               [:<CR> ht.repl.reload {:desc "Reload REPL"}]
                [:p (cmd :HsPackageCabal) {:desc "Open Cabal File"}]
                [:P (cmd :HsProjectFile) {:desc "Open Project File"}]
                [:h (cmd "Telescope hoogle") {:desc "Hoogle search"}]]})
