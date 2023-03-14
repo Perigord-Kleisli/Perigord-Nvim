@@ -87,6 +87,7 @@
        ;; Completions
        :hrsh7th/nvim-cmp {:file :Editing.Completion
                           :dependencies [:neovim/nvim-lspconfig]}
+       :tzachar/cmp-tabnine {:dependencies [:hrsh7th/nvim-cmp] :build "./install.sh" }
        :hrsh7th/cmp-buffer {:dependencies [:hrsh7th/nvim-cmp]}
        :hrsh7th/cmp-calc {:dependencies [:hrsh7th/nvim-cmp]}
        :ray-x/cmp-treesitter {:dependencies [:hrsh7th/nvim-cmp]}
@@ -137,7 +138,7 @@
        :Civitasv/cmake-tools.nvim {:ft [:cmake]}
        ;; APL
        "https://git.sr.ht/~detegr/nvim-dyalog" {:ft [:apl :dyalog]}
-       :justin2004/vim-apl {:ft [:apl :dyalog] :init #(set vim.g.apl_prefix_key "\\")}
+       :justin2004/vim-apl {:ft [:apl :dyalog] :init #(set vim.g.apl_prefix_key "\\") }
        ;; Rust
        :Saecki/crates.nvim {:opts {:null_ls {:enabled true :name :Crates}}}
        :simrat39/rust-tools.nvim {:ft [:rust]}

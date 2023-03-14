@@ -26,9 +26,11 @@
                    :Event ""
                    :Operator ""
                    :TypeParameter ""})
+
 (local kind-menu {:nvim_lsp "[LSP]"
                   :luasnip "[Snippet]"
                   :calc "[Calc]"
+                  :cmp_tabnine "[AI]"
                   :greek "[Greek]"
                   :latex_symbols "[Symbol]"
                   :nerdfont "[Nerdfont]"
@@ -38,15 +40,17 @@
                   :treesitter "[TS]"
                   :buffer "[File]"
                   :path "[Path]"})
+
 (local {: rename-key} (require :Utils))
 
 ((. (require :luasnip.loaders.from_vscode) :lazy_load))
 (cmp.setup {:snippet {:expand (fn [args]
-
                                 (luasnip.lsp_expand (. args :body)))}
             :sources (cmp.config.sources [{:name :nvim_lsp}
                                           {:name :luasnip}
                                           {:name :nvim_lua}
+                                          {:name :cmp_tabnine
+                                           :keyword_length 2}
                                           {:name :treesitter :keyword_length 2}
                                           {:name :path}
                                           {:name :calc}
@@ -102,3 +106,10 @@
 (cmp.setup.cmdline "/" {:sources (cmp.config.sources [{:name :treesitter}
                                                       {:name :buffer}])
                         :mapping cmd-mapping})
+
+(let [group (vim.api.nvim_create_augroup :prefetch {:clear true})
+      cmp-tabnine (require :cmp_tabnine)]
+  (vim.api.nvim_create_autocmd :BufRead
+                               {: group
+                                :pattern "*"
+                                :callback #(cmp-tabnine:prefetch (vim.fn.expand "%:p"))}))
