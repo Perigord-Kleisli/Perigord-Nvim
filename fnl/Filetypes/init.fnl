@@ -33,7 +33,7 @@
                     {: capabilities} (require :Lang.LSP)]
                 (set vim.bo.filetype :c)
                 (clangd-ext.setup {:server {: capabilities}}))
-                ; (vim.cmd.LspStart :clangd))
+        :ts (basic-lsp :typescript :tsserver)
         :idr (basic-lsp :idris2 :idris2_lsp)
         :rs (basic-module :rust)
         :fnl (basic-module :fennel)
