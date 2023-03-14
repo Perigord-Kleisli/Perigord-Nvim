@@ -24,15 +24,7 @@
      (require (.. :Filetypes. lang))))
 
 (local function_extensions
-       {:cpp #(let [clangd-ext (require :clangd_extensions)
-                    {: capabilities} (require :Lang.LSP)]
-                (set vim.bo.filetype :cpp)
-                (clangd-ext.setup {:server {: capabilities}})
-                (vim.cmd.LspStart :clangd))
-        :c   #(let [clangd-ext (require :clangd_extensions)
-                    {: capabilities} (require :Lang.LSP)]
-                (set vim.bo.filetype :c)
-                (clangd-ext.setup {:server {: capabilities}}))
+       {:cpp (basic-module :cpp)
         :ts (basic-lsp :typescript :tsserver)
         :idr (basic-lsp :idris2 :idris2_lsp)
         :rs (basic-module :rust)

@@ -10,7 +10,7 @@
                             formatting.beautysh
                             formatting.black
                             formatting.cabal_fmt
-                            formatting.clang_format
+                            ; formatting.clang_format
                             formatting.cmake_format
                             formatting.fnlfmt
                             formatting.prettier
@@ -21,7 +21,7 @@
                             diagnostics.deadnix
                             diagnostics.flake8
                             diagnostics.mypy
-                            diagnostics.cppcheck
+                            ; diagnostics.cppcheck
                             diagnostics.pylint
                             diagnostics.shellcheck
                             code_actions.shellcheck
