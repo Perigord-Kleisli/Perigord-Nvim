@@ -7,6 +7,7 @@
           [:a vim.lsp.buf.code_action {:desc "Code Action"}]
           [:e vim.lsp.codelens.run {:desc "Code lens"}]
           [:r vim.lsp.buf.rename {:desc :Rename}]
+          [:<CR> (cmd :!./%) {:desc :Run}]
           [:t (cmd :TroubleToggle) {:desc "Toggle Diagnostic List"}]
           [:s (cmd :SymbolsOutline) {:desc "Toggle Symboltree"}]
           [:i (cmd :LspInfo) {:desc "LSP Info"}]

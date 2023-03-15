@@ -26,6 +26,7 @@
 (local function_extensions
        {:cpp (basic-module :cpp)
         :ts (basic-lsp :typescript :tsserver)
+        :js (basic-lsp :javascript :tsserver)
         :idr (basic-lsp :idris2 :idris2_lsp)
         :rs (basic-module :rust)
         :fnl (basic-module :fennel)

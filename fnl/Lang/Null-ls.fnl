@@ -10,10 +10,9 @@
                             formatting.beautysh
                             formatting.black
                             formatting.cabal_fmt
-                            ; formatting.clang_format
+                            formatting.clang_format
                             formatting.cmake_format
                             formatting.fnlfmt
-                            formatting.prettier
                             formatting.trim_newlines
                             formatting.trim_whitespace
                             formatting.jq
@@ -21,12 +20,15 @@
                             diagnostics.deadnix
                             diagnostics.flake8
                             diagnostics.mypy
-                            ; diagnostics.cppcheck
+                            diagnostics.cppcheck
                             diagnostics.pylint
                             diagnostics.shellcheck
                             code_actions.shellcheck
                             (assoc diagnostics.cspell :filetypes [:markdown])
                             code_actions.cspell
+                            formatting.eslint_d
+                            diagnostics.eslint_d
+                            code_actions.eslint_d
                             null-ls.builtins.hover.dictionary
                             null-ls.builtins.hover.printenv]}))
 
