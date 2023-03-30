@@ -87,7 +87,8 @@
        ;; Completions
        :hrsh7th/nvim-cmp {:file :Editing.Completion
                           :dependencies [:neovim/nvim-lspconfig]}
-       :tzachar/cmp-tabnine {:dependencies [:hrsh7th/nvim-cmp] :build "./install.sh" }
+       :tzachar/cmp-tabnine {:dependencies [:hrsh7th/nvim-cmp]
+                             :build :./install.sh}
        :hrsh7th/cmp-buffer {:dependencies [:hrsh7th/nvim-cmp]}
        :hrsh7th/cmp-calc {:dependencies [:hrsh7th/nvim-cmp]}
        :ray-x/cmp-treesitter {:dependencies [:hrsh7th/nvim-cmp]}
@@ -129,8 +130,8 @@
                                      :ft [:haskell]
                                      :dependencies [:nvim-telescope/telescope.nvim]}
        ;; Idris
-       :ShinKage/idris2-nvim {:dependencies [:MunifTanjim/nui.nvim :neovim/nvim-lspconfig]}
-
+       :ShinKage/idris2-nvim {:dependencies [:MunifTanjim/nui.nvim
+                                             :neovim/nvim-lspconfig]}
        ;; C++
        :p00f/clangd_extensions.nvim {:ft [:cpp]}
        :madskjeldgaard/cppman.nvim {:ft [:cpp]}
@@ -138,7 +139,8 @@
        :Civitasv/cmake-tools.nvim {:ft [:cmake]}
        ;; APL
        "https://git.sr.ht/~detegr/nvim-dyalog" {:ft [:apl :dyalog]}
-       :justin2004/vim-apl {:ft [:apl :dyalog] :init #(set vim.g.apl_prefix_key "\\") }
+       :justin2004/vim-apl {:ft [:apl :dyalog]
+                            :init #(set vim.g.apl_prefix_key "\\")}
        ;; Rust
        :Saecki/crates.nvim {:opts {:null_ls {:enabled true :name :Crates}}}
        :simrat39/rust-tools.nvim {:ft [:rust]}
@@ -160,8 +162,11 @@
                                              :nvim-neotest/neotest-python]}
        ;; UI
        :j-hui/fidget.nvim {:config true}
-       :simrat39/symbols-outline.nvim {:opts {:width 15}}
        :glepnir/dashboard-nvim {:event :UIEnter :config #(require :UI.Startup)}
+       :SmiteshP/nvim-navbuddy {:dependencies [:neovim/nvim-lspconfig
+                                               :SmiteshP/nvim-navic
+                                               :MunifTanjim/nui.nvim]
+                                :opts {:lsp {:auto_attach true}}}
        :karb94/neoscroll.nvim {:config true}
        :nacro90/numb.nvim {:config true}
        :rcarriga/nvim-notify {:lazy false
