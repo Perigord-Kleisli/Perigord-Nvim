@@ -8,7 +8,7 @@
           [:e vim.lsp.codelens.run {:desc "Code lens"}]
           [:r vim.lsp.buf.rename {:desc :Rename}]
           [:t (cmd :TroubleToggle) {:desc "Toggle Diagnostic List"}]
-          [:s (cmd :SymbolsOutline) {:desc "Toggle Symboltree"}]
+          [:s (cmd :Navbuddy) {:desc "Toggle Navbuddy"}]
           [:i (cmd :LspInfo) {:desc "LSP Info"}]
           [:LL
            #(require (.. :Filetypes. vim.bo.filetype))
@@ -71,8 +71,5 @@
                 {:noremap true :silent true :desc "signature help"})
 
 (lang-map {:name :Lang :heads default-maps :config {:exit true}} false)
-
-(vim.api.nvim_create_autocmd :LspAttach
-                             {:callback #(vim.cmd :SymbolsOutlineOpen)})
 
 {: lang-map : default-maps}
