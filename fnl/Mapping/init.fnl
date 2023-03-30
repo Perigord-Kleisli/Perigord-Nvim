@@ -4,6 +4,9 @@
 (vim.keymap.set :v :<C-c> "\"+y"
                 {:silent false :desc "Copy to system clipboard"})
 
+(vim.keymap.set :i :<C-v> "<C-r>+"
+                {:silent false :desc "Paste from system clipboard"})
+
 (vim.keymap.set :n :<C-Up> ":resize +3<CR>"
                 {:noremap true :silent true :desc "Vertical Resize+"})
 
@@ -93,6 +96,7 @@
          :b [#(btop:toggle) "Task Manager"]
          :r [telescope.oldfiles "Recent Files"]}
      :d [nil :+Debug]
+     :x [ (. (require :notify) :dismiss) "Dismiss notifications"]
      :<leader> [telescope.find_files "Browse Files"]} {:prefix :<leader>})
 
 (require :Mapping.Buffers)
