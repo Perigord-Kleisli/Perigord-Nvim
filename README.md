@@ -106,7 +106,7 @@
 - `cd app && npm install` sometimes may not run for `markdown-preview.nvim`. Manually run `npm install` on that directory. Most commonly: `~/.local/share/nvim/lazy/markdown-preview.nvim/app`.
 - `vim.ui.select` on the startup menu causes the number columns to show up.
 - Launching on small screens causes the startup text to become wobbly
-- `nvim-cmp` suddenly stops working on Haskell after a duration.
+- Autocomplete fails to work when creating a macro.
 - Markdown mode has issues when entering from an existing buffer.
 
 ## Modules
