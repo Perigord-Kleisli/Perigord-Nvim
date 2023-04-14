@@ -203,7 +203,7 @@
        :folke/trouble.nvim {:config true
                             :dependencies [:nvim-tree/nvim-web-devicons]}
        :p00f/nvim-ts-rainbow {:dependencies [:nvim-treesitter/nvim-treesitter]}
-       :NvChad/nvim-colorizer.lua {:opts {:user_default_options {:mode :virtualtext}}
+       :NvChad/nvim-colorizer.lua {:opts {:user_default_options {:mode :virtualtext :names false}}
                                    :name :colorizer}
        "https://git.sr.ht/~whynothugo/lsp_lines.nvim" {:config true
                                                        :name :lsp_lines
@@ -225,6 +225,7 @@
                                                   :offsets [{:filetype :NvimTree}]}}
                                  :dependencies :nvim-tree/nvim-web-devicons}
        :wakatime/vim-wakatime {}
+       :williamboman/mason.nvim {:build ":MasonUpdate" :config true :opts {}}
        :dense-analysis/neural {:opts {:source {:openai {:api_key utils.secrets.openai-api-key}}
                                       :ui {:prompt_enabled true
                                            :animated_sign_enabled true
