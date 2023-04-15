@@ -27,6 +27,7 @@
        {:cpp (basic-module :cpp)
         :ts (basic-lsp :typescript :tsserver)
         :js (basic-lsp :javascript :tsserver)
+        :py (basic-module :python)
         :idr (basic-module :idris2)
         :rs (basic-module :rust)
         :fnl (basic-module :fennel)

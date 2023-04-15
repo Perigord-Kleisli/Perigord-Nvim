@@ -18,10 +18,7 @@
                             formatting.jq
                             code_actions.statix
                             diagnostics.deadnix
-                            diagnostics.flake8
-                            diagnostics.mypy
                             diagnostics.cppcheck
-                            diagnostics.pylint
                             diagnostics.shellcheck
                             code_actions.shellcheck
                             (assoc diagnostics.cspell :filetypes [:markdown])
