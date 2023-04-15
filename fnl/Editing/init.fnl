@@ -17,6 +17,8 @@
 (set vim.o.mouse :a)
 (set vim.o.cmdheight 0)
 
+(vim.cmd "set clipboard+=unnamedplus")
+
 (vim.api.nvim_create_autocmd :RecordingEnter
                              {:pattern "*"
                               :callback #(vim.notify (.. "Recording Macro: ("
