@@ -189,6 +189,7 @@
                                    :init #(set vim.o.laststatus 3)
                                    :dependencies [:nvim-tree/nvim-web-devicons]}
        :mfussenegger/nvim-dap {}
+       :chrisgrieser/nvim-early-retirement {:config true :event :VeryLazy}
        :rcarriga/nvim-dap-ui {:name :dapui
                               :config true
                               :dependencies [:mfussenegger/nvim-dap]}

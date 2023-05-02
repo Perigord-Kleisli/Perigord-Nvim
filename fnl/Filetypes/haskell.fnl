@@ -29,12 +29,14 @@
          :ghciEnv (vim.empty_dict)
          :ghciPrompt "λ: "
          :ghciInitialPrompt "λ: "
-         :ghciCmd "stack ghci --test --no-load --no-build --main-is TARGET --ghci-options -fprint-evld-with-show"}]))
+         :ghciCmd "stack ghci --test --no-load --no-build --main-is TARGET --ghci-options -fprint-evld-with-show"}])
+  (ht.dap.discover_configurations bufnr))
 
-(ht.start_or_attach 
+(ht.start_or_attach
           {:hls {: capabilities
-                 :settings {:haskell {:formattingProvider :floskell
+                 :settings {:haskell {:formattingProvider :fourmolu
                                       :plugin {:rename {:config {:diff true}}}}}
                  :cmd [:haskell-language-server :--lsp]
                  : on_attach}
-           :tools {:repl {:handler :toggleterm :auto_focus true}}})
+           :tools {:repl {:handler :toggleterm :auto_focus true}
+                   :dap {:cmd [ "haskell-debug-adapter"]}}})
