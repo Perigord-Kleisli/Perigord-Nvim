@@ -27,7 +27,7 @@
       lazy (require :lazy)]
   (db {:theme :doom
        :config {: header
-                :center [{:icon "  "
+                :center [{:icon "󰪶  "
                           :desc :Sessions
                           :key :s
                           :action #((. (require :telescope) :extensions :sesh :sesh))}
@@ -35,15 +35,15 @@
                           :desc "Recent files"
                           :key :r
                           :action "Telescope oldfiles"}
-                         {:icon "  "
+                         {:icon "󰍉  "
                           :desc "Find File"
                           :key :f
                           :action "Telescope find_files"}
-                         {:icon "  "
+                         {:icon "  "
                           :desc "Find Text"
                           :key :t
                           :action "Telescope live_grep"}
-                         {:icon "  "
+                         {:icon "󰌌  "
                           :desc "(WIP) mappings"
                           :key "?"
                           :action #(vim.notify "Guide is still WIP" :error)}

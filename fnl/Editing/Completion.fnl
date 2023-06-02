@@ -1,31 +1,31 @@
 (local luasnip (require :luasnip))
 (local cmp (require :cmp))
 
-(local kind-icons {:Text ""
-                   :Method :m
-                   :Function ""
+(local kind-icons {:Text "󰊄"
+                   :Method ""
+                   :Function "󰊕"
                    :Constructor ""
                    :Field ""
                    :Variable ""
-                   :Class ""
+                   :Class ""
                    :Interface ""
                    :Module ""
                    :Property ""
                    :Unit ""
-                   :Value ""
-                   :Enum ""
-                   :Keyword ""
+                   :Value ""
+                   :Enum ""
+                   :Keyword ""
                    :Snippet ""
-                   :Color ""
-                   :File ""
+                   :Color ""
+                   :File ""
                    :Reference ""
-                   :Folder ""
+                   :Folder ""
                    :EnumMember ""
-                   :Constant ""
+                   :Constant ""
                    :Struct ""
                    :Event ""
                    :Operator ""
-                   :TypeParameter ""})
+                   :TypeParameter ""})
 
 (local kind-menu {:nvim_lsp "[LSP]"
                   :luasnip "[Snippet]"
