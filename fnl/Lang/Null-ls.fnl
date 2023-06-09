@@ -13,6 +13,9 @@
                             formatting.clang_format
                             formatting.cmake_format
                             formatting.fnlfmt
+                            (-> formatting.fantomas
+                                (assoc :command :dotnet)
+                                (assoc :args [:fantomas :$FILENAME]))
                             formatting.trim_newlines
                             formatting.trim_whitespace
                             formatting.jq
