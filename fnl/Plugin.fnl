@@ -144,6 +144,10 @@
        ;; Rust
        :Saecki/crates.nvim {:opts {:null_ls {:enabled true :name :Crates}}}
        :simrat39/rust-tools.nvim {:ft [:rust]}
+
+       ;; FSharp
+       :ionide/ionide-vim {}
+
        ;; BQN
        "https://git.sr.ht/~detegr/nvim-bqn" {:ft [:bqn]}
        :mlochbaum/BQN {:rtp :editors/vim}
