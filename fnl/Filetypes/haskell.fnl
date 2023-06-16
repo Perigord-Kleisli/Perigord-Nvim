@@ -7,7 +7,7 @@
   (wk {:name " Haskell"
        :with-default-heads true
        :pattern :*.hs
-       :heads [[:<CR> (ht.repl.toggle) {:desc "Toggle REPL"}]
+       :heads [[:<CR> ht.repl.toggle {:desc "Toggle REPL"}]
                [:p (cmd :HsPackageCabal) {:desc "Open Cabal File"}]
                [:P (cmd :HsProjectFile) {:desc "Open Project File"}]
                [:h (cmd "Telescope hoogle") {:desc "Hoogle search"}]]})
