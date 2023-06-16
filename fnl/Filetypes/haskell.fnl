@@ -19,11 +19,6 @@
                                               :n false)
                        (ht.repl.toggle))
                    (set repl-open true)
-                   (vim.keymap.set :n :q
-                                   #(do
-                                      (vim.cmd :q)
-                                      (set repl-open false))
-                                   {:desc "Hide REPL" :buffer true})
                    (vim.keymap.set :n " l<CR>"
                                    #(do
                                       (vim.cmd :q)
