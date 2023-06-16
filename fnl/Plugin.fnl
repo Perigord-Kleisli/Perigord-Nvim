@@ -115,6 +115,7 @@
        :nvim-tree/nvim-tree.lua {:config true
                                  :dependencies [:nvim-tree/nvim-web-devicons]}
        :nvim-telescope/telescope.nvim {:file :Editing.Telescope
+                                       :tag :0.1.1
                                        :dependencies [:nvim-lua/plenary.nvim
                                                       :rcarriga/nvim-notify]}
        ;; Neovim
@@ -144,10 +145,8 @@
        ;; Rust
        :Saecki/crates.nvim {:opts {:null_ls {:enabled true :name :Crates}}}
        :simrat39/rust-tools.nvim {:ft [:rust]}
-
        ;; FSharp
        :ionide/ionide-vim {}
-
        ;; BQN
        "https://git.sr.ht/~detegr/nvim-bqn" {:ft [:bqn]}
        :mlochbaum/BQN {:rtp :editors/vim}
@@ -208,7 +207,8 @@
        :folke/trouble.nvim {:config true
                             :dependencies [:nvim-tree/nvim-web-devicons]}
        :p00f/nvim-ts-rainbow {:dependencies [:nvim-treesitter/nvim-treesitter]}
-       :NvChad/nvim-colorizer.lua {:opts {:user_default_options {:mode :virtualtext :names false}}
+       :NvChad/nvim-colorizer.lua {:opts {:user_default_options {:mode :virtualtext
+                                                                 :names false}}
                                    :name :colorizer}
        "https://git.sr.ht/~whynothugo/lsp_lines.nvim" {:config true
                                                        :name :lsp_lines
