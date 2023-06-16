@@ -165,7 +165,7 @@
                                              :folke/neodev.nvim
                                              :nvim-neotest/neotest-python]}
        ;; UI
-       :j-hui/fidget.nvim {:config true}
+       :j-hui/fidget.nvim {:config true :tag :legacy}
        :glepnir/dashboard-nvim {:event :UIEnter :config #(require :UI.Startup)}
        :SmiteshP/nvim-navbuddy {:dependencies [:neovim/nvim-lspconfig
                                                :SmiteshP/nvim-navic
