@@ -24,7 +24,7 @@
      (require (.. :Filetypes. lang))))
 
 (local function_extensions
-       {:cpp (basic-module :cpp)
+       {:cpp (basic-lsp :cpp :ccls)
         :ts (basic-lsp :typescript :tsserver)
         :js (basic-lsp :javascript :tsserver)
         :fs #(set vim.bo.filetype :fsharp)
