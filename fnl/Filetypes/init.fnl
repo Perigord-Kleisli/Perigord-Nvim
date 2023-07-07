@@ -37,6 +37,7 @@
         :apl (basic-module :apl)
         :dyalog (basic-module :apl)
         :lua (basic-module :lua)
+        :lean (basic-module :lean)
         :nix (basic-module :nix)
         :bqn (basic-module :bqn)})
 

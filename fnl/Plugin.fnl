@@ -158,6 +158,7 @@
                                    :lfe
                                    :fennel
                                    :dune]}
+       :julian/lean.nvim {:ft [:lean]}
        ;; Testing
        :nvim-neotest/neotest {:dependencies [:MrcJkb/neotest-haskell
                                              :rouge8/neotest-rust
