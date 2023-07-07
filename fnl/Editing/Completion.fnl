@@ -49,8 +49,6 @@
             :sources (cmp.config.sources [{:name :nvim_lsp}
                                           {:name :luasnip}
                                           {:name :nvim_lua}
-                                          {:name :cmp_tabnine
-                                           :keyword_length 2}
                                           {:name :treesitter :keyword_length 2}
                                           {:name :path}
                                           {:name :calc}
@@ -107,9 +105,6 @@
                                                       {:name :buffer}])
                         :mapping cmd-mapping})
 
-(let [group (vim.api.nvim_create_augroup :prefetch {:clear true})
-      cmp-tabnine (require :cmp_tabnine)]
-  (vim.api.nvim_create_autocmd :BufRead
-                               {: group
-                                :pattern "*"
-                                :callback #(cmp-tabnine:prefetch (vim.fn.expand "%:p"))}))
+(local utils (require :Utils))
+(local chatgpt (require :chatgpt))
+(chatgpt.setup {:api_key_cmd (.. "echo -n " utils.secrets.openai-api-key)})

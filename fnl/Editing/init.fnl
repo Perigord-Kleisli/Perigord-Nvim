@@ -26,3 +26,6 @@
 (vim.api.nvim_create_autocmd :RecordingLeave
                              {:pattern "*"
                               :callback #(vim.notify "Finished recording Macro")})
+
+
+

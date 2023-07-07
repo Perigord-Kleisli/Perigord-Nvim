@@ -87,8 +87,6 @@
        ;; Completions
        :hrsh7th/nvim-cmp {:file :Editing.Completion
                           :dependencies [:neovim/nvim-lspconfig]}
-       :tzachar/cmp-tabnine {:dependencies [:hrsh7th/nvim-cmp]
-                             :build :./install.sh}
        :hrsh7th/cmp-buffer {:dependencies [:hrsh7th/nvim-cmp]}
        :hrsh7th/cmp-calc {:dependencies [:hrsh7th/nvim-cmp]}
        :ray-x/cmp-treesitter {:dependencies [:hrsh7th/nvim-cmp]}
@@ -106,6 +104,9 @@
                                              :hrsh7th/nvim-cmp]}
        :hrsh7th/cmp-path {:dependencies [:hrsh7th/nvim-cmp]}
        :hrsh7th/cmp-cmdline {:dependencies [:hrsh7th/nvim-cmp]}
+       :jackMort/ChatGPT.nvim {:dependencies [:MunifTanjim/nui.nvim
+                                              :nvim-lua/plenary.nvim
+                                              :nvim-telescope/telescope.nvim]}
        :mbbill/undotree {}
        :windwp/nvim-autopairs {:opts {:check_ts true :fast_wrap {}}
                                :dependencies [:nvim-treesitter/nvim-treesitter
@@ -232,12 +233,6 @@
                                  :dependencies :nvim-tree/nvim-web-devicons}
        :wakatime/vim-wakatime {}
        :williamboman/mason.nvim {:build ":MasonUpdate" :config true :opts {}}
-       :dense-analysis/neural {:opts {:source {:openai {:api_key utils.secrets.openai-api-key}}
-                                      :ui {:prompt_enabled true
-                                           :animated_sign_enabled true
-                                           :prompt_icon ""}}
-                               :dependencies [:elpiloto/significant.nvim
-                                              :MunifTanjim/nui.nvim]}
        :andweeb/presence.nvim {:config #(: (require :presence) :setup)}
        :edluffy/hologram.nvim {:config true}
        :nathom/filetype.nvim {}})
