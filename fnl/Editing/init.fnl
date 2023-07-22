@@ -27,5 +27,16 @@
                              {:pattern "*"
                               :callback #(vim.notify "Finished recording Macro")})
 
+(vim.api.nvim_create_autocmd [:FocusGained :VimEnter]
+                             {:callback #(vim.defer_fn #(os.execute (.. "xmodmap "
+                                                                        (.. (vim.fn.stdpath :config)
+                                                                            :/scripts/swap_esc.xmodmap
+                                                                            "> /dev/null 2>&1")))
+                                                       200)})
 
-
+(vim.api.nvim_create_autocmd [:FocusLost :QuitPre]
+                             {:callback #(vim.defer_fn #(os.execute (.. "xmodmap "
+                                                                        (.. (vim.fn.stdpath :config)
+                                                                            :/scripts/unswap_esc.xmodmap
+                                                                            "> /dev/null 2>&1")))
+                                                       200)})

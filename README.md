@@ -8,6 +8,7 @@
     - [Haskell](#haskell)
     - [Rust](#rust)
     - [C++](#c)
+    - [Cmake](#cmake)
     - [Fennel](#fennel)
     - [Lua](#lua)
     - [Nix](#nix)
@@ -29,6 +30,7 @@
 - [fennel](https://fennel-lang.org/)
 - [git](https://git-scm.com/)
 - [gcc](https://gcc.gnu.org/)
+- xmodmap
 
 ### Optional
 
@@ -38,6 +40,7 @@
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [wakatime](https://wakatime.com)
 - [btop](https://github.com/aristocratos/btop)
+- A valid OpenAI API Key
 - [neovide](https://neovide.dev)
 - [JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads)
 
