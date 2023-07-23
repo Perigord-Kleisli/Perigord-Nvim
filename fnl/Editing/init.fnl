@@ -26,27 +26,3 @@
 (vim.api.nvim_create_autocmd :RecordingLeave
                              {:pattern "*"
                               :callback #(vim.notify "Finished recording Macro")})
-
-(var focuses 0)
-(vim.api.nvim_create_autocmd [:FocusGained :VimEnter]
-                             {:callback #(vim.defer_fn #(when (<= focuses 5)
-                                                          (os.execute (.. "xmodmap "
-                                                                          (.. (vim.fn.stdpath :config)
-                                                                              :/scripts/swap_esc.xmodmap
-                                                                              "> /dev/null 2>&1")))
-                                                          (set focuses (+ focuses 1)))
-                                                       200)})
-
-(vim.api.nvim_create_autocmd [:FocusLost :QuitPre]
-                             {:callback #(when (<= focuses 5)
-                                           (vim.defer_fn #(os.execute (.. "xmodmap "
-                                                                          (.. (vim.fn.stdpath :config)
-                                                                              :/scripts/unswap_esc.xmodmap
-                                                                              "> /dev/null 2>&1")))
-                                                         200))})
-
-(vim.api.nvim_create_autocmd :QuitPre
-                             {:callback #(os.execute (.. "xmodmap "
-                                                         (.. (vim.fn.stdpath :config)
-                                                             :/scripts/unswap_esc.xmodmap
-                                                             "> /dev/null 2>&1")))})
