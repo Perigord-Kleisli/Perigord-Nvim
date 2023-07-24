@@ -160,6 +160,7 @@
                                    :fennel
                                    :dune]}
        :julian/lean.nvim {:ft [:lean]}
+       :elkowar/yuck.vim {:ft [:yuck]}
        ;; Testing
        :nvim-neotest/neotest {:dependencies [:MrcJkb/neotest-haskell
                                              :rouge8/neotest-rust

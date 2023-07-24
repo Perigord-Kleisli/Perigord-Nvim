@@ -100,5 +100,6 @@
   "vim-parinfer": { "branch": "master", "commit": "a5490e430452a749a3ad665ebae54392d9657414" },
   "vim-smartword": { "branch": "master", "commit": "d171f92a545fa92ed983aef7d3862d2b59261f59" },
   "vim-wakatime": { "branch": "master", "commit": "02be9238319937e04afea73fd0fc7da5413ee041" },
-  "which-key.nvim": { "branch": "main", "commit": "5a6c954a5a46023c19acc03a8b6d7c3e57964fc5" }
+  "which-key.nvim": { "branch": "main", "commit": "5a6c954a5a46023c19acc03a8b6d7c3e57964fc5" },
+  "yuck.vim": { "branch": "master", "commit": "9b5e0370f70cc30383e1dabd6c215475915fe5c3" }
 }
