@@ -135,10 +135,11 @@
        :ShinKage/idris2-nvim {:dependencies [:MunifTanjim/nui.nvim
                                              :neovim/nvim-lspconfig]}
        ;; C++
-       :p00f/clangd_extensions.nvim {:ft [:cpp]}
-       :madskjeldgaard/cppman.nvim {:ft [:cpp]}
-       :PatWie/include-guard.nvim {:ft [:cpp]}
+       :p00f/clangd_extensions.nvim {:ft [:c :cpp]}
+       :madskjeldgaard/cppman.nvim {:ft [:c :cpp]}
+       :PatWie/include-guard.nvim {:ft [:c :cpp]}
        :Civitasv/cmake-tools.nvim {:ft [:cmake]}
+       :jakemason/ouroboros.nvim {:ft [:c :cpp]}
        ;; APL
        "https://git.sr.ht/~detegr/nvim-dyalog" {:ft [:apl :dyalog]}
        :justin2004/vim-apl {:ft [:apl :dyalog]
