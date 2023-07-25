@@ -15,7 +15,7 @@
       system: let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [(_: super: {fennel-language-server = super.callPackage ./nix/fennel-language-server.nix {};})];
+          overlays = [(_: super: {fennel-ls = super.callPackage ./nix/fennel-ls.nix {};})];
         };
       in
         with pkgs; {
@@ -23,7 +23,7 @@
             buildInputs = [
               act
               fennel
-              fennel-language-server
+              fennel-ls
               fnlfmt
               marksman
               nodePackages.cspell
