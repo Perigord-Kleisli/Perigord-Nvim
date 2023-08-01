@@ -30,6 +30,7 @@
         :ts (basic-lsp :typescript :tsserver)
         :js (basic-lsp :javascript :tsserver)
         :fs #(set vim.bo.filetype :fsharp)
+        :cs (basic-module :cs)
         :py (basic-module :python)
         :idr (basic-module :idris2)
         :rs (basic-module :rust)
