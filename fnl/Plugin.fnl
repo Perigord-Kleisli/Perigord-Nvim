@@ -104,9 +104,9 @@
                                              :hrsh7th/nvim-cmp]}
        :hrsh7th/cmp-path {:dependencies [:hrsh7th/nvim-cmp]}
        :hrsh7th/cmp-cmdline {:dependencies [:hrsh7th/nvim-cmp]}
-       :jackMort/ChatGPT.nvim {:dependencies [:MunifTanjim/nui.nvim
-                                              :nvim-lua/plenary.nvim
-                                              :nvim-telescope/telescope.nvim]}
+       ; :jackMort/ChatGPT.nvim {:dependencies [:MunifTanjim/nui.nvim
+       ;                                        :nvim-lua/plenary.nvim
+       ;                                        :nvim-telescope/telescope.nvim]}
        :mbbill/undotree {}
        :windwp/nvim-autopairs {:opts {:check_ts true :fast_wrap {}}
                                :dependencies [:nvim-treesitter/nvim-treesitter
@@ -218,15 +218,8 @@
        "https://git.sr.ht/~whynothugo/lsp_lines.nvim" {:config true
                                                        :name :lsp_lines
                                                        :dependencies [:neovim/nvim-lspconfig]}
-       :lukas-reineke/indent-blankline.nvim {:name :indent_blankline
-                                             :opts {:show_end_of_line true
-                                                    :show_current_context true
-                                                    :show_current_context_start true}
-                                             :init #(do
-                                                      (set vim.opt.list true)
-                                                      (vim.opt.listchars:append "eol:↴")
-                                                      (set vim.g.indentLine_enabled
-                                                           1))}
+       :lukas-reineke/indent-blankline.nvim {:name :ibl
+                                             :file :UI.Indent}
        :catppuccin/nvim {:file :UI.Colors :lazy false :name :catppuccin}
        :stevearc/dressing.nvim {:event :VeryLazy}
        :kevinhwang91/nvim-bqf {:name :bqf :config true}

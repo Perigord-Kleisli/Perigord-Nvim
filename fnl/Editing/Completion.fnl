@@ -106,5 +106,5 @@
                         :mapping cmd-mapping})
 
 (local utils (require :Utils))
-(local chatgpt (require :chatgpt))
-(chatgpt.setup {:api_key_cmd (.. "echo -n " utils.secrets.openai-api-key)})
+; (local chatgpt (require :chatgpt))
+; (chatgpt.setup {:api_key_cmd (.. "echo -n " utils.secrets.openai-api-key)})
