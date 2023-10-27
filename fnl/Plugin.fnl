@@ -229,6 +229,7 @@
                                  :dependencies :nvim-tree/nvim-web-devicons}
        :wakatime/vim-wakatime {}
        :williamboman/mason.nvim {:build ":MasonUpdate" :config true :opts {}}
+       :jlcrochet/vim-razor {}
        :andweeb/presence.nvim {:config #(: (require :presence) :setup)}
        :edluffy/hologram.nvim {:config true}
        :nathom/filetype.nvim {}})
