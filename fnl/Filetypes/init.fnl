@@ -11,11 +11,11 @@
 (vim.api.nvim_create_autocmd [:BufWinEnter]
                              {:pattern "*" :callback #(vim.schedule buf-cmds)})
 
-(lambda basic-lsp [lang lsp]
+(lambda basic-lsp [lang lsp ?options]
   #(let [lspconfig (require :lspconfig)
          {: capabilities} (require :Lang.LSP)]
      (set vim.bo.filetype lang)
-     ((. lspconfig lsp :setup) {: capabilities})
+     ((. lspconfig lsp :setup) (vim.tbl_extend :force {: capabilities} (or ?options [])))
      (vim.cmd.LspStart lsp)))
 
 (lambda basic-module [lang]
@@ -28,7 +28,8 @@
         :c (basic-module :c)
         :h (basic-module :c)
         :ts (basic-lsp :typescript :tsserver)
-        :js (basic-lsp :javascript :tsserver)
+        :html (basic-lsp :html :html {:cmd ["html-languageserver" "--stdio"]})
+        :css (basic-lsp :css :cssls)
         :fs #(set vim.bo.filetype :fsharp)
         :cs (basic-module :cs)
         :py (basic-module :python)
