@@ -28,8 +28,7 @@
 (vim.keymap.set :t :<leader>ot :<cmd>ToggleTerm<CR>
                 {:noremap true :silent true :desc "Toggle Terminal"})
 
-(vim.keymap.set :n :vv :V {:noremap true :silent true :desc "Select Line"})
-(vim.keymap.set :n :V :v$ {:noremap true :silent true :desc "Select Line"})
+(vim.keymap.set :n :vv :v$ {:noremap true :silent true :desc "Select Line"})
 
 (vim.keymap.set :n :<C-l> :<cmd>nohl<CR>
                 {:noremap true :silent true :desc "Toggle Terminal"})

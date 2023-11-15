@@ -5,7 +5,7 @@
 (local dapui (require :dapui))
 (local dap (require :dap))
 
-(let [command (os.getenv :LLDB_VSCODE)]
+(let [command "lldb-vscode"]
   (if (= nil command)
       (vim.notify "an LLDB_VSCODE envvar must be set with an absolute path to an 'lldb-vscode' exxecutable")
       (set dap.adapters.lldb {:type :executable : command :name :lldb})))
@@ -20,7 +20,8 @@
                             :stopOnEntry false
                             :args []}])
 
-(dbg-map {:name " Debug"
+
+(dbg-map {:name " Debug"
           :with-default-heads true
           :remove [:n :<CR>]
           :config {:on_enter dapui.open :on_exit dapui.close}
