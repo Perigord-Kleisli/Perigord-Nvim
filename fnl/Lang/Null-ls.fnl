@@ -18,6 +18,7 @@
                                 (assoc :args [:fantomas :$FILENAME]))
                             formatting.trim_newlines
                             formatting.trim_whitespace
+                            formatting.prettier
                             formatting.jq
                             code_actions.statix
                             diagnostics.deadnix

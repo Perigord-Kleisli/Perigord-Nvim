@@ -231,7 +231,8 @@
        :williamboman/mason.nvim {:build ":MasonUpdate" :config true :opts {}}
        :jlcrochet/vim-razor {}
        :andweeb/presence.nvim {:config #(: (require :presence) :setup)}
-       :edluffy/hologram.nvim {:config true}
+       :edluffy/hologram.nvim {:config true :opts {:auto_display true}}
+       :mattn/emmet-vim {}
        :nathom/filetype.nvim {}})
 
 (require :Editing)
