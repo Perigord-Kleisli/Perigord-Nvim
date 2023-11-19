@@ -211,7 +211,7 @@
                                               :nvim-tree/nvim-web-devicons]}
        :folke/trouble.nvim {:config true
                             :dependencies [:nvim-tree/nvim-web-devicons]}
-       :p00f/nvim-ts-rainbow {:dependencies [:nvim-treesitter/nvim-treesitter]}
+       :HiPhish/nvim-ts-rainbow2 {:dependencies [:nvim-treesitter/nvim-treesitter]}
        :NvChad/nvim-colorizer.lua {:opts {:user_default_options {:mode :virtualtext
                                                                  :names false}}
                                    :name :colorizer}
@@ -231,7 +231,6 @@
        :williamboman/mason.nvim {:build ":MasonUpdate" :config true :opts {}}
        :jlcrochet/vim-razor {}
        :andweeb/presence.nvim {:config #(: (require :presence) :setup)}
-       :edluffy/hologram.nvim {:config true :opts {:auto_display true}}
        :mattn/emmet-vim {}
        :nathom/filetype.nvim {}})
 

@@ -20,7 +20,6 @@
                             :stopOnEntry false
                             :args []}])
 
-
 (dbg-map {:name " Debug"
           :with-default-heads true
           :remove [:n :<CR>]
