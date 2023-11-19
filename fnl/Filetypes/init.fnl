@@ -33,6 +33,8 @@
         :html (basic-module :html)
         :css (basic-lsp :css :cssls {:cmd ["css-languageserver" "--stdio"]})
         :fs #(set vim.bo.filetype :fsharp)
+        :vert (basic-lsp :glsl :glsl_analyzer)
+        :frag (basic-lsp :glsl :glsl_analyzer)
         :cs (basic-module :cs)
         :py (basic-module :python)
         :idr (basic-module :idris2)
