@@ -39,6 +39,7 @@
 
 (clangd.setup {:server {: capabilities} :inlay_hints {} :autoSetHints true})
 (lspconfig.clangd.setup {:server {: capabilities}
+                         :cmd [:clangd :--offset-encoding=utf-16 :--clang-tidy :--all-scopes-completion]
                          :inlay_hints {}
                          :autoSetHints true})
 

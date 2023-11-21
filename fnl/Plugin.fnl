@@ -55,7 +55,7 @@
        :neovim/nvim-lspconfig {:file :Lang.LSP
                                :dependencies [:hrsh7th/cmp-nvim-lsp]}
        :nvim-treesitter/playground {}
-       :jose-elias-alvarez/null-ls.nvim {:file :Lang.Null-ls}
+       :nvimtools/none-ls.nvim {:file :Lang.Null-ls}
        ;; Editing
        :xiyaowong/link-visitor.nvim {:config true}
        :booperlv/nvim-gomove {:opts {:map_default false}}

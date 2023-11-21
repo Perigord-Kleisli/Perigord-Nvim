@@ -34,6 +34,8 @@
         :css (basic-lsp :css :cssls {:cmd ["css-languageserver" "--stdio"]})
         :fs #(set vim.bo.filetype :fsharp)
         :vert (basic-lsp :glsl :glsl_analyzer)
+        :ex (basic-lsp :elixir :elixirls {:cmd [:elixir-ls]})
+        :exs (basic-lsp :elixir :elixirls {:cmd [:elixir-ls]})
         :frag (basic-lsp :glsl :glsl_analyzer)
         :cs (basic-module :cs)
         :py (basic-module :python)
