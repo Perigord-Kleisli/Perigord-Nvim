@@ -15,8 +15,15 @@
   #(let [lspconfig (require :lspconfig)
          {: capabilities} (require :Lang.LSP)]
      (set vim.bo.filetype lang)
-     ((. lspconfig lsp :setup) (vim.tbl_extend :force {: capabilities} (or ?options [])))
+     ((. lspconfig lsp :setup) (vim.tbl_extend :force {: capabilities}
+                                               (or ?options [])))
      (vim.cmd.LspStart lsp)))
+
+(lambda basic-lsps [lang lsps]
+  #(each [server server-opts (pairs lsps)]
+     ((basic-lsp lang server server-opts))))
+
+;
 
 (lambda basic-module [lang]
   #(do
@@ -31,10 +38,11 @@
         :js (basic-lsp :javascript :tsserver)
         :mjs (basic-lsp :javascript :tsserver)
         :html (basic-module :html)
-        :css (basic-lsp :css :cssls {:cmd ["css-languageserver" "--stdio"]})
+        :css (basic-lsp :css :cssls {:cmd [:css-languageserver :--stdio]})
         :fs #(set vim.bo.filetype :fsharp)
         :vert (basic-lsp :glsl :glsl_analyzer)
         :ex (basic-lsp :elixir :elixirls {:cmd [:elixir-ls]})
+        :heex (basic-lsp :heex :elixirls {:cmd [:elixir-ls]})
         :exs (basic-lsp :elixir :elixirls {:cmd [:elixir-ls]})
         :frag (basic-lsp :glsl :glsl_analyzer)
         :cs (basic-module :cs)

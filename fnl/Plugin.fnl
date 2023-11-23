@@ -218,8 +218,7 @@
        "https://git.sr.ht/~whynothugo/lsp_lines.nvim" {:config true
                                                        :name :lsp_lines
                                                        :dependencies [:neovim/nvim-lspconfig]}
-       :lukas-reineke/indent-blankline.nvim {:name :ibl
-                                             :file :UI.Indent}
+       :lukas-reineke/indent-blankline.nvim {:name :ibl :file :UI.Indent}
        :catppuccin/nvim {:file :UI.Colors :lazy false :name :catppuccin}
        :stevearc/dressing.nvim {:event :VeryLazy}
        :kevinhwang91/nvim-bqf {:name :bqf :config true}
@@ -232,6 +231,9 @@
        :jlcrochet/vim-razor {}
        :andweeb/presence.nvim {:config #(: (require :presence) :setup)}
        :mattn/emmet-vim {}
+       :jmbuhr/otter.nvim { :dependencies [ :hrsh7th/nvim-cmp :neovim/nvim-lspconfig :nvim-treesitter/nvim-treesitter] }
+       :elixir-tools/elixir-tools.nvim {:dependencies [:nvim-lua/plenary.nvim]}
+       :folke/todo-comments.nvim { :dependencies [:nvim-lua/plenary.nvim] :config true }
        :nathom/filetype.nvim {}})
 
 (require :Editing)
