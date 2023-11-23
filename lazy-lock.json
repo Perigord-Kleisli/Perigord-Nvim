@@ -41,7 +41,7 @@
   "idris2-nvim": { "branch": "main", "commit": "8bff02984a33264437e70fd9fff4359679d910da" },
   "include-guard.nvim": { "branch": "main", "commit": "fbcb2bfabf52b528d606d492299fba00c7ba817b" },
   "ionide-vim": { "branch": "master", "commit": "8435bae84b26b602dbb68399661b3989915cc4d3" },
-  "lazy.nvim": { "branch": "main", "commit": "16603c6917435d8446f7357cb61095138a417085" },
+  "lazy.nvim": { "branch": "main", "commit": "96584866b9c5e998cbae300594d0ccfd0c464627" },
   "lean.nvim": { "branch": "main", "commit": "a32d035d6f5c57b83335813bcc84fb498b4e2b0f" },
   "leap.nvim": { "branch": "main", "commit": "b6ae80f8fc9993638608fc1a51c6ab0eeb12618c" },
   "link-visitor.nvim": { "branch": "main", "commit": "096fa8916fcb2655b267d22c53b3ba455095cdde" },

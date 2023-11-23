@@ -9,6 +9,8 @@
                              :python
                              :markdown
                              :markdown_inline
+                             :elixir
+                             :heex
                              :html]
           :highlight {:enable true :disable [:markdown]}
           :autotag {:enable true}

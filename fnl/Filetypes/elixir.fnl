@@ -1,5 +1,5 @@
 (local elixir (require :elixir))
-(local elixirls (require :elixir.elixirls))
+(local lspconfig (require :lspconfig))
 
 (fn on_attach [_client _bufnr]
   (vim.keymap.set :n :<space>fp ":ElixirFromPipe<cr>"
@@ -9,9 +9,10 @@
   (vim.keymap.set :v :<space>em ":ElixirExpandMacro<cr>"
                   {:buffer true :noremap true}))
 
-(elixir.setup {:credo {}
-               :elixirls {:enable true
-                          : on_attach
-                          :settings (elixirls.settings {:dialyzerEnabled false
-                                                        :enableTestLenses false})}
-               :nextls {:enable true}})
+(elixir.setup)
+
+(local {: capabilities} (require :Lang.LSP))
+(lspconfig.elixirls.setup {: capabilities
+                           :cmd [:elixir-ls]
+                           : on_attach
+                           :settings {:elixirLS {:fetchDeps false}}})

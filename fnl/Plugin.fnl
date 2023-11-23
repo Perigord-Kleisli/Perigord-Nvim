@@ -232,7 +232,7 @@
        :andweeb/presence.nvim {:config #(: (require :presence) :setup)}
        :mattn/emmet-vim {}
        :jmbuhr/otter.nvim { :dependencies [ :hrsh7th/nvim-cmp :neovim/nvim-lspconfig :nvim-treesitter/nvim-treesitter] }
-       :elixir-tools/elixir-tools.nvim {:dependencies [:nvim-lua/plenary.nvim]}
+       :elixir-tools/elixir-tools.nvim {:tag :stable :dependencies [:nvim-lua/plenary.nvim]}
        :folke/todo-comments.nvim { :dependencies [:nvim-lua/plenary.nvim] :config true }
        :nathom/filetype.nvim {}})
 
