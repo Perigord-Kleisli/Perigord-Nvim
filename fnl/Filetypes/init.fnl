@@ -24,19 +24,25 @@
      (set vim.bo.filetype lang)
      (require (or ?file (.. :Filetypes. lang)))))
 
+(let [lspconfig (require :lspconfig)
+      {: capabilities} (require :Lang.LSP)  
+      schemastore (require :schemastore)]
+  (lspconfig.jsonls.setup {:settings {:json {:schemas (schemastore.json.schemas)}
+                                      :validate {:enable true}}
+                           : capabilities
+                           :cmd [:vscode-json-languageserver :--stdio]}))
+
 (local function_extensions
        {:cpp (basic-module :cpp)
         :c (basic-module :c)
         :h (basic-module :c)
         :ts (basic-lsp :typescript :tsserver)
-        :js (basic-lsp :javascript :tsserver)
-        :mjs (basic-lsp :javascript :tsserver)
         :html (basic-module :html)
         :css (basic-lsp :css :cssls {:cmd [:css-languageserver :--stdio]})
         :fs #(set vim.bo.filetype :fsharp)
         :vert (basic-lsp :glsl :glsl_analyzer)
         :ex (basic-module :elixir)
-        :exs (basic-module :elixir)
+        :exs (basic-lsp :elixir :elixirls {:cmd [:elixir-ls]})
         :heex (basic-module :heex :Filetypes.elixir)
         :exs (basic-lsp :elixir :elixirls {:cmd [:elixir-ls]})
         :frag (basic-lsp :glsl :glsl_analyzer)

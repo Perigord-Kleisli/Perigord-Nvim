@@ -234,6 +234,8 @@
        :jmbuhr/otter.nvim { :dependencies [ :hrsh7th/nvim-cmp :neovim/nvim-lspconfig :nvim-treesitter/nvim-treesitter] }
        :elixir-tools/elixir-tools.nvim {:tag :stable :dependencies [:nvim-lua/plenary.nvim]}
        :folke/todo-comments.nvim { :dependencies [:nvim-lua/plenary.nvim] :config true }
+       :pmizio/typescript-tools.nvim {:requires [:nvim-lua/plenary.nvim :neovim/nvim-lspconfig] :opts {}}
+       :b0o/SchemaStore.nvim {}
        :nathom/filetype.nvim {}})
 
 (require :Editing)
