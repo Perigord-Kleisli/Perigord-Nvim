@@ -11,6 +11,8 @@
                              :markdown_inline
                              :elixir
                              :heex
+                             :javascript
+                             :typescript
                              :html]
           :highlight {:enable true :disable [:markdown]}
           :autotag {:enable true}
