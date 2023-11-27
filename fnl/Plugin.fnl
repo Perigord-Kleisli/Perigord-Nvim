@@ -236,6 +236,7 @@
        :folke/todo-comments.nvim { :dependencies [:nvim-lua/plenary.nvim] :config true }
        :pmizio/typescript-tools.nvim {:requires [:nvim-lua/plenary.nvim :neovim/nvim-lspconfig] :opts {}}
        :b0o/SchemaStore.nvim {}
+       :nanotee/sqls.nvim {}
        :nathom/filetype.nvim {}})
 
 (require :Editing)

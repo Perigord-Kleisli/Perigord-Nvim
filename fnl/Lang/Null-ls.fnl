@@ -16,6 +16,7 @@
                             (-> formatting.fantomas
                                 (assoc :command :dotnet)
                                 (assoc :args [:fantomas :$FILENAME]))
+                            (formatting.sqlfluff.with {:extra_args [:--dialect :sqlite]})
                             formatting.trim_newlines
                             formatting.trim_whitespace
                             formatting.prettier
@@ -24,6 +25,7 @@
                             diagnostics.deadnix
                             diagnostics.cppcheck
                             diagnostics.shellcheck
+                            (diagnostics.sqlfluff.with {:extra_args [:--dialect :sqlite]})
                             code_actions.shellcheck
                             (assoc diagnostics.cspell :filetypes [:markdown])
                             code_actions.cspell

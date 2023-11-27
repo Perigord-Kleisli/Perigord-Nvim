@@ -25,7 +25,7 @@
      (require (or ?file (.. :Filetypes. lang)))))
 
 (let [lspconfig (require :lspconfig)
-      {: capabilities} (require :Lang.LSP)  
+      {: capabilities} (require :Lang.LSP)
       schemastore (require :schemastore)]
   (lspconfig.jsonls.setup {:settings {:json {:schemas (schemastore.json.schemas)}
                                       :validate {:enable true}}
