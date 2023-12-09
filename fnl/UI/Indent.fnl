@@ -24,3 +24,5 @@
 (vim.opt.listchars:append "eol:↴")
 
 (hooks.register hooks.type.SCOPE_HIGHLIGHT hooks.builtin.scope_highlight_from_extmark)
+
+

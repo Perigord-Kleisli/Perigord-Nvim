@@ -1,7 +1,8 @@
 (let [{: setup} (require :nvim-treesitter.configs)]
   (setup {:ensure_installed [:fennel
                              :haskell
-                             :cpp 
+                             :cpp
+                             :bash
                              :cmake
                              :nix
                              :lua
@@ -28,3 +29,10 @@
                                            :if "@function.inner"
                                            :ac "@class.outer"
                                            :ic "@class.inner"}}}}))
+
+(let [treesitter-parsers (require :nvim-treesitter.parsers)
+      parser-config (treesitter-parsers.get_parser_configs)]
+  (tset parser-config :pyf {:install_info {:url "https://github.com/Perigord-Kleisli/tree-sitter-pyf.git"
+                                           :branch :main
+                                           :files [:src/parser.c :src/scanner.c]}
+                            :filetype :pyf}))

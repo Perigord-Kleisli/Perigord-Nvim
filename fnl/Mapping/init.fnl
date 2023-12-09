@@ -51,9 +51,6 @@
 (vim.keymap.set :x :<A-j> :<Plug>GoVSMDown
                 {:noremap true :silent true :desc "Move down"})
 
-(let [{: save} (require :sesh)]
-  (vim.keymap.set [:n :x :o] :<C-s> save {:noremap true :desc "Save session"}))
-
 (let [leap (require :leap)]
   (vim.keymap.set [:n :x :o] :s #(leap.leap [])
                   {:noremap true :silent true :desc "Leap forwards"})
@@ -62,7 +59,6 @@
 
 (local {:register wk} (require :which-key))
 (local telescope (require :telescope.builtin))
-(local {:extensions telescope-extension} (require :telescope))
 
 (local {: cmd} (require :hydra.keymap-util))
 (local {: Terminal} (require :toggleterm.terminal))
@@ -86,7 +82,6 @@
 (wk {:o {:name :Open
          :p [(cmd :NvimTreeToggle) :Sidebar]
          :t [(cmd :ToggleTerm) :Terminal]
-         :s [telescope-extension.sesh.sesh :Session]
          :T [(cmd "ToggleTerm direction=float") "Floating Terminal"]
          :n [(cmd "Telescope notify") "Recent Notifications"]
          :b [#(btop:toggle) "Task Manager"]

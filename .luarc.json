@@ -43,5 +43,8 @@
         "/home/truff/.local/share/nvim/site/pack/packer/start/playground/after",
         "${3rd}/luassert/library",
         "${3rd}/lfs/library"
+    ],
+    "diagnostics.disable": [
+        "undefined-field"
     ]
 }

@@ -27,11 +27,7 @@
       lazy (require :lazy)]
   (db {:theme :doom
        :config {: header
-                :center [{:icon "󰪶  "
-                          :desc :Sessions
-                          :key :s
-                          :action #((. (require :telescope) :extensions :sesh :sesh))}
-                         {:icon "  "
+                :center [{:icon "  "
                           :desc "Recent files"
                           :key :r
                           :action "Telescope oldfiles"}

@@ -35,13 +35,16 @@
 (local function_extensions
        {:cpp (basic-module :cpp)
         :c (basic-module :c)
-        :h (basic-module :c)
-        :ts (basic-lsp :typescript :tsserver)
+        :cc (basic-module :cpp)
+        :sh (basic-lsp :bash :bashls)
+        :bash (basic-lsp :bash :bashls)
+        :h (basic-module :cpp)
         :html (basic-module :html)
+        :cs (basic-module :cs)
         :css (basic-lsp :css :cssls {:cmd [:css-languageserver :--stdio]})
         :fs #(set vim.bo.filetype :fsharp)
         :vert (basic-lsp :glsl :glsl_analyzer)
-        :ex (basic-module :elixir)
+        :ex (basic-lsp :elixir :elixirls {:cmd [:elixir-ls]})
         :exs (basic-lsp :elixir :elixirls {:cmd [:elixir-ls]})
         :heex (basic-module :heex :Filetypes.elixir)
         :exs (basic-lsp :elixir :elixirls {:cmd [:elixir-ls]})
@@ -58,6 +61,9 @@
         :lua (basic-module :lua)
         :lean (basic-module :lean)
         :nix (basic-module :nix)
+        :kt (basic-lsp :kotlin :kotlin_language_server)
+        :sql #(set vim.bo.filetype :sql)
+        :ua (basic-module :uiua)
         :bqn (basic-module :bqn)})
 
 (local function_literal {:CMakeLists.txt (basic-lsp :cmake :cmake)
@@ -67,4 +73,5 @@
 (let [ft (require :filetype)]
   (ft.setup {:overrides {:extensions {:lalrpop :lalrpop}
                          : function_extensions
+                         :shebang {:bash :bash}
                          : function_literal}}))

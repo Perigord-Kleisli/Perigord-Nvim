@@ -2,7 +2,7 @@
 (local {: capabilities} (require :Lang.LSP))
 (local {: cmd} (require :hydra.keymap-util))
 
-(fn on_attach [client bufnr]
+(fn on_attach []
   (local {:lang-map wk} (require :Mapping.Lang))
   (wk {:name " Haskell"
        :with-default-heads true
@@ -28,8 +28,7 @@
          :ghciEnv (vim.empty_dict)
          :ghciPrompt "λ: "
          :ghciInitialPrompt "λ: "
-         :ghciCmd "stack ghci --test --no-load --no-build --main-is TARGET --ghci-options -fprint-evld-with-show"}])
-  (ht.dap.discover_configurations bufnr))
+         :ghciCmd "stack ghci --test --no-load --no-build --main-is TARGET --ghci-options -fprint-evld-with-show"}]))
 
 (set vim.g.haskell_tools
      {:hls {: capabilities
@@ -39,3 +38,4 @@
             : on_attach}
       :tools {:repl {:handler :toggleterm :auto_focus true}
               :dap {:cmd [:haskell-debug-adapter]}}})
+(on_attach)

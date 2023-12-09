@@ -31,9 +31,9 @@
 (include-guard.setup {:copyright_holder :Perigord-Kleisli :add_copyright true})
 (local {: cmd} (require :hydra.keymap-util))
 
-(wk {:name "󰙱/++"
+(wk {:name "󰙱"
      :with-default-heads true
-     :pattern [:*.c :*.h :*.cpp :*.cxx]
+     :pattern [:*.c :*.h]
      :heads [[:o (cmd :Ouroboros) {:desc "Swap between header"}]
              [:I include-guard.AddIncludeGuard {:desc "Add Include Guard"}]]})
 

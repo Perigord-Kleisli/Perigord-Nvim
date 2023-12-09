@@ -32,25 +32,6 @@
 (lazy {:rktjmp/hotpot.nvim {:lazy false}
        ;; Treesitter and LSP
        :nvim-treesitter/nvim-treesitter {:file :Lang.Treesitter}
-       :Trouble-Truffle/sesh.nvim {:opts {:autosave {:enable true :autocmds []}
-                                          :autoload {:enable true}
-                                          :autoswitch {:enable true
-                                                       :exclude_ft [:lazy]}
-                                          :exclude_name [:NvimTree_1 :OUTLINE]
-                                          :post_load_hook #(do
-                                                             (each [_ buf (ipairs (vim.api.nvim_list_bufs))]
-                                                               (if (= ""
-                                                                      (vim.api.nvim_buf_get_option buf
-                                                                                                   :filetype))
-                                                                   (vim.api.nvim_buf_delete buf
-                                                                                            {})))
-                                                             (vim.defer_fn #(pcall require
-                                                                                   (.. :Filetypes.
-                                                                                       vim.bo.filetype))
-                                                                           0))}
-                                   :lazy true
-                                   :init (telescope-extension :sesh)
-                                   :dependencies [:nvim-telescope/telescope.nvim]}
        :nvim-treesitter/nvim-treesitter-textobjects {:dependencies [:nvim-treesitter/nvim-treesitter]}
        :neovim/nvim-lspconfig {:file :Lang.LSP
                                :dependencies [:hrsh7th/cmp-nvim-lsp]}
