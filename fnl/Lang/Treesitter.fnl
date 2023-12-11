@@ -18,7 +18,7 @@
                              :html]
           :highlight {:enable true :disable [:markdown]}
           :autotag {:enable true}
-          :rainbow {:enable true}
+          :rainbow {:enable true :disable [:cpp]}
           :textobjects {:swap {:enable true
                                :swap_next {:<A-l> "@parameter.inner"}
                                :swap_previous {:<A-h> "@parameter.inner"}}
