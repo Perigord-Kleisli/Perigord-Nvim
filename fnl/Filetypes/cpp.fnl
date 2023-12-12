@@ -48,7 +48,7 @@
 
 (wk {:name "󰙱++"
      :with-default-heads true
-     :pattern [:*.c :*.h]
+     :pattern [:*.c :*.h :*.cc :*.cpp]
      :heads [[:o (cmd :Ouroboros) {:desc "Swap between header"}]
              [:I include-guard.AddIncludeGuard {:desc "Add Include Guard"}]]})
 

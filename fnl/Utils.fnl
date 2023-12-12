@@ -38,16 +38,11 @@
   (var root-paths (icollect [_ client (ipairs (vim.lsp.buf_get_clients))]
                     (?. client :config :root_dir)))
   (table.insert root-paths (vim.fn.getcwd))
-  (var checked [])
-  (set root-paths (icollect [i v1 (ipairs root-paths)]
-                    (do
-                      (table.insert checked i true)
-                      (var isSubdir false)
-                      (each [j v2 (ipairs root-paths)]
-                        (when (and (not (. checked j)) (not= nil (v2:find (.. "^" v1))))
-                          (set isSubdir true)
-                          (lua :break)))
-                      (if isSubdir nil v1))))
+  (vim.notify (vim.inspect root-paths))
+  (set root-paths (icollect [k _ (pairs (collect [_ v (ipairs root-paths)]
+                                          (values v 0)))]
+                    k))
+  (vim.notify (vim.inspect root-paths))
   (-> (icollect [_ v (ipairs root-paths)]
         (get-directory-tree v))
       flatten))
