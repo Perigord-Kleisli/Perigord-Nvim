@@ -1,11 +1,11 @@
 (local secrets
        (let [filepath (.. (vim.fn.stdpath :config) :/secrets.json)]
          (let [f (io.open filepath :r)]
-          (when (= f nil)
-            (with-open [file (io.open filepath :w+)]
-              (var M {})
-              (tset M :openai-api-key (vim.fn.input "OpenAI api key: "))
-              (file:write (vim.fn.json_encode M)))))
+           (when (= f nil)
+             (with-open [file (io.open filepath :w+)]
+               (var M {})
+               (tset M :openai-api-key (vim.fn.input "OpenAI api key: "))
+               (file:write (vim.fn.json_encode M)))))
          (vim.fn.json_decode (vim.fn.readfile filepath))))
 
 (fn assoc [t k v]
@@ -17,6 +17,48 @@
     (tset x from nil)
     (tset x to val)
     x))
+
+(lambda get-directory-tree [path]
+  (local sep (package.config:sub 1 1))
+  (if (= 1 (vim.fn.isdirectory path))
+      (icollect [_ dir (ipairs (vim.fn.readdir path))]
+        (get-directory-tree (.. path sep dir)))
+      [path]))
+
+(lambda flatten [list]
+  (local tbl [])
+  (each [_ v (ipairs list)]
+    (match (type v)
+      :table (each [_ w (ipairs (flatten v))]
+               (table.insert tbl w))
+      _ (table.insert tbl v)))
+  tbl)
+
+(fn get-files-recursively []
+  (var root-paths (icollect [_ client (ipairs (vim.lsp.buf_get_clients))]
+                    (?. client :config :root_dir)))
+  (table.insert root-paths (vim.fn.getcwd))
+  (var checked [])
+  (set root-paths (icollect [i v1 (ipairs root-paths)]
+                    (do
+                      (table.insert checked i true)
+                      (var isSubdir false)
+                      (each [j v2 (ipairs root-paths)]
+                        (when (and (not (. checked j)) (not= nil (v2:find (.. "^" v1))))
+                          (set isSubdir true)
+                          (lua :break)))
+                      (if isSubdir nil v1))))
+  (-> (icollect [_ v (ipairs root-paths)]
+        (get-directory-tree v))
+      flatten))
+
+(fn get-executables []
+  (icollect [_ v (ipairs (get-files-recursively))]
+    (do
+      (local mode (?. (vim.loop.fs_stat v) :mode))
+      (if (and (not= nil mode) (not= 0 (bit.band mode 9)))
+          v
+          nil))))
 
 (fn respace-str [str size]
   (let [space (string.rep " " (- size (length str)))]
@@ -53,4 +95,12 @@
                               (.. "    " (table.concat v)))
                             (table.concat "\n")))))
 
-{ : assoc : rename-key : chunks : auto-gen-hint : secrets}
+{: assoc
+ : rename-key
+ : chunks
+ : auto-gen-hint
+ : secrets
+ : get-files-recursively
+ : get-directory-tree
+ : get-executables
+ : flatten}

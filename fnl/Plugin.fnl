@@ -218,6 +218,7 @@
        :pmizio/typescript-tools.nvim {:requires [:nvim-lua/plenary.nvim :neovim/nvim-lspconfig] :opts {}}
        :b0o/SchemaStore.nvim {}
        :nanotee/sqls.nvim {}
+       :ThePrimeagen/harpoon {:branch :harpoon2}
        :nathom/filetype.nvim {}})
 
 (require :Editing)

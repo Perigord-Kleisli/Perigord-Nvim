@@ -35,6 +35,7 @@
   "flit.nvim": { "branch": "main", "commit": "f4e9af572a62c808c8de214da672f2a115a98c35" },
   "friendly-snippets": { "branch": "main", "commit": "53d3df271d031c405255e99410628c26a8f0d2b0" },
   "gitsigns.nvim": { "branch": "main", "commit": "6e05045fb1a4845fe44f5c54aafe024444c422ba" },
+  "harpoon": { "branch": "harpoon2", "commit": "bb806acff3ceaec3b94bd3c92bc52945040004bf" },
   "haskell-tools.nvim": { "branch": "master", "commit": "488283589a6c12184099bfa0d6e1626399d7f3e0" },
   "hotpot.nvim": { "branch": "master", "commit": "bedc290557817b0ebf97d2b389bc5bb596a25bd7" },
   "hydra.nvim": { "branch": "master", "commit": "3ced42c0b6a6c85583ff0f221635a7f4c1ab0dd0" },

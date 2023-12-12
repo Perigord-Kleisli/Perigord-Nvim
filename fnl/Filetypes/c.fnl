@@ -4,26 +4,42 @@
 (local {:debug-map dbg-map} (require :Mapping.Debug))
 (local dapui (require :dapui))
 (local dap (require :dap))
+(local {: get-executables} (require :Utils))
 
-(let [command :lldb-vscode]
-  (if (= nil command)
-      (vim.notify "an LLDB_VSCODE envvar must be set with an absolute path to an 'lldb-vscode' exxecutable")
-      (set dap.adapters.lldb {:type :executable : command :name :lldb})))
+(set dap.adapters.lldb {:type :executable :command :lldb-vscode :name :lldb})
 
-(set dap.configurations.c [{:name :launch
+(var executable-defined false)
+
+(fn on_enter []
+  (when (not executable-defined)
+    (vim.ui.select (get-executables) {:prompt "Select program to debug:"}
+                   (fn [program]
+                     (var args [])
+                     (var argc 0)
+                     (var arg (vim.fn.input "Specify program arguments: "))
+                     (while (not= arg "")
+                      (table.insert args arg) 
+                      (set argc (+ 1 argc))
+                      (set arg (vim.fn.input (.. "Specify program arguments[" argc "]: "))))
+                     (vim.notify (.. "Debugging: " program))
+                     (set executable-defined true)
+                     (set dap.configurations.c
+                          [{:name :launch
                             :type :lldb
                             :request :launch
-                            :program #(vim.fn.input (.. "Path to executable: "
-                                                        (vim.fn.getcwd) "/")
-                                                    :file)
+                            : program
                             :cwd "${workspaceFolder}"
                             :stopOnEntry false
-                            :args []}])
+                            : args}]))))
+  (dapui.open))
+
+(fn on_exit []
+  (dapui.close))
 
 (dbg-map {:name " Debug"
           :with-default-heads true
           :remove [:n :<CR>]
-          :config {:on_enter dapui.open :on_exit dapui.close}
+          :config {: on_enter : on_exit}
           :heads [[:<CR> dap.continue {:desc "Start Debugging"}]]})
 
 (local {:lang-map wk} (require :Mapping.Lang))
@@ -39,14 +55,16 @@
 
 (clangd.setup {:server {: capabilities} :inlay_hints {} :autoSetHints true})
 (lspconfig.clangd.setup {:server {: capabilities}
-                         :cmd [:clangd :--offset-encoding=utf-16 :--clang-tidy :--all-scopes-completion]
+                         :cmd [:clangd
+                               :--offset-encoding=utf-16
+                               :--clang-tidy
+                               :--all-scopes-completion]
                          :inlay_hints {}
                          :autoSetHints true})
 
 (vim.defer_fn #(do
-                (local inlay-hints (require :clangd_extensions.inlay_hints)) 
-                (inlay-hints.setup_autocmd)
-                (inlay-hints.set_inlay_hints))
-              500)
+                 (local inlay-hints (require :clangd_extensions.inlay_hints))
+                 (inlay-hints.setup_autocmd)
+                 (inlay-hints.set_inlay_hints)) 500)
 
 (vim.cmd.LspStart :clangd)

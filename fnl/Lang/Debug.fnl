@@ -43,6 +43,7 @@
                      :linehl :DapStoppedLine
                      :numhl :DapStopped})
 
+
 (tset dap.listeners.after.event_initialized :dapui_config dapui.open)
 
 (tset dap.listeners.before.event_terminated :dapui_config dapui.close)
