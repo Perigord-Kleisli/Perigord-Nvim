@@ -38,7 +38,6 @@
   (var root-paths (icollect [_ client (ipairs (vim.lsp.buf_get_clients))]
                     (?. client :config :root_dir)))
   (table.insert root-paths (vim.fn.getcwd))
-  (vim.notify (vim.inspect root-paths))
   (set root-paths (icollect [k _ (pairs (collect [_ v (ipairs root-paths)]
                                           (values v 0)))]
                     k))

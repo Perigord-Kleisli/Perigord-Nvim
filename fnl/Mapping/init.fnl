@@ -62,7 +62,6 @@
 
 (local {: cmd} (require :hydra.keymap-util))
 (local {: Terminal} (require :toggleterm.terminal))
-(local btop (Terminal:new {:cmd :btop :direction :float}))
 
 (let [ufo (require :ufo)]
   (var peek? false)
@@ -79,19 +78,22 @@
 
 (local harpoon (require :harpoon))
 (harpoon:setup)
+(local lazygit (Terminal:new {:cmd :lazygit :hidden true :direction :float}))
+(local btop (Terminal:new {:cmd :btop :direction :float}))
 
 (require :Mapping.Git)
 (wk {:o {:name :Open
          :p [(cmd :NvimTreeToggle) :Sidebar]
          :t [(cmd :ToggleTerm) :Terminal]
          :T [(cmd "ToggleTerm direction=float") "Floating Terminal"]
+         :g [#(lazygit:toggle) :Lazygit]
          :n [(cmd "Telescope notify") "Recent Notifications"]
          :b [#(btop:toggle) "Task Manager"]
          :r [telescope.oldfiles "Recent Files"]}
      :h {:name :Harpoon
          :a [#(: (harpoon:list) :prepend) :Add]
          :h [#(harpoon.ui:toggle_quick_menu (harpoon:list)) "Quick Menu"]
-         :d [#(: (harpoon:list) :removeAt 1) "Delete"]
+         :d [#(: (harpoon:list) :removeAt 1) :Delete]
          :D {:name "Remove At"
              :1 [#(: (harpoon:list) :removeAt 1) "Harpoon 1"]
              :2 [#(: (harpoon:list) :removeAt 2) "Harpoon 2"]

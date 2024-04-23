@@ -97,7 +97,6 @@
        :nvim-tree/nvim-tree.lua {:config true
                                  :dependencies [:nvim-tree/nvim-web-devicons]}
        :nvim-telescope/telescope.nvim {:file :Editing.Telescope
-                                       :tag :0.1.1
                                        :dependencies [:nvim-lua/plenary.nvim
                                                       :rcarriga/nvim-notify]}
        ;; Neovim
@@ -218,6 +217,7 @@
        :pmizio/typescript-tools.nvim {:requires [:nvim-lua/plenary.nvim :neovim/nvim-lspconfig] :opts {}}
        :b0o/SchemaStore.nvim {}
        :nanotee/sqls.nvim {}
+       :nvim-neotest/nvim-nio {}
        :ThePrimeagen/harpoon {:branch :harpoon2}
        :nathom/filetype.nvim {}})
 

@@ -27,7 +27,7 @@
                             diagnostics.shellcheck
                             (diagnostics.sqlfluff.with {:extra_args [:--dialect :sqlite]})
                             code_actions.shellcheck
-                            (assoc diagnostics.cspell :filetypes [:markdown])
+                            ; (assoc diagnostics.cspell :filetypes [:markdown])
                             code_actions.cspell
                             formatting.eslint_d
                             diagnostics.eslint_d
