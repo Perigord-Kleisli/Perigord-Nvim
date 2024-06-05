@@ -32,7 +32,6 @@
                             :stopOnEntry false
                             : args}]))))
   (dapui.open))
-
 (fn on_exit []
   (dapui.close))
 
