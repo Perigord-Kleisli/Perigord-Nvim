@@ -41,7 +41,7 @@
         :h (basic-module :cpp)
         :html (basic-module :html)
         :cs (basic-module :cs)
-        :css (basic-lsp :css :cssls {:cmd [:css-languageserver :--stdio]})
+        :css (basic-lsp :css :cssls {:cmd [:vscode-css-language-server :--stdio]})
         :fs #(set vim.bo.filetype :fsharp)
         :vert (basic-lsp :glsl :glsl_analyzer)
         :ex (basic-lsp :elixir :elixirls {:cmd [:elixir-ls]})

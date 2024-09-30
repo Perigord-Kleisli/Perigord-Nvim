@@ -218,6 +218,7 @@
        :b0o/SchemaStore.nvim {}
        :nanotee/sqls.nvim {}
        :nvim-neotest/nvim-nio {}
+       :RaafatTurki/hex.nvim { :config true }
        :ThePrimeagen/harpoon {:branch :harpoon2}
        :nathom/filetype.nvim {}})
 

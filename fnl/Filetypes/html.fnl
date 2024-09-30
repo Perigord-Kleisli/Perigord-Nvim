@@ -8,5 +8,5 @@
          :with-default-heads true
          :heads [[:! "<Plug>(emmet-expand-abbr)" {:desc "Expand Abbreviation"}]]}))
 
-(lspconfig.html.setup {:cmd [:html-languageserver :--stdio] : on_attach : capabilities})
+(lspconfig.html.setup {:cmd [:vscode-html-language-server :--stdio] : on_attach : capabilities})
 (vim.cmd ":LspStart html")
