@@ -15,18 +15,13 @@
       system: let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [(_: super: {fennel-ls = super.callPackage ./nix/fennel-ls.nix {};})];
         };
       in
         with pkgs; {
           devShells.default = mkShell {
             buildInputs = [
               act
-              fennel
-              fennel-ls
-              fnlfmt
               marksman
-              nodePackages.cspell
               nodePackages.prettier
               nodejs
               stylua
