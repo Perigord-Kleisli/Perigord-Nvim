@@ -1,5 +1,7 @@
 ![showcase](./data/showcase.png)
 
+Warning: A majority of this config's functionality is reliant on nix packaging
+
 <!--toc:start-->
 - [Dependencies](#dependencies)
   - [Required](#required)

@@ -39,6 +39,7 @@ vim.api.nvim_create_autocmd('InsertEnter', {
   pattern = '*',
   callback = function()
     vim.o.relativenumber = false
+    vim.o.number = true
   end
 })
 
@@ -46,6 +47,7 @@ vim.api.nvim_create_autocmd('InsertLeave', {
   pattern = '*',
   callback = function()
     vim.o.relativenumber = true
+    vim.o.number = true
   end
 })
 

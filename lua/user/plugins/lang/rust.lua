@@ -23,7 +23,6 @@ return {
     end,
   },
 
-  -- Add Rust & related to treesitter
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
