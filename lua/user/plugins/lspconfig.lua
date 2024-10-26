@@ -10,7 +10,7 @@ return {
       title = "Preview",
       title_pos = "center",
       position = { 3, 4 },
-      size = { width = 0.7, height = 0.8 },
+      size = { width = 0.7, height = 0.4 },
       zindex = 200,
     }
   } },
@@ -33,6 +33,8 @@ return {
         dynamicRegistration = false,
         lineFoldingOnly = true
       }
+
+      opts.setup.bashls = {}
 
       for lsp, lsp_opts in pairs(opts.setup) do
         lspconfig[lsp].setup(vim.tbl_deep_extend('keep', lsp_opts, capabilities))
