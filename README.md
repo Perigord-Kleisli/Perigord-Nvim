@@ -24,7 +24,6 @@
 
 ### Required
 
-- Neovim >=0.9
 - A font supporting [nerd-font](https://www.nerdfonts.com/) icons
 - [npm](https://www.npmjs.com/)
 - [fennel](https://fennel-lang.org/)
@@ -40,8 +39,7 @@
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [wakatime](https://wakatime.com)
 - [btop](https://github.com/aristocratos/btop)
-- A valid OpenAI API Key
-- [neovide](https://neovide.dev)
+- A valid Codium auth
 - [JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads)
 
 #### Haskell
@@ -66,11 +64,6 @@
 
 #### Cmake
 - [cmake-language-server](https://github.com/regen100/cmake-language-server)
-
-#### Fennel
-
-- [fennel-ls](https://sr.ht/~xerool/fennel-ls/)
-- [fnlfmt](https://git.sr.ht/~technomancy/fnlfmt)
 
 #### Lua
 
@@ -104,13 +97,3 @@
 
 - [cspell](https://github.com/streetsidesoftware/cspell) - Spellchecker
 - [jq](https://github.com/stedolan/jq) - Json processor
-
-## Some Bugs
-- `cd app && npm install` sometimes may not run for `markdown-preview.nvim`. Manually run `npm install` on that directory. Most commonly: `~/.local/share/nvim/lazy/markdown-preview.nvim/app`.
-- `vim.ui.select` on the startup menu causes the number columns to show up.
-- Launching on small screens causes the startup text to become wobbly
-- Autocomplete fails to work when creating a macro.
-- Markdown mode has issues when entering from an existing buffer.
-
-## Modules
-- Utils
