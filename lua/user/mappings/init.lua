@@ -143,6 +143,8 @@ wk.add({
   { "<leader>lS", "<cmd>Trouble lsp toggle win={position=right}<cr>", desc = "Toggle LSP References" },
   { "<leader>lt", "<cmd>Trouble diagnostics toggle<cr>", desc = "Toggle Diagnostics" },
   { "<leader>lT", function() require('neotest').summary.toggle() end, desc = "Toggle Test Summary" },
+  { "<leader>l?", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
+    desc = "Toggle Inline Hints" },
   { "g", group = "go to" },
   { "gd", vim.lsp.buf.definition, desc = "Definition" },
   { "gD", vim.lsp.buf.declaration, desc = "Declaration" },
