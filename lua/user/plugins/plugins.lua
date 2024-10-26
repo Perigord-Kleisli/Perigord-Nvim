@@ -1,5 +1,6 @@
 return {
   { "anuvyklack/vim-smartword" },
+  { "eraserhd/parinfer-rust", build = "cargo build --release" },
   { "farmergreg/vim-lastplace" },
   { "nvim-treesitter/playground" },
   { "lewis6991/gitsigns.nvim", opts = {} },

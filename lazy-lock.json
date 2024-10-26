@@ -70,6 +70,7 @@
   "nvim-ufo": { "branch": "main", "commit": "c96bb3bb853ff6253fe74f057df03e61fafd2403" },
   "nvim-web-devicons": { "branch": "master", "commit": "19d257cf889f79f4022163c3fbb5e08639077bd8" },
   "otter.nvim": { "branch": "main", "commit": "ca9ce67d0399380b659923381b58d174344c9ee7" },
+  "parinfer-rust": { "branch": "master", "commit": "d84828b453e158d06406f6b5e9056f6b54ff76c9" },
   "playground": { "branch": "master", "commit": "ba48c6a62a280eefb7c85725b0915e021a1a0749" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
   "presence.nvim": { "branch": "main", "commit": "87c857a56b7703f976d3a5ef15967d80508df6e6" },
