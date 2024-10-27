@@ -5,10 +5,12 @@ return { {
   priority = 1000,
   config = function()
     local catppuccin = require("catppuccin")
+    local colors = require("catppuccin.palettes").get_palette()
     catppuccin.setup({
       flavor = 'mocha',
       transparent_background = true,
       custom_highlights = {
+        LspCodeLens = { fg = require('user.util').blend(colors.mantle, colors.blue, 0.4) },
         Whitespace = { fg = '#32343E' },
         RainbowRed = { fg = "#E06C75" },
         RainbowYellow = { fg = "#E5C07B" },
@@ -47,7 +49,6 @@ return { {
       }
     })
 
-    local colors = require("catppuccin.palettes").get_palette()
     local TelescopeColor = {
       TelescopeMatching = { fg = colors.flamingo },
       TelescopeSelection = { fg = colors.text, bg = colors.surface0, bold = true },
@@ -63,6 +64,7 @@ return { {
       TelescopeResultsTitle = { fg = colors.mantle },
       TelescopePreviewTitle = { bg = colors.green, fg = colors.mantle },
     }
+
 
     for hl, col in pairs(TelescopeColor) do
       vim.api.nvim_set_hl(0, hl, col)
