@@ -34,6 +34,10 @@ return {
       winblend = 0
     }
   } },
+  { "iamcco/markdown-preview.nvim",
+    ft = "markdown",
+    build = "cd app && npm install"
+  },
   { "wakatime/vim-wakatime" },
   { "andweeb/presence.nvim", opts = {} },
   { "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, opts = {} },
