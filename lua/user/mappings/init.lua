@@ -122,6 +122,7 @@ vim.keymap.set('n', 'zC', require('ufo').closeAllFolds, { desc = "Close all fold
 vim.keymap.set('n', 'zK', require('ufo').peekFoldedLinesUnderCursor, { desc = "Preview Fold" })
 
 wk.add({
+
   { "<leader><leader>", telescope.find_files, desc = "Find Files" },
   { "<leader>x", require('notify').dismiss, desc = "Dismiss Notifications" },
   { "<leader>o", group = "open" },
@@ -153,6 +154,8 @@ wk.add({
   { "g[", vim.diagnostic.goto_prev, desc = "Previous Diagnostic" },
   { "g]", vim.diagnostic.goto_next, desc = "Next Diagnostic" },
   { "gt", telescope.live_grep, desc = "Text" },
+  { 'vi<tab>', require('user.util.select-indentline').select, desc = "Select Indent" },
+  { 'di<tab>', require('user.util.select-indentline').delete, desc = "Select Indent" },
 })
 
 local Hydra = require("hydra")

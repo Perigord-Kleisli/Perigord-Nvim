@@ -10,7 +10,8 @@ return { {
       flavor = 'mocha',
       transparent_background = true,
       custom_highlights = {
-        LspCodeLens = { fg = require('user.util').blend(colors.mantle, colors.blue, 0.4) },
+        LspCodeLens = { fg = require('user.util').blend(colors.mantle, colors.blue, 0.5) },
+        LspInlayHint = { fg = require('user.util').blend(colors.mantle, colors.blue, 0.4) },
         Whitespace = { fg = '#32343E' },
         RainbowRed = { fg = "#E06C75" },
         RainbowYellow = { fg = "#E5C07B" },
